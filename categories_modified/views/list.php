@@ -2,8 +2,8 @@
 <body>
 <h1>
 	<?php
-	foreach($products as $product){
-		echo $product['productName'];
+	foreach($dogs as $dog){
+		echo $dog['name'], "<br />";
 	}
 	?>
 </h1>

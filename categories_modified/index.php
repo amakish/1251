@@ -1,7 +1,7 @@
 <?php
-	require 'model/products.php';
+	require 'model/dogs.php';
 	
-	$products = get_products();
+	$dogs = get_dogs();
 	
 	include 'views/list.php';
 ?>
