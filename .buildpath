@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="src" path="categories"/>
+	<buildpathentry kind="src" path="categories_modified"/>
+	<buildpathentry kind="src" path="ch01_hst_discount"/>
+	<buildpathentry kind="src" path="ch01_product_discount"/>
+	<buildpathentry kind="src" path="ch02_future_value"/>
+	<buildpathentry kind="src" path="ch02_future_value_enhanced_ex2-2"/>
+	<buildpathentry kind="src" path="ch02_future_value_enhanced_present_value"/>
+	<buildpathentry kind="src" path="ch02_product_discount"/>
+	<buildpathentry kind="src" path="ch04_product_manager"/>
+	<buildpathentry kind="src" path="ch04_product_viewer"/>
+	<buildpathentry kind="src" path="ch05_guitar_shop"/>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+</buildpath>
