@@ -1,10 +1,9 @@
 <html><body>
-<?php
-	foreach($aMyCDs as $aCD)
-	{
-		echo $aCD['name'];
-	} // End foreach
-?>
+<?php foreach($aMyCDs as $aCD) {?>
+		<p>
+			<?php echo $aCD['name'];?>
+		</p>
+	<?php } ?>
 
 <form action='.' method="post">
 	<input type="text" name="title" />

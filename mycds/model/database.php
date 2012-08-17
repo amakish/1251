@@ -1,5 +1,5 @@
 <?php
-    $dsn = 'mysql:host=localhost;dbname=mycds';
+    $dsn = 'mysql:host=localhost;dbname=richcds';
     $username = 'root';
     $password = '';
 
