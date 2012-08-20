@@ -13,11 +13,15 @@ ActiveRecord\Config::initialize(function($cfg)
 	);
 });
 
+include 'views/list.php';
+
 if(array_key_exists('add', $_POST)){
-	include 'views/add.php';
-}
-else {
-	include 'views/list.php';
+	$oMeal = new Meal();
+
+	$oMeal->date = $_POST['date'];
+	$oMeal->members = $_POST['members'];
+
+	$oMeal->save();
 }
 
 ?>
