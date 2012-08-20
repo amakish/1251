@@ -4,3 +4,6 @@
 #1251 Web Design &amp; Development - working with PHP
 
 This is an edit of the file
+
+
+Hello from Rich
