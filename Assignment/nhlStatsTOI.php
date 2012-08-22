@@ -9,7 +9,7 @@
 			// ****************************************
 			// getContent()
 			$aNewLines = array("\t","\n","\r","\x20\x20","\0","\x0B");
-			$sUrl = "http://www.nhl.com/ice/playerstats.htm?fetchKey=20122ALLSASAll&viewName=summary&sort=points&pg=$i";
+			$sUrl = "http://www.nhl.com/ice/playerstats.htm?fetchKey=20122ALLSASALL&viewName=timeOnIce&sort=timeOnIce&pg=i";
 			$sRaw = file_get_contents($sUrl);
 			$sContent = str_replace($aNewLines, "", html_entity_decode($sRaw));
 			
@@ -21,7 +21,7 @@
 			
 			// ****************************************
 			// getPageNum()
-			$sDivPageNumStart = strpos($sContent, '<div class="numRes"') + 19;
+			$sDivPageNumStart = strpos($sContent, '<div class="numRes">') + 20;
 			$sDivPageNumEnd = strpos($sContent, '</div>', $sDivPageNumStart);
 			$sDivPageNum = substr($sContent,$sDivPageNumStart, $sDivPageNumEnd - $sDivPageNumStart);
 		
@@ -31,6 +31,7 @@
 			
 			$sPageNumXOf = $sPageNum[0];
 			$sPageNumOfX = $sPageNum[2];
+			
 			
 			// ****************************************
 			// getRowsScoringSummary()
@@ -45,22 +46,19 @@
 					$team = 		strip_tags($cells[0][2]);
 					$pos = 			strip_tags($cells[0][3]);
 					$gp = 			strip_tags($cells[0][4]);
-					$g = 			strip_tags($cells[0][5]);
-					$a = 			strip_tags($cells[0][6]);
-					$pts = 			strip_tags($cells[0][7]);
-					$plusminus = 	strip_tags($cells[0][8]);
-					$pim = 			strip_tags($cells[0][9]);
-					$ppg = 			strip_tags($cells[0][10]);
-					$shg = 			strip_tags($cells[0][11]);
-					$gwg = 			strip_tags($cells[0][12]);
-					$otg = 			strip_tags($cells[0][13]);
-					$sog = 			strip_tags($cells[0][14]);
-					$pct = 			strip_tags($cells[0][15]);
-					$toiperg = 		strip_tags($cells[0][16]);
-					$sftperg = 		strip_tags($cells[0][17]);
-					$foper = 		strip_tags($cells[0][18]);
+					$estoi = 		strip_tags($cells[0][5]);
+					$estopperg = 	strip_tags($cells[0][6]);
+					$shtoi = 		strip_tags($cells[0][7]);
+					$shtoiperg = 	strip_tags($cells[0][8]);
+					$pptoi = 		strip_tags($cells[0][9]);
+					$pptoiperg = 	strip_tags($cells[0][10]);
+					$toi = 			strip_tags($cells[0][11]);
+					$toiperg = 		strip_tags($cells[0][12]);
+					$shfts = 		strip_tags($cells[0][13]);
+					$toipershft = 	strip_tags($cells[0][14]);
+					$shftperg = 	strip_tags($cells[0][15]);
 			 
-					echo "RK: {$rk} | {$player} | Team: {$team} | Pos: {$pos} | GP: {$gp}  | G: {$g}  | A: {$a}  | Pts: {$pts}  | +/-: {$plusminus}  | PIM: {$pim} | PPG: {$ppg} | SHG: {$shg}  | GWG: {$gwg}  | OTG: {$otg} | SOG: {$sog}  | Pct: {$pct} | TOI/G: {$toiperg}  | Sft/G: {$sftperg} | FO%: {$foper} |\n";
+					echo "RK: {$rk} | {$player} | Team: {$team} | Pos: {$pos} | GP: {$gp}  |ESTOI: {$estoi}  | ESTOI/G: {$estoiperg}  | SHTOI: {$shtoi}  | SHTOI/G: {$shtoiperg} | PPTOI: {$pptoi} | PPTOI/G: {$pptoiperg} | TOI: {$toi}  | TOI/G: {$toiperg} | SHIFTS: {$shfts} | TOI/SHIFT: {$toipershft} | Shifts/G {$shftperg}|\n";
 				} // End if
 				
 			} // End foreach

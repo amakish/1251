@@ -1,6 +1,4 @@
 <?php
-	//function getStats($sURL, $fRows)
-	//{
 		$sPageNumXOf = "junk";
 		$sPageNumOfX = "";
 		
@@ -9,7 +7,7 @@
 			// ****************************************
 			// getContent()
 			$aNewLines = array("\t","\n","\r","\x20\x20","\0","\x0B");
-			$sUrl = "http://www.nhl.com/ice/playerstats.htm?fetchKey=20122ALLSASAll&viewName=summary&sort=points&pg=$i";
+			$sUrl = "http://www.nhl.com/ice/playerstats.htm?fetchKey=20122ALLSASALL&viewName=scoringLeaders&sort=powerPlayGoals&pg=i";
 			$sRaw = file_get_contents($sUrl);
 			$sContent = str_replace($aNewLines, "", html_entity_decode($sRaw));
 			
@@ -45,22 +43,19 @@
 					$team = 		strip_tags($cells[0][2]);
 					$pos = 			strip_tags($cells[0][3]);
 					$gp = 			strip_tags($cells[0][4]);
-					$g = 			strip_tags($cells[0][5]);
-					$a = 			strip_tags($cells[0][6]);
-					$pts = 			strip_tags($cells[0][7]);
-					$plusminus = 	strip_tags($cells[0][8]);
-					$pim = 			strip_tags($cells[0][9]);
-					$ppg = 			strip_tags($cells[0][10]);
+					$esg = 			strip_tags($cells[0][5]);
+					$esa = 			strip_tags($cells[0][6]);
+					$espts = 		strip_tags($cells[0][7]);
+					$ppg = 			strip_tags($cells[0][8]);
+					$ppa = 			strip_tags($cells[0][9]);
+					$ppp = 			strip_tags($cells[0][10]);
 					$shg = 			strip_tags($cells[0][11]);
-					$gwg = 			strip_tags($cells[0][12]);
-					$otg = 			strip_tags($cells[0][13]);
-					$sog = 			strip_tags($cells[0][14]);
-					$pct = 			strip_tags($cells[0][15]);
-					$toiperg = 		strip_tags($cells[0][16]);
-					$sftperg = 		strip_tags($cells[0][17]);
-					$foper = 		strip_tags($cells[0][18]);
+					$sha = 			strip_tags($cells[0][12]);
+					$shp = 			strip_tags($cells[0][13]);
+					$gwg = 			strip_tags($cells[0][14]);
+					$otg = 			strip_tags($cells[0][15]);
 			 
-					echo "RK: {$rk} | {$player} | Team: {$team} | Pos: {$pos} | GP: {$gp}  | G: {$g}  | A: {$a}  | Pts: {$pts}  | +/-: {$plusminus}  | PIM: {$pim} | PPG: {$ppg} | SHG: {$shg}  | GWG: {$gwg}  | OTG: {$otg} | SOG: {$sog}  | Pct: {$pct} | TOI/G: {$toiperg}  | Sft/G: {$sftperg} | FO%: {$foper} |\n";
+					echo "RK: {$rk} | {$player} | Team: {$team} | Pos: {$pos}  | GP: {$gp}  | ESG: {$esg}  | ESA: {$esa}  | ESPts: {$espts}  | PPG: {$ppg}  | PPA: {$ppa} | PPP: {$ppp} | SHG: {$shg}  | SHA: {$sha}  | SHP: {$shp} | GWG: {$gwg}  | OTG: {$otg} |\n";
 				} // End if
 				
 			} // End foreach
@@ -70,5 +65,4 @@
 			} // End if
 			
 		} // End for loop
-	//} // End getStats
 ?>
