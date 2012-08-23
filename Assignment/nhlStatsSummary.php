@@ -17,8 +17,8 @@
 		$sTBody = substr($sContent, $sTbodyStart, $sTBodyEnd - $sTbodyStart);
 		
 		// isolate the rows within the tbody
-		preg_match_all("|<tr(.*)</tr>|U", $sTBody, $rows);
-		$fgetRows($rows);
+		preg_match_all("|<tr(.*)</tr>|U", $sTBody, $aRows);
+		$fgetRows($aRows);
 
 		return $sContent;
 	} // End getStatsSummary
@@ -36,11 +36,10 @@
 
 		return $aPlayerNum;
 	} // End getPlayerNumXXofYYY
-	
-	
+
 	// ******************************************************
 	// Anonymous Function (Callback)
-	$getRows = function($aRows){
+	$fgetRowsStatsSummary = function($aRows){
 		foreach ($aRows[0] as $aRow){
 			if ((strpos($aRow,'<th')===false)){
 				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
@@ -76,7 +75,7 @@
 	$sPlayerNumOfYYY = "";
 	
 	for($i=1; $sPlayerNumXXOf != $sPlayerNumOfYYY; $i++) {
-		$sStatsSummary = getStatsSummary("http://www.nhl.com/ice/playerstats.htm?fetchKey=20122ALLSASAll&viewName=summary&sort=points&pg=$i", $getRows);
+		$sStatsSummary = getStatsSummary("http://www.nhl.com/ice/playerstats.htm?fetchKey=20122ALLSASAll&viewName=summary&sort=points&pg=$i", $fgetRowsStatsSummary);
 		$aPlayerNum = getPlayerNumXXofYYY($sStatsSummary);
 		
 		$sPlayerNumXXOf = $aPlayerNum[0];
