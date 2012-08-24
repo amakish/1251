@@ -6,7 +6,7 @@
 	function getSched($sUrl, $fgetRows) {
 		// get file contents
 		$sUrlInternal = $sUrl;
-		$sNewLines = array("\t","\n","\r","\x20\x20","\0","\x0B");
+		$sNewLines = array("\t", "\n", "\r", "\x20\x20", "\0", "\x0B");
 		$sRawContent = file_get_contents($sUrlInternal);
 		$sContent = str_replace($sNewLines, "", html_entity_decode($sRawContent));
 	
@@ -29,7 +29,13 @@
 	// fgetRowsSched
 	$fgetRowsSched = function($aRows){
 		foreach ($aRows[0] as $aRow){
-			if ((strpos($aRow,'<th')===false)){
+			if ((strpos($aRow,'<th') === false) &&
+				(strpos($aRow,'<td rowspan="1" style="display: none;" colspan="100%"') === false) &&
+				(strpos($aRow,'<td rowspan="1" style="color: #fff; font-weight: bold; background-color: #999; border-top: 1px solid #777;" colspan="100%"') === false) &&
+				(strpos($aRow,'<td rowspan="1" style="border-bottom: 1px solid #666; background-color: #fff; height: 8px; border-width: 0 0 1px 0" colspan="100%"') === false)) {
+
+				// $aRow = str_replace('Montréal', 'Montreal', $aRow);
+				
 				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
 	
 				$sDate = 		strip_tags($aCells[0][0]);

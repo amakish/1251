@@ -10,9 +10,9 @@
 		$cfg->set_model_directory('model');
 		$cfg->set_connections(
 				array(
-						'development' => 'mysql://root:@localhost/emails',
-						'test' => 'mysql://username:password@localhost/test_database_name',
-						'production' => 'mysql://username:password@localhost/production_database_name'
+					'development' => 'mysql://root:@localhost/emails',
+					'test' => 'mysql://username:password@localhost/test_database_name',
+					'production' => 'mysql://username:password@localhost/production_database_name'
 				)
 		);
 	});
@@ -22,8 +22,13 @@
 		$oEmail->email = $_POST['email'];
 		$oEmail->save();
 	} // End if
+	elseif($action == 'Delete'){
+		$oEmail = Email::find_by_email($_GET['email']);
+		if($oEmail && $oEmail->delete()){
+			echo "1 email address deleted";
+		} // End inner if
+	} // End elseif
 	elseif($action == 'Unsubscribe'){
-		print_r($_GET);
 		$oEmail = Email::find_by_email($_GET['email']);
 		if($oEmail && $oEmail->delete()){
 			echo "You have been unsubscribed";
@@ -31,16 +36,18 @@
 		else{
 			echo "Unsubscription failed";
 		} // End inner else
-		
 		exit();
 	} // End elseif
+	elseif($action == 'Send'){
+		include 'model/helpers.php';
+		sendEmails();
+	} // End elseif
 	
-	
-	if($action == 'Edit List'){
-		include 'views/edit.php';
+	if($action == '' || $action == 'Send'){
+		include 'views/email.php';
 	} // End if
 	else{
-		include 'views/email.php';
+		include 'views/edit.php';
 	} // End else
 	
 ?>

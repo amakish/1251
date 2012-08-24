@@ -6,7 +6,7 @@
 	function getSktrStats($sUrl, $fgetRows) {
 		// get file contents
 		$sUrlInternal = $sUrl;
-		$sNewLines = array("\t","\n","\r","\x20\x20","\0","\x0B");
+		$sNewLines = array("\t", "\n", "\r", "\x20\x20", "\0", "\x0B", "NHL Winter Classic ");
 		$sRawContent = file_get_contents($sUrlInternal);
 		$sContent = str_replace($sNewLines, "", html_entity_decode($sRawContent));
 	
@@ -136,11 +136,11 @@
 	$sPlyrNumOfYYY = "";
 
 	for($i=1; $sPlyrNumXXOf != $sPlyrNumOfYYY; $i++) {
-	$sStatsSummary = getSktrStats("http://www.nhl.com/ice/playerstats.htm?fetchKey=20122ALLSASALL&viewName=summary&sort=points&pg=$i", $fgetRowsStatsSummary);
-	$aPlyrNum = getPlyrNumXXofYYY($sStatsSummary);
-
-	$sPlyrNumXXOf = $aPlyrNum[0];
-	$sPlyrNumOfYYY = $aPlyrNum[2];
+		$sStatsSummary = getSktrStats("http://www.nhl.com/ice/playerstats.htm?fetchKey=20122ALLSASALL&viewName=summary&sort=points&pg=$i", $fgetRowsStatsSummary);
+		$aPlyrNum = getPlyrNumXXofYYY($sStatsSummary);
+	
+		$sPlyrNumXXOf = $aPlyrNum[0];
+		$sPlyrNumOfYYY = $aPlyrNum[2];
 	} // End for loop
 
 	// ******************************************************
@@ -149,11 +149,11 @@
 	$sPlyrNumOfYYY = "";
 
 	for($i=1; $sPlyrNumXXOf != $sPlyrNumOfYYY; $i++) {
-	$sStatsSpecialTeams = getSktrStats("http://www.nhl.com/ice/playerstats.htm?fetchKey=20122ALLSASALL&viewName=scoringLeaders&sort=powerPlayGoals&pg=$i", $fgetRowsStatsSpecialTeams);
-	$aPlyrNum = getPlyrNumXXofYYY($sStatsSpecialTeams);
-
-	$sPlyrNumXXOf = $aPlyrNum[0];
-	$sPlyrNumOfYYY = $aPlyrNum[2];
+		$sStatsSpecialTeams = getSktrStats("http://www.nhl.com/ice/playerstats.htm?fetchKey=20122ALLSASALL&viewName=scoringLeaders&sort=powerPlayGoals&pg=$i", $fgetRowsStatsSpecialTeams);
+		$aPlyrNum = getPlyrNumXXofYYY($sStatsSpecialTeams);
+	
+		$sPlyrNumXXOf = $aPlyrNum[0];
+		$sPlyrNumOfYYY = $aPlyrNum[2];
 	} // End for loop
 
 	// ******************************************************
@@ -162,10 +162,10 @@
 	$sPlyrNumOfYYY = "";
 
 	for($i=1; $sPlyrNumXXOf != $sPlyrNumOfYYY; $i++) {
-	$sStatsTOI = getSktrStats("http://www.nhl.com/ice/playerstats.htm?fetchKey=20122ALLSASALL&viewName=timeOnIce&sort=timeOnIce&pg=$i", $fgetRowsStatsTOI);
-	$aPlyrNum = getPlyrNumXXofYYY($sStatsTOI);
-
-	$sPlyrNumXXOf = $aPlyrNum[0];
-	$sPlyrNumOfYYY = $aPlyrNum[2];
+		$sStatsTOI = getSktrStats("http://www.nhl.com/ice/playerstats.htm?fetchKey=20122ALLSASALL&viewName=timeOnIce&sort=timeOnIce&pg=$i", $fgetRowsStatsTOI);
+		$aPlyrNum = getPlyrNumXXofYYY($sStatsTOI);
+	
+		$sPlyrNumXXOf = $aPlyrNum[0];
+		$sPlyrNumOfYYY = $aPlyrNum[2];
 	} // End for loop
 ?>
