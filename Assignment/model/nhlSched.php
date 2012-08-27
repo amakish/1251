@@ -1,8 +1,6 @@
 <?php
 	function stripAccents($stripAccents){
-		echo strpos($stripAccents, "é");
-		exit();
-		return strtr($stripAccents,'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ','aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+		return preg_replace('/\xc3\xa9/', 'e', $stripAccents);
 	} // End stripAccents
 	// ******************************************************
 	// Functions
