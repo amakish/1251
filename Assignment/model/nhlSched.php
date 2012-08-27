@@ -1,4 +1,9 @@
 <?php
+	function stripAccents($stripAccents){
+		echo strpos($stripAccents, "é");
+		exit();
+		return strtr($stripAccents,'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ','aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+	} // End stripAccents
 	// ******************************************************
 	// Functions
 	// ******************************************************
@@ -8,8 +13,10 @@
 		$sUrlInternal = $sUrl;
 		$sNewLines = array("\t", "\n", "\r", "\x20\x20", "\0", "\x0B");
 		$sRawContent = file_get_contents($sUrlInternal);
+
 		$sContent = str_replace($sNewLines, "", html_entity_decode($sRawContent));
-	
+		$sContent = stripAccents($sContent);
+		
 		// isolate the tbody
 		$sTbodyStart = strpos($sContent,'<tbody');
 		$sTBodyEnd = strpos($sContent,'</tbody>',$sTbodyStart) + 7;
@@ -34,8 +41,6 @@
 				(strpos($aRow,'<td rowspan="1" style="color: #fff; font-weight: bold; background-color: #999; border-top: 1px solid #777;" colspan="100%"') === false) &&
 				(strpos($aRow,'<td rowspan="1" style="border-bottom: 1px solid #666; background-color: #fff; height: 8px; border-width: 0 0 1px 0" colspan="100%"') === false)) {
 
-				// $aRow = str_replace('Montréal', 'Montreal', $aRow);
-				
 				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
 	
 				$sDate = 		strip_tags($aCells[0][0]);
@@ -49,8 +54,9 @@
 		} // End foreach
 	}; // End fgetRowsSched
 
-
 	// ******************************************************
 	// Logic
 	$sSched = getSched("http://www.nhl.com/ice/schedulebyseason.htm?season=20122013&gameType=2&team=&network=&venue=", $fgetRowsSched);
+
+
 ?>
