@@ -1,7 +1,4 @@
 <?php
-	function stripAccents($stripAccents){
-		return preg_replace('/\xc3\xa9/', 'e', $stripAccents);
-	} // End stripAccents
 	// ******************************************************
 	// Functions
 	// ******************************************************
@@ -11,7 +8,8 @@
 		$sUrlInternal = $sUrl;
 		$sNewLines = array("\t", "\n", "\r", "\x20\x20", "\0", "\x0B");
 		$sRawContent = file_get_contents($sUrlInternal);
-
+		
+		// strip unnecessary characters and accents
 		$sContent = str_replace($sNewLines, "", html_entity_decode($sRawContent));
 		$sContent = stripAccents($sContent);
 		
@@ -29,6 +27,12 @@
 	} // End getSched
 	
 	// ******************************************************
+	// stripAccents
+	function stripAccents($stripAccents){
+		return preg_replace('/\xc3\xa9/', 'e', $stripAccents);
+	} // End stripAccents
+	
+	// ******************************************************
 	// Anonymous Function (Callback)
 	// ******************************************************
 	// fgetRowsSched
@@ -41,11 +45,13 @@
 
 				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
 	
-				$sDate = 		strip_tags($aCells[0][0]);
-				$sVTeam = 		strip_tags($aCells[0][1]);
-				$sHTeam = 		strip_tags($aCells[0][2]);
-				$sTime =		strip_tags($aCells[0][3]);
-				$sResult =		strip_tags($aCells[0][4]);
+				$sDateInternal = 	strip_tags($aCells[0][0]);
+				$iDateInternalLen = ((int)strlen($sDateInternal) / 2);
+				$sDate =			substr($sDateInternal, 0, $iDateInternalLen);
+				$sVTeam = 			strip_tags($aCells[0][1]);
+				$sHTeam = 			strip_tags($aCells[0][2]);
+				$sTime =			strip_tags($aCells[0][3]);
+				$sResult =			strip_tags($aCells[0][4]);
 	
 				echo "Date: {$sDate} | Visiting Team: {$sVTeam}  | Home Team: {$sHTeam}  | Time: {$sTime} | Result: {$sResult} |\n";
 			} // End if
@@ -55,6 +61,4 @@
 	// ******************************************************
 	// Logic
 	$sSched = getSched("http://www.nhl.com/ice/schedulebyseason.htm?season=20122013&gameType=2&team=&network=&venue=", $fgetRowsSched);
-
-
 ?>

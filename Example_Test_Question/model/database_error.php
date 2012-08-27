@@ -4,7 +4,7 @@
 
 <!-- the head section -->
 <head>
-    <title>My CD Shop</title>
+    <title>aMaK NHL Stats</title>
     <link rel="stylesheet" type="text/css" href="main.css" />
 </head>
 
@@ -12,7 +12,7 @@
 <body>
     <div id="page">
         <div id="header">
-            <h1>My CD Shop</h1>
+            <h1>NHL Stats</h1>
         </div>
 
         <div id="main">
@@ -26,7 +26,7 @@
 
         <div id="footer">
             <p class="copyright">
-                &copy; <?php echo date("Y"); ?> My CD Shop, Inc.
+                &copy; <?php echo date("Y"); ?> aMaK Stats, Inc.
             </p>
         </div>
 
