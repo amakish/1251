@@ -1,5 +1,5 @@
 <?php
-class sktrstat extends ActiveRecord\Model{
-	
-}
+	class sktrstat extends ActiveRecord\Model{
+		
+	}
 ?>
