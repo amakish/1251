@@ -16,7 +16,5 @@
 	});
 	
 	// included views files
-	include 'views\sktrstatsview.php';
-	
-	// Error message: Fatal error: Class 'sktrstat' not found in C:\xampp\htdocs\1251\Assignment\views\sktrstatsview.php on line 5
+	include 'views\sktrstatsvmain.php';
 ?>

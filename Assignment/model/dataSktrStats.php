@@ -13,15 +13,64 @@
 		);
 	});
 
+	
 	// ******************************************************
 	// Functions
 	// ******************************************************
+	
+	// ******************************************************
+	// CURL
+	// Function: 	Run CURL
+	// Description: Executes a CURL request
+	// Parameters:  url (string) - URL to make request to
+	//              method (string) - HTTP transfer method
+	//              headers - HTTP transfer headers
+	//              postvals - post values
+	// ******************************************************
+	function run_curl($url, $method = 'GET', $postvals = null){
+		$ch = curl_init($url);
+	
+		//GET request: send headers and return data transfer
+		if ($method == 'GET'){
+			$options = array(
+					CURLOPT_URL => $url,
+					CURLOPT_RETURNTRANSFER => 1,
+					CURLOPT_SSL_VERIFYPEER => false
+			);
+			curl_setopt_array($ch, $options);
+			//POST / PUT request: send post object and return data transfer
+		} else {
+			$options = array(
+					CURLOPT_URL => $url,
+					CURLOPT_POST => 1,
+					CURLOPT_POSTFIELDS => http_build_query($postvals),
+					CURLOPT_RETURNTRANSFER => 1,
+					CURLOPT_SSL_VERIFYPEER => false
+			);
+			curl_setopt_array($ch, $options);
+		}
+		if( ! $response = curl_exec($ch))
+		{
+			trigger_error(curl_error($ch));
+		}
+		curl_close($ch);
+	
+		return $response;
+	} // End run_curl
+	
+	// ******************************************************
 	// getSktrStats
+	// ******************************************************
 	function getSktrStats($sUrl, $fgetRows) {
 		// get file contents
 		$sUrlInternal = $sUrl;
 		$sNewLines = array("\t", "\n", "\r", "\x20\x20", "\0", "\x0B", "NHL Winter Classic ");
-		$sRawContent = file_get_contents($sUrlInternal);
+		$sRawContent = run_curl($sUrlInternal);
+		if(!$sRawContent){
+			
+		} // End if
+		
+		
 		$sContent = str_replace($sNewLines, "", html_entity_decode($sRawContent));
 	
 		// isolate the tbody
@@ -39,6 +88,7 @@
 	
 	// ******************************************************
 	// getPlyrNumXXofYYY		(ie 1-XX of YYY results.)
+	// ******************************************************
 	function getPlyrNumXXofYYY($sContent) {
 		$sPlyrNumDivStart = strpos($sContent, '<div class="numRes"') + 20;
 		$sPlyrNumDivEnd = strpos($sContent, '</div>', $sPlyrNumDivStart);
@@ -52,9 +102,10 @@
 	} // End getPlyrNumXXofYYY
 	
 	// ******************************************************
-	// Anonymous Function (Callback)
+	// Anonymous Functions (Callback)
 	// ******************************************************
 	// fgetRowsStatsSummary
+	// ******************************************************
 	$fgetRowsStatsSummary = function($aRows){
 		foreach ($aRows[0] as $aRow){
 			if ((strpos($aRow,'<th')===false)){
@@ -88,9 +139,31 @@
 				$oSktrStat->toiperg = 	strip_tags($aCells[0][16]);
 				$oSktrStat->shftperg = 	strip_tags($aCells[0][17]);
 				$oSktrStat->fopct = 	strip_tags($aCells[0][18]);
-	
-				// echo "RK: {rk} | {player} | Team: {team} | POS: {pos} | GP: {gp}  | G: {g}  | A: {a}  | Pts: {pts}  | +/-: {plusminus}  | PIM: {pim} | PPG: {ppg} | SHG: {shg}  | GWG: {gwg}  | OTG: {otg} | SOG: {sog}  | Pct: {shtpct} | TOI/G: {toiperg}  | Sft/G: {shftperg} | FO%: {fopct} |\n";
-
+				
+				
+				$rk = 			$oSktrStat->rk;
+				$player = 		$oSktrStat->player;
+				$team = 		$oSktrStat->team;
+				$pos = 			$oSktrStat->pos;
+				$gp = 			$oSktrStat->gp;
+				$g =	 		$oSktrStat->g;
+				$a = 			$oSktrStat->a;
+				$pts =	 		$oSktrStat->pts;
+				$plusminus = 	$oSktrStat->plusminus;
+				$pim = 			$oSktrStat->pim;
+				$ppg = 			$oSktrStat->ppg;
+				$shg = 			$oSktrStat->shg;
+				$gwg = 			$oSktrStat->gwg;
+				$otg = 			$oSktrStat->otg;
+				$sog = 			$oSktrStat->sog;
+				$shtpct = 		$oSktrStat->shtpct;
+				$toiperg = 		$oSktrStat->toiperg;
+				$shftperg = 	$oSktrStat->shftperg;
+				$fopct = 		$oSktrStat->fopct;
+				
+				echo "RK: {$rk} | {$player} | Team: {$team} | POS: {$pos} | GP: {$gp}  | G: {$g}  | A: {$a}  | Pts: {$pts}  | +/-: {$plusminus}  | PIM: {$pim} | PPG: {$ppg} | SHG: {$shg}  | GWG: {$gwg}  | OTG: {$otg} | SOG: {$sog}  | Pct: {$shtpct} | TOI/G: {$toiperg}  | Sft/G: {$shftperg} | FO%: {$fopct} |\n";
+				
+				
 				$oSktrStat->save();
 
 			} // End if
@@ -99,6 +172,7 @@
 	
 	// ******************************************************
 	// fgetRowsStatsSpecialTeams
+	// ******************************************************
 	$fgetRowsStatsSpecialTeams = function($aRows){
 		foreach ($aRows[0] as $aRow){
 			if ((strpos($aRow,'<th')===false)){
@@ -113,6 +187,8 @@
 					$oSktrStat = new SktrStat;
 				} // End if
 				
+				$oSktrStat->player = 	$player;
+				$oSktrStat->team = 		$team;
 				$oSktrStat->esg = 		strip_tags($aCells[0][5]);
 				$oSktrStat->esa = 		strip_tags($aCells[0][6]);
 				$oSktrStat->espts = 	strip_tags($aCells[0][7]);
@@ -120,8 +196,20 @@
 				$oSktrStat->pppts = 	strip_tags($aCells[0][10]);
 				$oSktrStat->sha = 		strip_tags($aCells[0][12]);
 				$oSktrStat->shpts =		strip_tags($aCells[0][13]);
-					
-				// echo "ESG: {esg} | ESA: {esa} | ESPts: {espts} | PPA: {ppa} | PPP: {ppts} | SHA: {sha} | SHP: {$shpts} |\n";
+				
+				
+				$player = 	$oSktrStat->player;
+				$team = 	$oSktrStat->team;
+				$esg = 		$oSktrStat->esg;
+				$esa = 		$oSktrStat->esa;
+				$espts = 	$oSktrStat->espts;
+				$ppa = 		$oSktrStat->ppa;
+				$pppts = 	$oSktrStat->pppts;
+				$sha = 		$oSktrStat->sha;
+				$shpts = 	$oSktrStat->shpts;
+				
+				echo "{$player} | Team: {$team} | ESG: {$esg} | ESA: {$esa} | ESPts: {$espts} | PPA: {$ppa} | PPP: {$pppts} | SHA: {$sha} | SHP: {$shpts} |\n";
+				
 				
 				$oSktrStat->save();
 			
@@ -131,6 +219,7 @@
 
 	// ******************************************************
 	// fgetRowsStatsTOI
+	// ******************************************************
 	$fgetRowsStatsTOI = function($aRows){
 		foreach ($aRows[0] as $aRow){
 			if ((strpos($aRow,'<th')===false)){
@@ -145,6 +234,8 @@
 					$oSktrStat = new SktrStat;
 				} // End if
 				
+				$oSktrStat->player = 		$player;
+				$oSktrStat->team = 			$team;
 				$oSktrStat->estoi = 		strip_tags($aCells[0][5]);
 				$oSktrStat->estoiperg = 	strip_tags($aCells[0][6]);
 				$oSktrStat->shtoi = 		strip_tags($aCells[0][7]);
@@ -156,9 +247,25 @@
 				$oSktrStat->shft = 			strip_tags($aCells[0][13]);
 				$oSktrStat->toipershft = 	strip_tags($aCells[0][14]);
 				$oSktrStat->shftperg = 		strip_tags($aCells[0][15]);
-	
-				// echo "ESTOI: {estoi} | ESTOI/G: {estoiperg} | SHTOI: {shtoi} | SHTOI/G: {shtoiperg} | PPTOI: {pptoi} | PPTOI/G: $pptoiperg} | TO{toi} | TOI/G: {toiperg} | SHIFTS: {shft} | TOI/SHIFT: {toipershft} | Shifts/G {shftperg}|\n";
-			
+				
+				
+				$player = 		$oSktrStat->player;
+				$team = 		$oSktrStat->team;
+				$estoi = 		$oSktrStat->estoi;
+				$estoiperg = 	$oSktrStat->estoiperg;
+				$shtoi = 		$oSktrStat->shtoi;
+				$shtoiperg = 	$oSktrStat->shtoiperg;
+				$pptoi = 		$oSktrStat->pptoi;
+				$pptoiperg = 	$oSktrStat->pptoiperg;
+				$toi = 			$oSktrStat->toi;
+				$toiperg = 		$oSktrStat->toiperg;
+				$shft = 		$oSktrStat->shft;
+				$toipershft = 	$oSktrStat->toipershft;
+				$shftperg = 	$oSktrStat->shftperg;
+				
+				echo "{$player} | Team: {$team} | ESTOI: {$estoi} | ESTOI/G: {$estoiperg} | SHTOI: {$shtoi} | SHTOI/G: {$shtoiperg} | PPTOI: {$pptoi} | PPTOI/G: $pptoiperg} | TOI: {$toi} | TOI/G: {$toiperg} | SHIFTS: {$shft} | TOI/SHIFT: {$toipershft} | Shifts/G: {$shftperg}|\n";
+				
+
 				$oSktrStat->save();
 				
 			} // End if
@@ -167,7 +274,9 @@
 
 	// ******************************************************
 	// Logic
+	// ******************************************************
 	// Stats - Summary
+	// ******************************************************
 	$sPlyrNumXXOf = "junk";
 	$sPlyrNumOfYYY = "";
 
@@ -181,6 +290,7 @@
 
 	// ******************************************************
 	// Stats - Special Teams
+	// ******************************************************
 	$sPlyrNumXXOf = "junk";
 	$sPlyrNumOfYYY = "";
 
@@ -194,6 +304,7 @@
 
 	// ******************************************************
 	// Stats -  Time On Ice
+	// ******************************************************
 	$sPlyrNumXXOf = "junk";
 	$sPlyrNumOfYYY = "";
 
