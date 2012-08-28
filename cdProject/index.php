@@ -21,4 +21,6 @@ if(array_key_exists('label', $_POST)){
 
 include 'views/list.php';
 
+echo "Hello World"
+
 ?>

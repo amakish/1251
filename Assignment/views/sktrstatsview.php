@@ -2,7 +2,7 @@
 <body>
 	<table>
 		<tr>
-		<?php foreach(sktrstat::find('all') as $sSktrStats){?>
+		<?php foreach(SktrStat::find('all') as $sSktrStats){?>
 			<?php echo $sSktrStats->rk;?>
 			<?php echo $sSktrStats->player;?>
 			<?php echo $sSktrStats->team;?>
