@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--
+	Website: 		Aaron Makish | Web Developer Portfolio
+	URL:	 		http://www.aaronmakish.com
+	Developer: 		Aaron Makish
+	Date Created: 	20120510
+	Last Revised: 	20120530
+	Language:		HTML5
+
+	Website Description:
+					Web Developer porfolio website for Aaron Makish
+		
+	External files:
+					main.css
+					contact.css
+					main.js	
+-->
+<!--[if lt IE 7 ]> <html lang="en-us" class="ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en-us" class="ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en-us" class="ie8"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8" />
+	<title>Aaron Makish | Web Developer</title>
+	<meta content="true" name="HandheldFriendly">
+	<meta content="320" name="MobileOptimized">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta name="author" content="Aaron Makish"/>
+	<meta name="description" content="Welcome to the online home of Aaron Makish, a Stratford, Ontario based web developer and designer" />
+	<meta name="keywords" content="web webpage developer development design designer programmer Stratford Ontario Canada" />
+	<!-- CSS link -->
+	<link rel="stylesheet" href="../css/main.css" />
+	<link rel="stylesheet" href="../css/contact.css" />
+	<!-- Favicon links 
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+	-->
+	<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div id="page">
+		<!-- ==== START HEADER ==== -->
+		<header id="header" role="banner">
+			<div class="container">	
+				<h1>
+					<a href="#"><img src="../images/logo.png" alt="Aaron Makish" title="" width="350" height="160" /></a>
+				</h1>
+				<nav role="navigation">
+					<ul class="nav">
+						<li><a href="./">Home</a></li>
+						<li><a href="./?p=contact">Contact</a></li>
+					</ul>
+				</nav>
+			</div> <!-- end .container -->
+		</header>
+		<!-- end #header -->
+		<!-- ==== START MAIN CONTENT ==== -->
+		<div id="main" role="main" >	
+			<div id="headline">
+				<div class="container">
+					<p>if you'd like to</p>
+					<p>get in touch</p>
+				</div>
+				<!-- end .container -->
+			</div>
+			<!-- end #headline -->	
+			<div class="container">
+				<div id="form">
+					<header>
+						<h2>please fill in your info below</h2>
+					</header>
+					<form id="contact_form" action="./?p=contact" method="post">
+						<!-- USER INPUT -->
+						<fieldset>
+							<legend>please fill in your info below</legend>
+							<ul>
+								<li>
+									<label for="req_name_first">First Name:</label>
+									<input id="req_name_first" class="ui" type="text" placeholder="Enter your first name" required="required" name="req_name_first" />
+									<!-- <p id="invalid_name_first" class="hidden">Please enter your first name</p> -->
+								</li>
+								<li>
+									<label for="req_name_last">Last Name:</label>
+									<input id="req_name_last" class="ui" type="text" placeholder="Enter your last name" required="required" name="req_name_last">
+									<!-- <p id="invalid_name_last" class="hidden">Please enter your last name</p> -->
+								</li>
+								<li>
+									<label for="req_email">Email:</label>
+									<input id="req_email" class="ui" type="email" placeholder="Enter your email address" required="required" name="req_email">
+									<!-- <p id="invalid_email" class="hidden">Please enter your email address</p> -->
+								</li>
+								<li>
+									<label for="phone">Phone Number:</label>
+									<input id="phone" class="ui" type="tel" placeholder="Enter your phone number (eg. 5191234567)" name="phone">
+									<!-- <p id="invalid_phone" class="hidden" >Please enter your phone number</p> -->
+								</li>
+								<li>
+									<label for="req_message">Message:</label>
+									<textarea id="req_message" class="ui" cols="50" rows="8" placeholder="Enter details regarding your inquiry" required="required" name="req_message"></textarea>
+									<!-- <p id="invalid_message" class="hidden">Please enter a message</p> -->
+								</li>
+							</ul>
+						</fieldset>						
+						<div class="button">
+							<input type="submit" value="Submit" />
+						</div>
+						<!-- end USER INPUT -->
+					</form>
+				</div> <!--/form-->
+			</div> <!--/container-->
+		</div>
+		<!-- end MAIN CONTENT -->
+		<!-- ==== START FOOTER ==== -->
+		<footer id="footer" role="contentinfo">
+			<div class="container">
+				<div id="social">
+					<h3>follow me at</h3>
+					<ul>
+						<li><a class="linkedin" href="http://ca.linkedin.com/in/aaronmakish">LinkedIn</a></li>
+						<li><a class="twitter" href="https://twitter.com/#!/aaronMakish">Twitter</a></li>
+					</ul>
+				</div>
+				<!-- end #social -->
+				<div id="copy">
+					<p><a href="#"><img src="../images/logo-white.png" alt="Aaron Makish" title="" width="101" height="35" /></a></p>
+					<p>&copy; 2012</p>
+				</div>
+				<!-- end #copy -->
+			</div>
+			<!-- end .container -->
+		</footer>
+		<!-- end #footer -->
+	</div>
+	<!-- #page -->
+	
+	<!-- JavaScript link -->
+	<script src="./js/main.js"></script>
+</body>
+</html>
+

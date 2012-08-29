@@ -121,7 +121,7 @@
 		<footer id="footer" role="contentinfo">
 			<div class="container">
 				<div id="copy">
-					<p><a href="#"><img src="../views/images/logo-white.png" alt="aMak Stats Inc" title="" width="101" height="35" /></a></p>
+					<p><a href="#"><img src="./views/images/logo-white.png" alt="aMak Stats Inc" title="" width="101" height="35" /></a></p>
 					<p>&copy; 2012</p>
 				</div>
 				<!-- end #copy -->

@@ -15,6 +15,9 @@
 		);
 	});
 	
+	// ******************************************************
+	// Views Control
+	// ******************************************************
 	$action = (array_key_exists('action', $_POST)?$_POST['action']: '');
 	$action = (array_key_exists('action', $_GET)?$_GET['action']: $action);
 	
@@ -24,6 +27,5 @@
 	elseif($action == 'additional'){
 		include 'views\sktrstatsvadditional.php';
 	} // End if
-	
 	
 ?>

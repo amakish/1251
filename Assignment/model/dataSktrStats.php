@@ -141,7 +141,7 @@
 				$oSktrStat->shftperg = 	strip_tags($aCells[0][17]);
 				$oSktrStat->fopct = 	strip_tags($aCells[0][18]);
 
-
+				/*
 				$rk = 			$oSktrStat->rk;
 				$player = 		$oSktrStat->player;
 				$team = 		$oSktrStat->team;
@@ -164,7 +164,7 @@
 				$fopct = 		$oSktrStat->fopct;
 				
 				echo "RK: {$rk} | {$player} | Team: {$teamcur} | POS: {$pos} | GP: {$gp}  | G: {$g}  | A: {$a}  | Pts: {$pts}  | +/-: {$plusminus}  | PIM: {$pim} | PPG: {$ppg} | SHG: {$shg}  | GWG: {$gwg}  | OTG: {$otg} | SOG: {$sog}  | Pct: {$shtpct} | TOI/G: {$toiperg}  | Sft/G: {$shftperg} | FO%: {$fopct} |\n";
-				
+				*/
 				
 				$oSktrStat->save();
 
@@ -203,7 +203,7 @@
 				$oSktrStat->sha = 		strip_tags($aCells[0][12]);
 				$oSktrStat->shpts =		strip_tags($aCells[0][13]);
 				
-	
+				/*
 				$player = 	$oSktrStat->player;
 				$team = 	$oSktrStat->team;
 				$teamcur = 		$oSktrStat->teamcur;
@@ -216,7 +216,7 @@
 				$shpts = 	$oSktrStat->shpts;
 				
 				echo "{$player} | Team: {$teamcur} | ESG: {$esg} | ESA: {$esa} | ESPts: {$espts} | PPA: {$ppa} | PPP: {$pppts} | SHA: {$sha} | SHP: {$shpts} |\n";
-				
+				*/
 				
 				$oSktrStat->save();
 			
@@ -259,7 +259,7 @@
 				$oSktrStat->toipershft = 	strip_tags($aCells[0][14]);
 				$oSktrStat->shftperg = 		strip_tags($aCells[0][15]);
 				
-				
+				/*
 				$player = 		$oSktrStat->player;
 				$team = 		$oSktrStat->team;
 				$teamcur = 		$oSktrStat->teamcur;
@@ -276,7 +276,7 @@
 				$shftperg = 	$oSktrStat->shftperg;
 				
 				echo "{$player} | Team: {$teamcur} | ESTOI: {$estoi} | ESTOI/G: {$estoiperg} | SHTOI: {$shtoi} | SHTOI/G: {$shtoiperg} | PPTOI: {$pptoi} | PPTOI/G: $pptoiperg} | TOI: {$toi} | TOI/G: {$toiperg} | SHIFTS: {$shft} | TOI/SHIFT: {$toipershft} | Shifts/G: {$shftperg}|\n";
-				
+				*/
 
 				$oSktrStat->save();
 				

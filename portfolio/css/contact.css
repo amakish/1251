@@ -1,0 +1,97 @@
+/*
+	Website: 		Aaron Makish | Web Developer Portfolio
+	URL:	 		http://www.aaronmakish.com
+	Developer: 		Aaron Makish
+	Date Created: 	20120510
+	Last Revised: 	20120530
+	Language:		CSS3
+	
+	Website Description:
+					Web Developer porfolio website for Aaron Makish
+	
+	External files:
+					contact.html
+*/
+
+/* GENERAL
+---------------------------------------------- */
+.ui {
+	width: 475px;
+	padding: 1px;
+	border: 1px solid #D7D8DA;
+	font: inherit;
+	resize: none;
+}
+
+.invalid {
+	border-color: #F00;
+	color: #F00;
+}
+
+ .hidden {
+	visibility: hidden;
+}
+
+ .show {
+	visibility: visible;
+}
+
+/* CONTAINERS
+---------------------------------------------- */
+#form {
+	width: 780px;
+	height: 420px;
+	margin: 40px auto 0;
+	border: 2px solid #00A4E7;
+	background-color: #7A7A7B;
+}
+	
+	#contact_form {
+		width: 750px;
+		height: 375px;
+		margin: 33px 12px 0 12px;
+		border: 2px solid #D7D8DA;
+		background-color: #F7F7F7;
+	}
+
+/* MAIN CONTENT
+---------------------------------------------- */	
+#headline p {
+	padding-left: 50px;
+	text-align: left;
+}
+
+#headline p+p {
+	text-align: left;
+	padding-left: 2em;
+}
+
+#contact_form legend {
+	text-indent: -9999px;
+}
+
+		#contact_form li {
+			margin-top: 18px;
+		}
+
+			#contact_form  label {
+				display: inline-block;
+				width: 200px;
+				padding-right: 10px;
+				vertical-align: top;
+				text-align: right;
+				font: 100% Verdanna, sans-serif;
+			}
+	
+		#contact_form textarea {
+			height: 115px;
+		}
+		
+		#contact_form p {
+			padding-left: 230px;
+			color:  #CD0000;
+		}
+		
+		#contact_form [type="submit"] {
+			margin: 8px 0 0 212px;
+		}
