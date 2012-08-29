@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!--
+	Website: 		aMaK Stats Inc | NHL Hockey Stats, Schedule | Fantasy Hockey Resource
+	URL:	 		http://www.amakstats.com
+	Developer: 		Aaron Makish
+	Date Created: 	20120828
+	Last Revised: 	20120828
+	Language:		HTML5
+
+	Website Description:
+					NHL Hockey Stats, Schedule | Fantasy Hockey Resource
+		
+	External files:
+					main.css
+-->
+<!--[if lt IE 7 ]> <html lang="en-us" class="ie6"> <![endif]-->
+<!--[if IE 7 ]> <html lang="en-us" class="ie7"> <![endif]-->
+<!--[if IE 8 ]> <html lang="en-us" class="ie8"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8" />
+	<title>aMaK Stats Inc</title>
+	<meta content="true" name="HandheldFriendly">
+	<meta content="320" name="MobileOptimized">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta name="author" content="Aaron Makish"/>
+	<meta name="description" content="NHL statistics &amp; schedule fantasy hockey resource" />
+	<meta name="keywords" content="NHL hockey statistics schedule fantasy tool resource" />
+	<!-- CSS link -->
+	<link rel="stylesheet" href="./views/main.css" />
+	<!-- Favicon links 
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+	-->
+	<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div id="page">
+		<!-- ==== START HEADER ==== -->
+		<header id="header" role="banner">
+			<div class="container">
+				<h1><a href="#"><img src="./views/images/logo.png" alt="aMaK Stats" title="" width="350" height="160" /></a></h1>
+				<nav role="navigation">
+					<ul class="nav">
+						<li><a href="./">Overview</a></li>
+						<li><a href="./">Additional Stats</a></li>
+					</ul>
+				</nav>
+			</div>
+			<!-- end .container -->
+		</header>
+		<!-- end #header -->
+		<!-- ==== START MAIN CONTENT ==== -->
+		<div id="main" role="main" >
+			<table>
+				<caption>2011-12 NHL Skater Statistics</caption>
+				<thead>
+					<tr>
+						<th scope="col">RK</th>
+						<th scope="col">Player</th>
+						<th scope="col">Team</th>
+						<th scope="col">Pos</th>
+						<th scope="col">GP</th>
+						<th scope="col">G</th>
+						<th scope="col">A</th>
+						<th scope="col">Pts</th>
+						<th scope="col">+/-</th>
+						<th scope="col">PIM</th>
+						<th scope="col">PPG</th>
+						<th scope="col">SHG</th>
+						<th scope="col">GWG</th>
+						<th scope="col">OTG</th>
+						<th scope="col">SOG</th>
+						<th scope="col">Sht %</th>
+						<th scope="col">FO %</th>
+						<th scope="col">TOI/G</th>
+						<th scope="col">PP TOI</th>
+						<th scope="col">PP TOI/G</th>
+					</tr>
+				</thead>
+				<tbody>
+				<!--
+				<?php foreach(SktrStat::find('all') as $sSktrStats){?>
+					<tr>
+						<th><?php echo $sSktrStats->rk;?></th>
+						<td><?php echo $sSktrStats->player;?></td>
+						<td><?php echo $sSktrStats->team;?></td>
+						<td><?php echo $sSktrStats->pos;?></td>
+						<td><?php echo $sSktrStats->gp;?></td>
+						<td><?php echo $sSktrStats->g;?></td>
+						<td><?php echo $sSktrStats->a;?></td>
+						<td><?php echo $sSktrStats->pts;?></td>
+						<td><?php echo $sSktrStats->plusminus;?></td>
+						<td><?php echo $sSktrStats->pim;?></td>
+						<td><?php echo $sSktrStats->ppg;?></td>
+						<td><?php echo $sSktrStats->shg;?></td>
+						<td><?php echo $sSktrStats->gwg;?></td>
+						<td><?php echo $sSktrStats->otg;?></td>
+						<td><?php echo $sSktrStats->sog;?></td>
+						<td><?php echo $sSktrStats->shtpct;?></td>
+						<td><?php echo $sSktrStats->fopct;?></td>
+						<td><?php echo $sSktrStats->toiperg;?></td>
+						<td><?php echo $sSktrStats->pptoi;?></td>
+						<td><?php echo $sSktrStats->pptoiperg;?></td>
+					</tr>
+			<?php } ?>
+					-->
+					<!-- Temp Data -->
+					<tr>
+						<th>1</th>
+						<td>Evgeni Malkin</td>
+						<td>PIT</td>
+						<td>C</td>
+						<td>75</td>
+						<td>50</td>
+						<td>59</td>
+						<td>109</td>
+						<td>+18</td>
+						<td>70</td>
+						<td>12</td>
+						<td>0</td>
+						<td>9</td>
+						<td>4</td>
+						<td>339</td>
+						<td>14.7</td>
+						<td>47.5</td>
+						<td>21:01</td>
+						<td>339:41</td>
+						<td>5:05</td>
+					</tr>
+					<tr>
+						<th>2</th>
+						<td>Steven Stamkos</td>
+						<td>TBL</td>
+						<td>C</td>
+						<td>75</td>
+						<td>50</td>
+						<td>59</td>
+						<td>109</td>
+						<td>+18</td>
+						<td>70</td>
+						<td>12</td>
+						<td>0</td>
+						<td>9</td>
+						<td>4</td>
+						<td>339</td>
+						<td>14.7</td>
+						<td>47.5</td>
+						<td>21:01</td>
+						<td>339:41</td>
+						<td>5:05</td>
+					</tr>
+					<tr>
+						<th>3</th>
+						<td>Claude Giroux</td>
+						<td>PHI</td>
+						<td>C</td>
+						<td>75</td>
+						<td>50</td>
+						<td>59</td>
+						<td>109</td>
+						<td>+18</td>
+						<td>70</td>
+						<td>12</td>
+						<td>0</td>
+						<td>9</td>
+						<td>4</td>
+						<td>339</td>
+						<td>14.7</td>
+						<td>47.5</td>
+						<td>21:01</td>
+						<td>339:41</td>
+						<td>5:05</td>
+					</tr>
+					<!-- end Temp Data -->
+				</tbody>
+			</table>
+		</div>
+		<!-- end MAIN CONTENT -->
+		<!-- ==== START FOOTER ==== -->
+		<footer id="footer" role="contentinfo">
+			<div class="container">
+				<div id="copy">
+					<p><a href="#"><img src="../views/images/logo-white.png" alt="aMak Stats Inc" title="" width="101" height="35" /></a></p>
+					<p>&copy; 2012</p>
+				</div>
+				<!-- end #copy -->
+			</div>
+			<!-- end .container -->
+		</footer>
+		<!-- end #footer -->
+	</div>
+	<!-- #page -->
+</body>
+</html>
