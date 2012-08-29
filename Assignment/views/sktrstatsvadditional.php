@@ -58,7 +58,7 @@
 		<!-- end #header -->
 		<!-- ==== START MAIN CONTENT ==== -->
 		<div id="main" role="main" >
-			<table id="overview" class="sortable">
+			<table class="sortable">
 				<caption>2011-12 NHL Skater Statistics</caption>
 				<thead>
 					<tr>
@@ -67,21 +67,19 @@
 						<th scope="col">Team</th>
 						<th scope="col">Pos</th>
 						<th scope="col">GP</th>
-						<th scope="col">G</th>
-						<th scope="col">A</th>
-						<th scope="col">Pts</th>
-						<th scope="col">+/-</th>
-						<th scope="col">PIM</th>
+						<th scope="col">ESG</th>
+						<th scope="col">ESA</th>
+						<th scope="col">ESPts</th>
+						<th scope="col">PPA</th>
 						<th scope="col">PPG</th>
+						<th scope="col">PPPts</th>
+						<th scope="col">SHA</th>
 						<th scope="col">SHG</th>
-						<th scope="col">GWG</th>
-						<th scope="col">OTG</th>
-						<th scope="col">SOG</th>
-						<th scope="col">S%</th>
-						<th scope="col">FO%</th>
-						<th scope="col">TOI/G</th>
+						<th scope="col">SHPts</th>
+						<th scope="col">ES TOI/G</th>
 						<th scope="col">PP TOI/G</th>
 						<th scope="col">SH TOI/G</th>
+						<th scope="col">TOI/G</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -96,21 +94,19 @@
 						<td><?php echo $sSktrStats->teamcur;?></td>
 						<td><?php echo $sSktrStats->pos;?></td>
 						<td><?php echo $sSktrStats->gp;?></td>
-						<td><?php echo $sSktrStats->g;?></td>
-						<td><?php echo $sSktrStats->a;?></td>
-						<td><?php echo $sSktrStats->pts;?></td>
-						<td><?php echo $sSktrStats->plusminus;?></td>
-						<td><?php echo $sSktrStats->pim;?></td>
+						<td><?php echo $sSktrStats->esg;?></td>
+						<td><?php echo $sSktrStats->esa;?></td>
+						<td><?php echo $sSktrStats->espts;?></td>
+						<td><?php echo $sSktrStats->ppa;?></td>
 						<td><?php echo $sSktrStats->ppg;?></td>
+						<td><?php echo $sSktrStats->pppts;?></td>
+						<td><?php echo $sSktrStats->sha;?></td>
 						<td><?php echo $sSktrStats->shg;?></td>
-						<td><?php echo $sSktrStats->gwg;?></td>
-						<td><?php echo $sSktrStats->otg;?></td>
-						<td><?php echo $sSktrStats->sog;?></td>
-						<td><?php echo $sSktrStats->shtpct;?></td>
-						<td><?php echo $sSktrStats->fopct;?></td>
-						<td><?php echo $sSktrStats->toiperg;?></td>
+						<td><?php echo $sSktrStats->shpts;?></td>
+						<td><?php echo $sSktrStats->estoiperg;?></td>
 						<td><?php echo $sSktrStats->pptoiperg;?></td>
 						<td><?php echo $sSktrStats->shtoiperg;?></td>
+						<td><?php echo $sSktrStats->toiperg;?></td>
 					</tr>
 			<?php } ?>
 				</tbody>

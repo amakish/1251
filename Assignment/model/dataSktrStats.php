@@ -1,4 +1,8 @@
 <?php
+
+	// ******************************************************
+	// Active Record
+	// ******************************************************
 	require_once '../../ActiveRecord/ActiveRecord.php';
 
 	ActiveRecord\Config::initialize(function($cfg)
@@ -13,7 +17,6 @@
 		);
 	});
 
-	
 	// ******************************************************
 	// Functions
 	// ******************************************************
@@ -65,12 +68,7 @@
 		// get file contents
 		$sUrlInternal = $sUrl;
 		$sNewLines = array("\t", "\n", "\r", "\x20\x20", "\0", "\x0B", "NHL Winter Classic ");
-		$sRawContent = run_curl($sUrlInternal);
-		if(!$sRawContent){
-			
-		} // End if
-		
-		
+		$sRawContent = run_curl($sUrlInternal);		
 		$sContent = str_replace($sNewLines, "", html_entity_decode($sRawContent));
 	
 		// isolate the tbody
@@ -80,7 +78,6 @@
 	
 		// isolate the rows within the tbody
 		preg_match_all("|<tr(.*)</tr>|U", $sTBody, $aRows);
-	
 		$fgetRows($aRows);
 	
 		return $sContent;
@@ -111,10 +108,13 @@
 			if ((strpos($aRow,'<th')===false)){
 				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
 				
-				$player = 	strip_tags($aCells[0][1]);
-				$team = 	strip_tags($aCells[0][2]);
+				$player = 				strip_tags($aCells[0][1]);
+				$team = 				strip_tags($aCells[0][2]);
 				
-				$oSktrStat = SktrStat::find('first', array('conditions' => array('player = ? AND team = ?', $player, $team)));
+				$sTeamFirst = 			substr($team, 0, 3);
+				$sTeamCurrent = 		substr($team, -3);
+				
+				$oSktrStat = SktrStat::find('first', array('conditions' => array('player = ? AND SUBSTRING(team, 1, 3) = ?', $player, $sTeamFirst)));
 				
 				if(!$oSktrStat){
 					$oSktrStat = new SktrStat;
@@ -123,6 +123,7 @@
 				$oSktrStat->rk  = 		strip_tags($aCells[0][0]);
 				$oSktrStat->player = 	$player;
 				$oSktrStat->team = 		$team;
+				$oSktrStat->teamcur = 	$sTeamCurrent;
 				$oSktrStat->pos = 		strip_tags($aCells[0][3]);
 				$oSktrStat->gp = 		strip_tags($aCells[0][4]);
 				$oSktrStat->g = 		strip_tags($aCells[0][5]);
@@ -139,11 +140,12 @@
 				$oSktrStat->toiperg = 	strip_tags($aCells[0][16]);
 				$oSktrStat->shftperg = 	strip_tags($aCells[0][17]);
 				$oSktrStat->fopct = 	strip_tags($aCells[0][18]);
-				
-				
+
+
 				$rk = 			$oSktrStat->rk;
 				$player = 		$oSktrStat->player;
 				$team = 		$oSktrStat->team;
+				$teamcur = 		$oSktrStat->teamcur;
 				$pos = 			$oSktrStat->pos;
 				$gp = 			$oSktrStat->gp;
 				$g =	 		$oSktrStat->g;
@@ -161,7 +163,7 @@
 				$shftperg = 	$oSktrStat->shftperg;
 				$fopct = 		$oSktrStat->fopct;
 				
-				echo "RK: {$rk} | {$player} | Team: {$team} | POS: {$pos} | GP: {$gp}  | G: {$g}  | A: {$a}  | Pts: {$pts}  | +/-: {$plusminus}  | PIM: {$pim} | PPG: {$ppg} | SHG: {$shg}  | GWG: {$gwg}  | OTG: {$otg} | SOG: {$sog}  | Pct: {$shtpct} | TOI/G: {$toiperg}  | Sft/G: {$shftperg} | FO%: {$fopct} |\n";
+				echo "RK: {$rk} | {$player} | Team: {$teamcur} | POS: {$pos} | GP: {$gp}  | G: {$g}  | A: {$a}  | Pts: {$pts}  | +/-: {$plusminus}  | PIM: {$pim} | PPG: {$ppg} | SHG: {$shg}  | GWG: {$gwg}  | OTG: {$otg} | SOG: {$sog}  | Pct: {$shtpct} | TOI/G: {$toiperg}  | Sft/G: {$shftperg} | FO%: {$fopct} |\n";
 				
 				
 				$oSktrStat->save();
@@ -178,10 +180,13 @@
 			if ((strpos($aRow,'<th')===false)){
 				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
 				
-				$player = 	strip_tags($aCells[0][1]);
-				$team = 	strip_tags($aCells[0][2]);
+				$player = 				strip_tags($aCells[0][1]);
+				$team = 				strip_tags($aCells[0][2]);
 				
-				$oSktrStat = SktrStat::find('first', array('conditions' => array('player = ? AND team = ?', $player, $team)));
+				$sTeamFirst = 			substr($team, 0, 3);
+				$sTeamCurrent = 		substr($team, -3);
+				
+				$oSktrStat = SktrStat::find('first', array('conditions' => array('player = ? AND SUBSTRING(team, 1, 3) = ?', $player, $sTeamFirst)));
 				
 				if(!$oSktrStat){
 					$oSktrStat = new SktrStat;
@@ -189,6 +194,7 @@
 				
 				$oSktrStat->player = 	$player;
 				$oSktrStat->team = 		$team;
+				$oSktrStat->teamcur = 	$sTeamCurrent;
 				$oSktrStat->esg = 		strip_tags($aCells[0][5]);
 				$oSktrStat->esa = 		strip_tags($aCells[0][6]);
 				$oSktrStat->espts = 	strip_tags($aCells[0][7]);
@@ -197,9 +203,10 @@
 				$oSktrStat->sha = 		strip_tags($aCells[0][12]);
 				$oSktrStat->shpts =		strip_tags($aCells[0][13]);
 				
-				
+	
 				$player = 	$oSktrStat->player;
 				$team = 	$oSktrStat->team;
+				$teamcur = 		$oSktrStat->teamcur;
 				$esg = 		$oSktrStat->esg;
 				$esa = 		$oSktrStat->esa;
 				$espts = 	$oSktrStat->espts;
@@ -208,7 +215,7 @@
 				$sha = 		$oSktrStat->sha;
 				$shpts = 	$oSktrStat->shpts;
 				
-				echo "{$player} | Team: {$team} | ESG: {$esg} | ESA: {$esa} | ESPts: {$espts} | PPA: {$ppa} | PPP: {$pppts} | SHA: {$sha} | SHP: {$shpts} |\n";
+				echo "{$player} | Team: {$teamcur} | ESG: {$esg} | ESA: {$esa} | ESPts: {$espts} | PPA: {$ppa} | PPP: {$pppts} | SHA: {$sha} | SHP: {$shpts} |\n";
 				
 				
 				$oSktrStat->save();
@@ -225,10 +232,13 @@
 			if ((strpos($aRow,'<th')===false)){
 				preg_match_all("|<td(.*)</td>|U",$aRow,$aCells);
 				
-				$player = 	strip_tags($aCells[0][1]);
-				$team = 	strip_tags($aCells[0][2]);
+				$player = 					strip_tags($aCells[0][1]);
+				$team = 					strip_tags($aCells[0][2]);
 				
-				$oSktrStat = SktrStat::find('first', array('conditions' => array('player = ? AND team = ?', $player, $team)));
+				$sTeamFirst = 				substr($team, 0, 3);
+				$sTeamCurrent = 			substr($team, -3);
+				
+				$oSktrStat = SktrStat::find('first', array('conditions' => array('player = ? AND SUBSTRING(team, 1, 3) = ?', $player, $sTeamFirst)));
 				
 				if(!$oSktrStat){
 					$oSktrStat = new SktrStat;
@@ -236,6 +246,7 @@
 				
 				$oSktrStat->player = 		$player;
 				$oSktrStat->team = 			$team;
+				$oSktrStat->teamcur = 		$sTeamCurrent;
 				$oSktrStat->estoi = 		strip_tags($aCells[0][5]);
 				$oSktrStat->estoiperg = 	strip_tags($aCells[0][6]);
 				$oSktrStat->shtoi = 		strip_tags($aCells[0][7]);
@@ -251,6 +262,7 @@
 				
 				$player = 		$oSktrStat->player;
 				$team = 		$oSktrStat->team;
+				$teamcur = 		$oSktrStat->teamcur;
 				$estoi = 		$oSktrStat->estoi;
 				$estoiperg = 	$oSktrStat->estoiperg;
 				$shtoi = 		$oSktrStat->shtoi;
@@ -263,7 +275,7 @@
 				$toipershft = 	$oSktrStat->toipershft;
 				$shftperg = 	$oSktrStat->shftperg;
 				
-				echo "{$player} | Team: {$team} | ESTOI: {$estoi} | ESTOI/G: {$estoiperg} | SHTOI: {$shtoi} | SHTOI/G: {$shtoiperg} | PPTOI: {$pptoi} | PPTOI/G: $pptoiperg} | TOI: {$toi} | TOI/G: {$toiperg} | SHIFTS: {$shft} | TOI/SHIFT: {$toipershft} | Shifts/G: {$shftperg}|\n";
+				echo "{$player} | Team: {$teamcur} | ESTOI: {$estoi} | ESTOI/G: {$estoiperg} | SHTOI: {$shtoi} | SHTOI/G: {$shtoiperg} | PPTOI: {$pptoi} | PPTOI/G: $pptoiperg} | TOI: {$toi} | TOI/G: {$toiperg} | SHIFTS: {$shft} | TOI/SHIFT: {$toipershft} | Shifts/G: {$shftperg}|\n";
 				
 
 				$oSktrStat->save();
