@@ -1,3 +1,3 @@
 <?php
-print_r($oProfile);
+	print_r($oProfile);
 ?>
