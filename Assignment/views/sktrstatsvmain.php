@@ -29,9 +29,9 @@
 	<meta name="description" content="NHL statistics &amp; schedule fantasy hockey resource" />
 	<meta name="keywords" content="NHL hockey statistics schedule fantasy tool resource" />
 	<!-- CSS link -->
-	<link rel="stylesheet" href="./views/css/main.css" />
+	<link rel="stylesheet" href="../public/css/main.css" />
 	<!-- JavaScript link -->
-	<script src="./views/js/sortable.js"></script>
+	<script src="../public/js/sortable.js"></script>
 	<!-- Favicon links 
 	<link rel="shortcut icon" href="favicon.ico" />
 	<link rel="apple-touch-icon" href="apple-touch-icon.png" />
@@ -45,7 +45,7 @@
 		<!-- ==== START HEADER ==== -->
 		<header id="header" role="banner">
 			<div class="container">
-				<h1><a href="#"><img src="./views/images/logo.png" alt="aMaK Stats" title="" width="350" height="160" /></a></h1>
+				<h1><a href="#"><img src="../public/images/logo.png" alt="aMaK Stats" title="" width="350" height="160" /></a></h1>
 				<nav role="navigation">
 					<ul class="nav">
 						<li><a href="?action=overview">Overview</a></li>
@@ -121,7 +121,7 @@
 		<footer id="footer" role="contentinfo">
 			<div class="container">
 				<div id="copy">
-					<p><a href="#"><img src="./views/images/logo-white.png" alt="aMak Stats Inc" title="" width="101" height="35" /></a></p>
+					<p><a href="#"><img src="../public/images/logo-white.png" alt="aMak Stats Inc" title="" width="101" height="35" /></a></p>
 					<p>&copy; 2012</p>
 				</div>
 				<!-- end #copy -->
