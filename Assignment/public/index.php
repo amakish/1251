@@ -25,7 +25,7 @@
 		include '../views/sktrstatsvmain.php';
 	} // End if
 	elseif($action == 'additional'){
-		include '../views/sktrstatsadditional.php';
+		include '../views/sktrstatsvadditional.php';
 	} // End if
 	
 ?>

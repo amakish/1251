@@ -63,7 +63,7 @@
 				<thead>
 					<tr>
 						<th scope="col"></th>
-						<th scope="col" class="left">Player</th>
+						<th scope="col" class="left">Name</th>
 						<th scope="col">Team</th>
 						<th scope="col">Pos</th>
 						<th scope="col">GP</th>
@@ -92,7 +92,7 @@
 					?>
 					<tr>
 						<td><?php echo $i;?></td>
-						<td class="left"><?php echo $sSktrStats->player;?></td>
+						<td class="left"><?php echo $sSktrStats->name;?></td>
 						<td><?php echo $sSktrStats->teamcur;?></td>
 						<td><?php echo $sSktrStats->pos;?></td>
 						<td><?php echo $sSktrStats->gp;?></td>
