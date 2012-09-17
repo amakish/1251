@@ -21,11 +21,11 @@
 	$action = (array_key_exists('action', $_POST)?$_POST['action']: '');
 	$action = (array_key_exists('action', $_GET)?$_GET['action']: $action);
 	
-	if($action == '' || $action == 'overview'){
-		include '../views/sktrstatsvmain.php';
+	if($action == '' || $action == 'pStatScoring'){
+		include '../views/sktrstatscoring.php';
 	} // End if
-	elseif($action == 'additional'){
-		include '../views/sktrstatsvadditional.php';
+	elseif($action == 'pStatIceTime'){
+		include '../views/sktrstaticetime.php';
 	} // End if
 	
 ?>
