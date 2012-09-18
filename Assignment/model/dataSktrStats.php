@@ -106,7 +106,11 @@
 	$fgetRowsStatsSummary = function($aRows){
 		foreach ($aRows[0] as $aRow){
 			if ((strpos($aRow,'<th')===false)){
+				preg_match_all("|<a(.*)</a>|U", $aRow, $aAnchor);
 				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
+				
+				// get Id
+				$sId = 					strip_tags($aAnchor[0][0]);
 				
 				// get name and team
 				$sName = 				strip_tags($aCells[0][1]);
@@ -123,6 +127,7 @@
 				} // End if
 				
 				// update/insert stats
+				$oSktrStat->id  = 		$sId;
 				$oSktrStat->rk  = 		strip_tags($aCells[0][0]);
 				$oSktrStat->name = 		$sName;
 				$oSktrStat->team = 		$sTeam;
@@ -167,6 +172,9 @@
 				
 				echo "RK: {$rk} | {$name} | Team: {$teamcur} | POS: {$pos} | GP: {$gp}  | G: {$g}  | A: {$a}  | Pts: {$pts}  | +/-: {$plusminus}  | PIM: {$pim} | PPG: {$ppg} | SHG: {$shg}  | GWG: {$gwg}  | OTG: {$otg} | SOG: {$sog}  | Pct: {$shtpct} | TOI/G: {$toiperg}  | Sft/G: {$shftperg} | FO%: {$fopct} |\n";
 				*/
+				$sId = 			$oSktrStat->id;
+				
+				echo "ID: {$id} | {$name}\n";
 				
 				$oSktrStat->save();
 

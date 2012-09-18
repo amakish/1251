@@ -43,19 +43,9 @@
 <body>
 	<div id="page">
 		<!-- ==== START HEADER ==== -->
-		<header id="header" role="banner">
-			<div class="container">
-				<h1><a href="#"><img src="../public/images/logo.png" alt="aMaK Stats" title="" width="350" height="160" /></a></h1>
-				<nav role="navigation">
-					<ul class="nav">
-						<li><a href="?action=pStatScoring">NHL Player Stats</a></li>
-						<li><a href="?action=tStatScoring">NHL Team Stats</a></li>
-						<li><a href="?action=tSchedule">NHL Schedule</a></li>
-					</ul>
-				</nav>
-			</div>
-			<!-- end .container -->
-		</header>
+		<?php 
+			include 'header.php'
+		?>
 		<!-- end #header -->
 		<!-- ==== START MAIN CONTENT ==== -->
 		<div id="main" role="main" >
@@ -137,7 +127,7 @@
 										<option value="S" selected="selected">All Skaters</option>
 										<option value="F">Forwards</option>
 										<option value="D">Defenseman</option>
-										<option value="G">Goalie</option>
+										<option value="G">Goalies</option>
 									</select>
 								</td>
 								<td>	
@@ -210,16 +200,9 @@
 		</div>
 		<!-- end MAIN CONTENT -->
 		<!-- ==== START FOOTER ==== -->
-		<footer id="footer" role="contentinfo">
-			<div class="container">
-				<div id="copy">
-					<p><a href="#"><img src="../public/images/logo-small.png" alt="aMak Stats Inc" title="" width="125" height="50" /></a></p>
-					<p>&copy; 2012</p>
-				</div>
-				<!-- end #copy -->
-			</div>
-			<!-- end .container -->
-		</footer>
+		<?php 
+			include 'footer.php'
+		?>
 		<!-- end #footer -->
 	</div>
 	<!-- #page -->

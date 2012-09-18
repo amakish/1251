@@ -43,19 +43,9 @@
 <body>
 	<div id="page">
 		<!-- ==== START HEADER ==== -->
-		<header id="header" role="banner">
-			<div class="container">
-				<h1><a href="#"><img src="../public/images/logo.png" alt="aMaK Stats" title="" width="250" height="100" /></a></h1>
-				<nav role="navigation">
-					<ul class="nav">
-						<li><a href="?action=pStatScoring">NHL Player Stats</a></li>
-						<li><a href="?action=tStatScoring">NHL Team Stats</a></li>
-						<li><a href="?action=tSchedule">NHL Schedule</a></li>
-					</ul>
-				</nav>
-			</div>
-			<!-- end .container -->
-		</header>
+		<?php 
+			include 'header.php'
+		?>
 		<!-- end #header -->
 		<!-- ==== START MAIN CONTENT ==== -->
 		<div id="main" role="main" >
@@ -137,7 +127,7 @@
 										<option value="S" selected="selected">All Skaters</option>
 										<option value="F">Forwards</option>
 										<option value="D">Defenseman</option>
-										<option value="G">Goalie</option>
+										<option value="G">Goalies</option>
 									</select>
 								</td>
 								<td>	
@@ -161,6 +151,7 @@
 							<tr>
 								<th scope="col"></th>
 								<th scope="col" class="left">Name</th>
+								<th scope="col">Age</th>
 								<th scope="col">Team</th>
 								<th scope="col">Pos</th>
 								<th scope="col">GP</th>
@@ -190,6 +181,7 @@
 							<tr>
 								<td><?php echo $i;?></td>
 								<td class="left"><?php echo $sSktrStats->name;?></td>
+								<td><?php echo $sSktrStats->age;?></td>
 								<td><?php echo $sSktrStats->teamcur;?></td>
 								<td><?php echo $sSktrStats->pos;?></td>
 								<td><?php echo $sSktrStats->gp;?></td>
@@ -219,16 +211,9 @@
 		</div>
 		<!-- end MAIN CONTENT -->
 		<!-- ==== START FOOTER ==== -->
-		<footer id="footer" role="contentinfo">
-			<div class="container">
-				<div id="copy">
-					<p><a href="#"><img src="../public/images/logo-small.png" alt="aMak Stats Inc" title="" width="125" height="50" /></a></p>
-					<p>&copy; 2012</p>
-				</div>
-				<!-- end #copy -->
-			</div>
-			<!-- end .container -->
-		</footer>
+		<?php 
+			include 'footer.php'
+		?>
 		<!-- end #footer -->
 	</div>
 	<!-- #page -->

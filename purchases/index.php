@@ -1,34 +1,31 @@
 <?php
-require '../ActiveRecord/ActiveRecord.php';
+require_once('../adodb5/adodb.inc.php');
+require_once('../adodb5/adodb-active-record.inc.php');
 
-ActiveRecord\Config::initialize(function($cfg)
-{
-	$cfg->set_model_directory('model');
-	$cfg->set_connections(
-			array(
-					'development' => 'mysql://root:@localhost/purchases',
-					'test' => 'mysql://username:password@localhost/test_database_name',
-					'production' => 'mysql://username:password@localhost/production_database_name'
-			)
-	);
-});
+$db = null;
+if($_SERVER['SERVER_PORT'] == 8080){
+	$db = NewADOConnection('mysql://root:@localhost/purchases');
+}else{
+	$db = NewADOConnection('mysql://syndicat_jobs:Secret55Passw0rd@localhost/syndicat_jobs');
+}
+
+$db = NewADOConnection('mysql://root:@localhost/purchases');
+ADOdb_Active_Record::SetDatabaseAdapter($db);
+class Purchase extends ADOdb_Active_Record{}
 
 if(array_key_exists('submit', $_POST)){
 	$oPurchase = new Purchase();
-	
 	$oPurchase->date = $_POST['date'];
 	$oPurchase->purchase = $_POST['purchase'];
 	$oPurchase->price = $_POST['price'];
-	
 	$oPurchase->save();
+	//print_r($oPurchase);
 }
 
 
 if(array_key_exists('add', $_POST)){
 	include 'views/add.php';
-}
-else {
+}else {
 	include 'views/list.php';
 }
-
 ?>
