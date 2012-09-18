@@ -106,78 +106,86 @@
 	$fgetRowsStatsSummary = function($aRows){
 		foreach ($aRows[0] as $aRow){
 			if ((strpos($aRow,'<th')===false)){
-				preg_match_all("|<a(.*)</a>|U", $aRow, $aAnchor);
 				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
+				if ((strpos($aRow,'<td')!==false)){
+					preg_match_all("|<a(.*)</a>|U", $aRow, $aAnchor);
 				
-				// get Id
-				$sId = 					strip_tags($aAnchor[0][0]);
-				
-				// get name and team
-				$sName = 				strip_tags($aCells[0][1]);
-				$sTeam = 				strip_tags($aCells[0][2]);
-				$sTeamFirst = 			substr($sTeam, 0, 3);
-				$sTeamCurrent = 		substr($sTeam, -3);
-				
-				// use name and first team to verify whether player already exists in db
-				$oSktrStat = SktrStat::find('first', array('conditions' => array('name = ? AND SUBSTRING(team, 1, 3) = ?', $sName, $sTeamFirst)));
-				
-				// if player exists then update stats, if player doesn't exist then create player and insert stats
-				if(!$oSktrStat){
-					$oSktrStat = new SktrStat;
+					// get Id
+					$sId = 					strip_tags($aAnchor[0][1]);
+					
+					// get name and team
+					$sName = 				strip_tags($aCells[0][1]);
+					$sTeam = 				strip_tags($aCells[0][2]);
+					$sTeamFirst = 			substr($sTeam, 0, 3);
+					$sTeamCurrent = 		substr($sTeam, -3);
+					
+					// use name and first team to verify whether player already exists in db
+					$oSktrStat = SktrStat::find('first', array('conditions' => array('name = ? AND SUBSTRING(team, 1, 3) = ?', $sName, $sTeamFirst)));
+					
+					// if player exists then update stats, if player doesn't exist then create player and insert stats
+					if(!$oSktrStat){
+						$oSktrStat = new SktrStat;
+					} // End if
+					
+					// update/insert stats
+					$oSktrStat->id  = 		$sId;
+					$oSktrStat->rk  = 		strip_tags($aCells[0][0]);
+					$oSktrStat->name = 		$sName;
+					$oSktrStat->team = 		$sTeam;
+					$oSktrStat->teamcur = 	$sTeamCurrent;
+					$oSktrStat->pos = 		strip_tags($aCells[0][3]);
+					$oSktrStat->gp = 		strip_tags($aCells[0][4]);
+					$oSktrStat->g = 		strip_tags($aCells[0][5]);
+					$oSktrStat->a = 		strip_tags($aCells[0][6]);
+					$oSktrStat->pts = 		strip_tags($aCells[0][7]);
+					$oSktrStat->plusminus = strip_tags($aCells[0][8]);
+					$oSktrStat->pim = 		strip_tags($aCells[0][9]);
+					$oSktrStat->ppg = 		strip_tags($aCells[0][10]);
+					$oSktrStat->shg = 		strip_tags($aCells[0][11]);
+					$oSktrStat->gwg = 		strip_tags($aCells[0][12]);
+					$oSktrStat->otg = 		strip_tags($aCells[0][13]);
+					$oSktrStat->sog = 		strip_tags($aCells[0][14]);
+					$oSktrStat->shtpct = 	strip_tags($aCells[0][15]);
+					$oSktrStat->toiperg = 	strip_tags($aCells[0][16]);
+					$oSktrStat->shftperg = 	strip_tags($aCells[0][17]);
+					$oSktrStat->fopct = 	strip_tags($aCells[0][18]);
+	
+					/*
+					$rk = 			$oSktrStat->rk;
+					$name = 		$oSktrStat->name;
+					$teamcur = 		$oSktrStat->teamcur;
+					$pos = 			$oSktrStat->pos;
+					$gp = 			$oSktrStat->gp;
+					$g =	 		$oSktrStat->g;
+					$a = 			$oSktrStat->a;
+					$pts =	 		$oSktrStat->pts;
+					$plusminus = 	$oSktrStat->plusminus;
+					$pim = 			$oSktrStat->pim;
+					$ppg = 			$oSktrStat->ppg;
+					$shg = 			$oSktrStat->shg;
+					$gwg = 			$oSktrStat->gwg;
+					$otg = 			$oSktrStat->otg;
+					$sog = 			$oSktrStat->sog;
+					$shtpct = 		$oSktrStat->shtpct;
+					$toiperg = 		$oSktrStat->toiperg;
+					$shftperg = 	$oSktrStat->shftperg;
+					$fopct = 		$oSktrStat->fopct;
+					
+					echo "RK: {$rk} | {$name} | Team: {$teamcur} | POS: {$pos} | GP: {$gp}  | G: {$g}  | A: {$a}  | Pts: {$pts}  | +/-: {$plusminus}  | PIM: {$pim} | PPG: {$ppg} | SHG: {$shg}  | GWG: {$gwg}  | OTG: {$otg} | SOG: {$sog}  | Pct: {$shtpct} | TOI/G: {$toiperg}  | Sft/G: {$shftperg} | FO%: {$fopct} |\n";
+					*/
+	
+					$name = 		$oSktrStat->name;
+					$teamcur = 		$oSktrStat->teamcur;
+					$pos = 			$oSktrStat->pos;
+					$gp = 			$oSktrStat->gp;
+					$g =	 		$oSktrStat->g;
+					$a = 			$oSktrStat->a;
+					$pts =	 		$oSktrStat->pts;
+					
+					echo "ID: {$sId} | {$name} | Team: {$teamcur} | POS: {$pos} | GP: {$gp}  | G: {$g}  | A: {$a}  | Pts: {$pts} |\n";
+					
+					$oSktrStat->save();
 				} // End if
-				
-				// update/insert stats
-				$oSktrStat->id  = 		$sId;
-				$oSktrStat->rk  = 		strip_tags($aCells[0][0]);
-				$oSktrStat->name = 		$sName;
-				$oSktrStat->team = 		$sTeam;
-				$oSktrStat->teamcur = 	$sTeamCurrent;
-				$oSktrStat->pos = 		strip_tags($aCells[0][3]);
-				$oSktrStat->gp = 		strip_tags($aCells[0][4]);
-				$oSktrStat->g = 		strip_tags($aCells[0][5]);
-				$oSktrStat->a = 		strip_tags($aCells[0][6]);
-				$oSktrStat->pts = 		strip_tags($aCells[0][7]);
-				$oSktrStat->plusminus = strip_tags($aCells[0][8]);
-				$oSktrStat->pim = 		strip_tags($aCells[0][9]);
-				$oSktrStat->ppg = 		strip_tags($aCells[0][10]);
-				$oSktrStat->shg = 		strip_tags($aCells[0][11]);
-				$oSktrStat->gwg = 		strip_tags($aCells[0][12]);
-				$oSktrStat->otg = 		strip_tags($aCells[0][13]);
-				$oSktrStat->sog = 		strip_tags($aCells[0][14]);
-				$oSktrStat->shtpct = 	strip_tags($aCells[0][15]);
-				$oSktrStat->toiperg = 	strip_tags($aCells[0][16]);
-				$oSktrStat->shftperg = 	strip_tags($aCells[0][17]);
-				$oSktrStat->fopct = 	strip_tags($aCells[0][18]);
-
-				/*
-				$rk = 			$oSktrStat->rk;
-				$name = 		$oSktrStat->name;
-				$teamcur = 		$oSktrStat->teamcur;
-				$pos = 			$oSktrStat->pos;
-				$gp = 			$oSktrStat->gp;
-				$g =	 		$oSktrStat->g;
-				$a = 			$oSktrStat->a;
-				$pts =	 		$oSktrStat->pts;
-				$plusminus = 	$oSktrStat->plusminus;
-				$pim = 			$oSktrStat->pim;
-				$ppg = 			$oSktrStat->ppg;
-				$shg = 			$oSktrStat->shg;
-				$gwg = 			$oSktrStat->gwg;
-				$otg = 			$oSktrStat->otg;
-				$sog = 			$oSktrStat->sog;
-				$shtpct = 		$oSktrStat->shtpct;
-				$toiperg = 		$oSktrStat->toiperg;
-				$shftperg = 	$oSktrStat->shftperg;
-				$fopct = 		$oSktrStat->fopct;
-				
-				echo "RK: {$rk} | {$name} | Team: {$teamcur} | POS: {$pos} | GP: {$gp}  | G: {$g}  | A: {$a}  | Pts: {$pts}  | +/-: {$plusminus}  | PIM: {$pim} | PPG: {$ppg} | SHG: {$shg}  | GWG: {$gwg}  | OTG: {$otg} | SOG: {$sog}  | Pct: {$shtpct} | TOI/G: {$toiperg}  | Sft/G: {$shftperg} | FO%: {$fopct} |\n";
-				*/
-				$sId = 			$oSktrStat->id;
-				
-				echo "ID: {$id} | {$name}\n";
-				
-				$oSktrStat->save();
-
 			} // End if
 		} // End foreach
 	}; // End fgetRowsStatsSummary
