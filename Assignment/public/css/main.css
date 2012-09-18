@@ -83,13 +83,12 @@ table {
 ---------------------------------------------- */
 h1 {
 	float: left;
-	padding: 3em 0 0 1em;
 	font-family: Georgia, Times, 'Times New Roman', serif;
 }
 /* CONTAINERS
 ---------------------------------------------- */
 #page {
-    background: #F5F5F5 url(../images/bg-grey.jpg) repeat;
+    background: #EDEDED;
 }
 
 .container {
@@ -99,31 +98,33 @@ h1 {
 }
 
 #header{
-	height: 15px;
-	margin-bottom: 13em;
-	background-color: #000;
-	opacity: .75;
+	background-color: #F5F5F5;
+	border-top: 1px solid #DADADA;
+	border-bottom: 1px solid #DADADA;
+	padding-bottom: 0.5em;
+
 }
 
 #footer {
+	background-color: #F5F5F5;
+	border-top: 1px solid #DADADA;
+	border-bottom: 1px solid #DADADA;
 	margin-top: 2em;
-	color: #F7F7F7;
-	background-color: #000;
-	opacity: .75;
 }
 
 	#copy {
-		padding: 1.5em 0 1.5em 1em;
 		font: .9em Verdanna, sans-serif;
-		font-size: 75%;
-		color: #FFF;
+		color: #666;
 	}
+		
+		#copy p+p {
+			padding: 0 0 1em 1.5em;
+		}
 
 /* HEADER
 ---------------------------------------------- */
 header nav {
 		float: right;
-		margin-top: 3em;
 	}
 	
 		header nav ul li {
@@ -131,13 +132,12 @@ header nav {
 		}
 		
 			header nav ul li a {
-				margin-top: 109px;
-				margin-right: 33px;
-				color: #525253;
+				margin-top: 72px;
+				margin-left: 50px;
+				color: #666;
 				display: block;
-				font-size: 262.5%;
+				font-size: 112.5%;
 				text-decoration: none;
-				text-transform: lowercase;
 			}
 			
 			header nav ul li a:hover, header nav ul li a:focus {
@@ -148,32 +148,83 @@ header nav {
 				}
 /* MAIN CONTENT
 ---------------------------------------------- */
-table {
-	width: 920px;
-	margin: 40px auto 0;
-	border: 2px solid #525253;
+#pageBackground {
+	background-color: #FFF;
+	padding-bottom: 0.5em;
+	border-radius: 15px;
+	margin-top: 1em;
+	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
 }
-
-table caption {
-	font-size: 1.75em;
-	font-weight: bold;
-	margin-bottom: .5em;
-}
-
-	table th, td {
-		padding: 3px;
-		text-align: center;
+	
+	#pageBody {
+		width: 940px;
+		padding-bottom: 1em;
+		border: 1px solid #CACACA;
+		margin-top: 0.5em;		
+		background-color: #F7F7F7;
+		border-radius: 10px;
+		box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
 	}
+	
+		table {
+			width: 920px;
+			margin: 30px auto 0;
+			border: 1px solid #DADADA;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+		}
 
-	table .left {
-		text-align: left;
-
-	thead {
-	    background-color:#EEE;
-	    color:#666;
-	    font-weight: bold;
-	    cursor: default;
-	}
+		table .left {
+			text-align: left;
+		}
+			
+			#statsFormTable caption {
+				font-size: 1.75em;
+				font-weight: bold;
+				color: #525253;
+				text-align: left;
+			}
+			
+				#statsFormTable th {
+					padding-left: 7px;
+					text-align: left;
+				}
+				
+				#statsFormTable td {
+					padding-left: 5px;
+					text-align: left;
+				}
+				
+			table caption {
+				margin-bottom: .5em;
+				font-size: 1.5 em;
+				font-weight: bold;
+				color: #525253;
+				text-align: left;
+			}
+		
+			th {
+				background-color: #00A4E7;
+			    color:#FFF;
+			    font-weight: bold;
+			    cursor: default;
+			}
+				
+				tr:nth-child(even) {
+					background: #FFF;
+				}
+				
+				tr:nth-child(odd) {
+					background: #F4F4F4;
+				}
+		
+					table th, td {
+						padding: 3px;
+						text-align: center;
+						font-size: .75em;
+					}
+			
+				
+			
 
 /* FOOTER
 ---------------------------------------------- */

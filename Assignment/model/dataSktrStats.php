@@ -108,21 +108,24 @@
 			if ((strpos($aRow,'<th')===false)){
 				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
 				
-				$player = 				strip_tags($aCells[0][1]);
-				$team = 				strip_tags($aCells[0][2]);
+				// get name and team
+				$sName = 				strip_tags($aCells[0][1]);
+				$sTeam = 				strip_tags($aCells[0][2]);
+				$sTeamFirst = 			substr($sTeam, 0, 3);
+				$sTeamCurrent = 		substr($sTeam, -3);
 				
-				$sTeamFirst = 			substr($team, 0, 3);
-				$sTeamCurrent = 		substr($team, -3);
+				// use name and first team to verify whether player already exists in db
+				$oSktrStat = SktrStat::find('first', array('conditions' => array('name = ? AND SUBSTRING(team, 1, 3) = ?', $sName, $sTeamFirst)));
 				
-				$oSktrStat = SktrStat::find('first', array('conditions' => array('player = ? AND SUBSTRING(team, 1, 3) = ?', $player, $sTeamFirst)));
-				
+				// if player exists then update stats, if player doesn't exist then create player and insert stats
 				if(!$oSktrStat){
 					$oSktrStat = new SktrStat;
 				} // End if
 				
+				// update/insert stats
 				$oSktrStat->rk  = 		strip_tags($aCells[0][0]);
-				$oSktrStat->player = 	$player;
-				$oSktrStat->team = 		$team;
+				$oSktrStat->name = 		$sName;
+				$oSktrStat->team = 		$sTeam;
 				$oSktrStat->teamcur = 	$sTeamCurrent;
 				$oSktrStat->pos = 		strip_tags($aCells[0][3]);
 				$oSktrStat->gp = 		strip_tags($aCells[0][4]);
@@ -143,8 +146,7 @@
 
 				/*
 				$rk = 			$oSktrStat->rk;
-				$player = 		$oSktrStat->player;
-				$team = 		$oSktrStat->team;
+				$name = 		$oSktrStat->name;
 				$teamcur = 		$oSktrStat->teamcur;
 				$pos = 			$oSktrStat->pos;
 				$gp = 			$oSktrStat->gp;
@@ -163,7 +165,7 @@
 				$shftperg = 	$oSktrStat->shftperg;
 				$fopct = 		$oSktrStat->fopct;
 				
-				echo "RK: {$rk} | {$player} | Team: {$teamcur} | POS: {$pos} | GP: {$gp}  | G: {$g}  | A: {$a}  | Pts: {$pts}  | +/-: {$plusminus}  | PIM: {$pim} | PPG: {$ppg} | SHG: {$shg}  | GWG: {$gwg}  | OTG: {$otg} | SOG: {$sog}  | Pct: {$shtpct} | TOI/G: {$toiperg}  | Sft/G: {$shftperg} | FO%: {$fopct} |\n";
+				echo "RK: {$rk} | {$name} | Team: {$teamcur} | POS: {$pos} | GP: {$gp}  | G: {$g}  | A: {$a}  | Pts: {$pts}  | +/-: {$plusminus}  | PIM: {$pim} | PPG: {$ppg} | SHG: {$shg}  | GWG: {$gwg}  | OTG: {$otg} | SOG: {$sog}  | Pct: {$shtpct} | TOI/G: {$toiperg}  | Sft/G: {$shftperg} | FO%: {$fopct} |\n";
 				*/
 				
 				$oSktrStat->save();
@@ -173,6 +175,53 @@
 	}; // End fgetRowsStatsSummary
 	
 	// ******************************************************
+	// fgetRowsStatsBio
+	// ******************************************************
+	$fgetRowsStatsBio = function($aRows){
+		foreach ($aRows[0] as $aRow){
+			if ((strpos($aRow,'<th')===false)){
+				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
+				
+				// get name and team
+				$sName = 				strip_tags($aCells[0][1]);
+				$sTeam = 				strip_tags($aCells[0][2]);
+				$sTeamFirst = 			substr($sTeam, 0, 3);
+				$sTeamCurrent = 		substr($sTeam, -3);
+				// get dob
+				$sDob =	strip_tags($aCells[0][4]);
+				$sDobFormat = str_replace("'","", $sDob);
+				$tsDob = strtotime(str_replace(" ","-", $sDobFormat));
+				$dDob = date("Y-m-d", $tsDob);
+				// calculate age
+				$dAge = number_format(((time() - $tsDob) / 31556926), 1);
+				
+				// use name and first team to verify whether player already exists in db
+				$oSktrStat = SktrStat::find('first', array('conditions' => array('name = ? AND SUBSTRING(team, 1, 3) = ?', $sName, $sTeamFirst)));
+				
+				// if player exists then update stats, if player doesn't exist then create player and insert stats
+				if(!$oSktrStat){
+					$oSktrStat = new SktrStat;
+				} // End if
+				
+				// update/insert stats
+				$oSktrStat->dob = 		$dDob;
+				$oSktrStat->age = 		$dAge;
+				
+				/*
+				$name = 		$oSktrStat->name;
+				$teamcur = 		$oSktrStat->teamcur;
+				$dob = 			$oSktrStat->dob;
+	
+				echo "{$name} | Team: {$teamcur} | Age: {$dAge} |\n";
+				*/
+	
+				$oSktrStat->save();
+	
+			} // End if
+		} // End foreach
+	}; // End fgetRowsStatsBio
+	
+	// ******************************************************
 	// fgetRowsStatsSpecialTeams
 	// ******************************************************
 	$fgetRowsStatsSpecialTeams = function($aRows){
@@ -180,21 +229,21 @@
 			if ((strpos($aRow,'<th')===false)){
 				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
 				
-				$player = 				strip_tags($aCells[0][1]);
+				// get name and team
+				$name = 				strip_tags($aCells[0][1]);
 				$team = 				strip_tags($aCells[0][2]);
-				
 				$sTeamFirst = 			substr($team, 0, 3);
 				$sTeamCurrent = 		substr($team, -3);
 				
-				$oSktrStat = SktrStat::find('first', array('conditions' => array('player = ? AND SUBSTRING(team, 1, 3) = ?', $player, $sTeamFirst)));
+				// use name and first team to verify whether player already exists in db
+				$oSktrStat = SktrStat::find('first', array('conditions' => array('name = ? AND SUBSTRING(team, 1, 3) = ?', $name, $sTeamFirst)));
 				
+				// if player exists then update stats, if player doesn't exist then create player and insert stats
 				if(!$oSktrStat){
 					$oSktrStat = new SktrStat;
 				} // End if
 				
-				$oSktrStat->player = 	$player;
-				$oSktrStat->team = 		$team;
-				$oSktrStat->teamcur = 	$sTeamCurrent;
+				// update/insert stats
 				$oSktrStat->esg = 		strip_tags($aCells[0][5]);
 				$oSktrStat->esa = 		strip_tags($aCells[0][6]);
 				$oSktrStat->espts = 	strip_tags($aCells[0][7]);
@@ -204,9 +253,9 @@
 				$oSktrStat->shpts =		strip_tags($aCells[0][13]);
 				
 				/*
-				$player = 	$oSktrStat->player;
+				$name = 	$oSktrStat->name;
 				$team = 	$oSktrStat->team;
-				$teamcur = 		$oSktrStat->teamcur;
+				$teamcur = 	$oSktrStat->teamcur;
 				$esg = 		$oSktrStat->esg;
 				$esa = 		$oSktrStat->esa;
 				$espts = 	$oSktrStat->espts;
@@ -215,7 +264,7 @@
 				$sha = 		$oSktrStat->sha;
 				$shpts = 	$oSktrStat->shpts;
 				
-				echo "{$player} | Team: {$teamcur} | ESG: {$esg} | ESA: {$esa} | ESPts: {$espts} | PPA: {$ppa} | PPP: {$pppts} | SHA: {$sha} | SHP: {$shpts} |\n";
+				echo "{$name} | Team: {$teamcur} | ESG: {$esg} | ESA: {$esa} | ESPts: {$espts} | PPA: {$ppa} | PPP: {$pppts} | SHA: {$sha} | SHP: {$shpts} |\n";
 				*/
 				
 				$oSktrStat->save();
@@ -232,21 +281,21 @@
 			if ((strpos($aRow,'<th')===false)){
 				preg_match_all("|<td(.*)</td>|U",$aRow,$aCells);
 				
-				$player = 					strip_tags($aCells[0][1]);
+				// get name and team
+				$name = 					strip_tags($aCells[0][1]);
 				$team = 					strip_tags($aCells[0][2]);
-				
 				$sTeamFirst = 				substr($team, 0, 3);
 				$sTeamCurrent = 			substr($team, -3);
 				
-				$oSktrStat = SktrStat::find('first', array('conditions' => array('player = ? AND SUBSTRING(team, 1, 3) = ?', $player, $sTeamFirst)));
+				// use name and first team to verify whether player already exists in db
+				$oSktrStat = SktrStat::find('first', array('conditions' => array('name = ? AND SUBSTRING(team, 1, 3) = ?', $name, $sTeamFirst)));
 				
+				// if player exists then update stats, if player doesn't exist then create player and insert stats
 				if(!$oSktrStat){
 					$oSktrStat = new SktrStat;
 				} // End if
 				
-				$oSktrStat->player = 		$player;
-				$oSktrStat->team = 			$team;
-				$oSktrStat->teamcur = 		$sTeamCurrent;
+				// update/insert stats
 				$oSktrStat->estoi = 		strip_tags($aCells[0][5]);
 				$oSktrStat->estoiperg = 	strip_tags($aCells[0][6]);
 				$oSktrStat->shtoi = 		strip_tags($aCells[0][7]);
@@ -260,7 +309,7 @@
 				$oSktrStat->shftperg = 		strip_tags($aCells[0][15]);
 				
 				/*
-				$player = 		$oSktrStat->player;
+				$name = 		$oSktrStat->name;
 				$team = 		$oSktrStat->team;
 				$teamcur = 		$oSktrStat->teamcur;
 				$estoi = 		$oSktrStat->estoi;
@@ -275,7 +324,7 @@
 				$toipershft = 	$oSktrStat->toipershft;
 				$shftperg = 	$oSktrStat->shftperg;
 				
-				echo "{$player} | Team: {$teamcur} | ESTOI: {$estoi} | ESTOI/G: {$estoiperg} | SHTOI: {$shtoi} | SHTOI/G: {$shtoiperg} | PPTOI: {$pptoi} | PPTOI/G: $pptoiperg} | TOI: {$toi} | TOI/G: {$toiperg} | SHIFTS: {$shft} | TOI/SHIFT: {$toipershft} | Shifts/G: {$shftperg}|\n";
+				echo "{$name} | Team: {$teamcur} | ESTOI: {$estoi} | ESTOI/G: {$estoiperg} | SHTOI: {$shtoi} | SHTOI/G: {$shtoiperg} | PPTOI: {$pptoi} | PPTOI/G: $pptoiperg} | TOI: {$toi} | TOI/G: {$toiperg} | SHIFTS: {$shft} | TOI/SHIFT: {$toipershft} | Shifts/G: {$shftperg}|\n";
 				*/
 
 				$oSktrStat->save();
@@ -299,7 +348,22 @@
 		$sPlyrNumXXOf = $aPlyrNum[0];
 		$sPlyrNumOfYYY = $aPlyrNum[2];
 	} // End for loop
-
+	
+	// ******************************************************
+	// Stats -  Bio
+	// ******************************************************
+	$sPlyrNumXXOf = "junk";
+	$sPlyrNumOfYYY = "";
+	
+	for($i=1; $sPlyrNumXXOf != $sPlyrNumOfYYY; $i++) {
+		$sStatsBio = getSktrStats("http://www.nhl.com/ice/playerstats.htm?fetchKey=20122ALLSASALL&viewName=bios&sort=player.birthCountryAbbrev&pg=$i", $fgetRowsStatsBio);
+		$aPlyrNum = getPlyrNumXXofYYY($sStatsBio);
+	
+		$sPlyrNumXXOf = $aPlyrNum[0];
+		$sPlyrNumOfYYY = $aPlyrNum[2];
+	} // End for loop
+	
+	
 	// ******************************************************
 	// Stats - Special Teams
 	// ******************************************************
