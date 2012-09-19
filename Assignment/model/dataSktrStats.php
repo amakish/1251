@@ -107,12 +107,12 @@
 		foreach ($aRows[0] as $aRow){
 			if ((strpos($aRow,'<th')===false)){
 				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
-				if ((strpos($aRow,'<td')!==false)){
-					preg_match_all("|<a(.*)</a>|U", $aRow, $aAnchor);
 				
 					// get Id
-					$sId = 					strip_tags($aAnchor[0][1]);
-					
+					$sNameUrl = $aCells[0][1];
+					$aNameUrl = parse_url($sNameUrl);
+					$sId = substr($aNameUrl['query'], 3, 7);
+
 					// get name and team
 					$sName = 				strip_tags($aCells[0][1]);
 					$sTeam = 				strip_tags($aCells[0][2]);
@@ -182,10 +182,9 @@
 					$a = 			$oSktrStat->a;
 					$pts =	 		$oSktrStat->pts;
 					
-					echo "ID: {$sId} | {$name} | Team: {$teamcur} | POS: {$pos} | GP: {$gp}  | G: {$g}  | A: {$a}  | Pts: {$pts} |\n";
+					echo "ID: {$sId} | {$name} | Team: {$teamcur} |\n";
 					
 					$oSktrStat->save();
-				} // End if
 			} // End if
 		} // End foreach
 	}; // End fgetRowsStatsSummary
