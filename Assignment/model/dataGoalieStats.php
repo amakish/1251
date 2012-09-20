@@ -108,14 +108,19 @@
 			if ((strpos($aRow,'<th')===false)){
 				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
 				
+				// get Id
+				$sNameUrl = $aCells[0][1];
+				$aNameUrl = parse_url($sNameUrl);
+				$sId = substr($aNameUrl['query'], 3, 7);
+
 				// get name and team
 				$sName = 				strip_tags($aCells[0][1]);
 				$sTeam = 				strip_tags($aCells[0][2]);
 				$sTeamFirst = 			substr($sTeam, 0, 3);
 				$sTeamCurrent = 		substr($sTeam, -3);
-				
-				// use name and first team to verify whether player already exists in db
-				$oGoalieStat = GoalieStat::find('first', array('conditions' => array('name = ? AND SUBSTRING(team, 1, 3) = ?', $sName, $sTeamFirst)));
+
+				// use player id to verify whether player already exists in db
+				$oGoalieStat = GoalieStat::find('first', array('conditions' => array('id = ?', $sId)));
 				
 				// if player exists then update stats, if player doesn't exist then create player and insert stats
 				if(!$oGoalieStat){
@@ -123,6 +128,7 @@
 				} // End if
 				
 				// update/insert stats
+				$oGoalieStat->id  = 		$sId;
 				$oGoalieStat->rk  = 		strip_tags($aCells[0][0]);
 				$oGoalieStat->name = 		$sName;
 				$oGoalieStat->team = 		$sTeam;
@@ -143,8 +149,8 @@
 				$oGoalieStat->a = 			strip_tags($aCells[0][15]);
 				$oGoalieStat->pim = 		strip_tags($aCells[0][16]);
 				$oGoalieStat->toi = 		strip_tags($aCells[0][17]);
-
 				/*
+				$id = 			$oGoalieStat->id;
 				$rk = 			$oGoalieStat->rk;
 				$name = 		$oGoalieStat->name;
 				$teamcur = 		$oGoalieStat->teamcur;
@@ -165,11 +171,9 @@
 				$pim =	 		$oGoalieStat->pim;
 				$toi =		 	$oGoalieStat->toi;
 				
-				echo "RK: {$rk} | {$name} | Team: {$teamcur} | Pos: {$pos} | GP: {$gp} | GS: {$gs}  | W: {$w}  | L: {$l}  | OT: {$ot}  | SA: {$sa}  | GA: {$ga} | GAA: {$gaa} | SV: {$sv}  | SV%: {$svper}  | SO: {$so} | G: {$g}  | A: {$a} | PIM: {$pim}  | TOI: {$toi} |\n";
+				echo "ID: {$id} | RK: {$rk} | {$name} | Team: {$teamcur} | Pos: {$pos} | GP: {$gp} | GS: {$gs}  | W: {$w}  | L: {$l}  | OT: {$ot}  | SA: {$sa}  | GA: {$ga} | GAA: {$gaa} | SV: {$sv}  | SV%: {$svper}  | SO: {$so} | G: {$g}  | A: {$a} | PIM: {$pim}  | TOI: {$toi} |\n";
 				*/
-				
 				$oGoalieStat->save();
-
 			} // End if
 		} // End foreach
 	}; // End fgetRowsStatsSummary
@@ -182,11 +186,17 @@
 			if ((strpos($aRow,'<th')===false)){
 				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
 				
+				// get Id
+				$sNameUrl = $aCells[0][1];
+				$aNameUrl = parse_url($sNameUrl);
+				$sId = substr($aNameUrl['query'], 3, 7);
+
 				// get name and team
 				$sName = 				strip_tags($aCells[0][1]);
 				$sTeam = 				strip_tags($aCells[0][2]);
 				$sTeamFirst = 			substr($sTeam, 0, 3);
 				$sTeamCurrent = 		substr($sTeam, -3);
+
 				// get dob
 				$sDob =	strip_tags($aCells[0][3]);
 				$sDobFormat = str_replace("'","", $sDob);
@@ -195,8 +205,8 @@
 				// calculate age
 				$dAge = number_format(((time() - $tsDob) / 31556926), 1);
 				
-				// use name and first team to verify whether player already exists in db
-				$oGoalieStat = GoalieStat::find('first', array('conditions' => array('name = ? AND SUBSTRING(team, 1, 3) = ?', $sName, $sTeamFirst)));
+				// use player id to verify whether player already exists in db
+				$oGoalieStat = GoalieStat::find('first', array('conditions' => array('id = ?', $sId)));
 				
 				// if player exists then update stats, if player doesn't exist then create player and insert stats
 				if(!$oGoalieStat){
@@ -204,19 +214,22 @@
 				} // End if
 				
 				// update/insert stats
+				$oGoalieStat->id  = 		$sId;
+				$oGoalieStat->rk  = 		strip_tags($aCells[0][0]);
+				$oGoalieStat->name = 		$sName;
 				$oGoalieStat->dob = 		$dDob;
 				$oGoalieStat->age = 		$dAge;
-				
-				
+				/*
+				$id = 			$oGoalieStat->id;
+				$rk = 			$oGoalieStat->rk;
 				$name = 		$oGoalieStat->name;
 				$teamcur = 		$oGoalieStat->teamcur;
 				$dob = 			$oGoalieStat->dob;
+				$age =			$oGoalieStat->age;
 	
-				echo "{$name} | Team: {$teamcur} | Age: {$dAge} |\n";
-				
-	
+				echo "ID: {$id} | RK: {$rk} | {$name} | Team: {$teamcur} | Dob: {$dob} | Age: {$age} |\n";
+				*/
 				$oGoalieStat->save();
-	
 			} // End if
 		} // End foreach
 	}; // End fgetRowsStatsBio
