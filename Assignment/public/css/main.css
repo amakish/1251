@@ -16,159 +16,133 @@
 					
 */
 
-/* CSS RESET
+/* CSS Reset
+------------------------------------------------ */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, time, mark, audio, video {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    font-size: 100%;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+    vertical-align: baseline;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none outside none;
+}
+ins {
+    text-decoration: none;
+}
+del {
+    text-decoration: line-through;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+body {
+    background-color: #EDEDED;
+    color: #303030;
+    font: 100%/1.5 Calibri,Candara,"Gill Sans","Gill Sans MT",sans-serif;
+}
+table {
+    font-size: inherit;
+}
+select, input, textarea {
+    font: 99% sans-serif;
+}
+a {
+    -moz-transition: color 0.3s linear 0s;
+    color: #D53232;
+    text-decoration: none;
+}
+a:hover {
+    color: #B52A2A;
+}
+input.text, input[type="text"] textarea {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #7C7C7C #7C7C7C #C3C3C3 #C3C3C3;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px;
+}
+p, ul, ol {
+    margin-bottom: 1em;
+}
+/* /CSS Reset
 ------------------------------------------------ */
 
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-
-body {
-	line-height: 1;
-	
-/* Prevent mobile zooming while remain desktop zooming.
-	github.com/shichuan/mobile-html5-boilerplate/issues/closed#issue/14
-	*/
-	-webkit-text-size-adjust: 100%;
-	-ms-text-size-adjust: none;
-}
-
-ol, ul {
-	list-style: none;
-}
-
-blockquote, q {
-	quotes: none;
-}
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-/* GENERAL
----------------------------------------------- */
-h1 {
-	float: left;
-	font-family: Georgia, Times, 'Times New Roman', serif;
-}
-/* CONTAINERS
+/* === start #Page
 ---------------------------------------------- */
 #page {
-    background: #EDEDED;
-}
-
-.container {
+	width: 100%;
 	margin: 0 auto;
-	width: 960px;
-	overflow: hidden;
 }
 
+/* ==== START HEADER ====
+---------------------------------------------- */
 #header{
 	background-color: #F5F5F5;
 	border-top: 1px solid #DADADA;
 	border-bottom: 1px solid #DADADA;
 	padding-bottom: 0.5em;
-
 }
 
-#footer {
-	background-color: #F5F5F5;
-	border-top: 1px solid #DADADA;
-	border-bottom: 1px solid #DADADA;
-	margin-top: 2em;
-}
-
-	#copy {
-		font: .9em Verdanna, sans-serif;
-		color: #666;
+	img {
+	    max-width: 100%;
 	}
-		
-		#copy p+p {
-			padding: 0 0 1em 1.5em;
-		}
-
-/* HEADER
----------------------------------------------- */
-header nav {
-		float: right;
+	.logo {
+	    float: left;
+	    width: 20.21018593371059%; /* 250 / 1237 */
+		margin-left: 11.19644300727567%;
 	}
 	
-		header nav ul li {
-			float: left;
+	.logo a {
+	    display: block;
+	    padding: 10px 14.8148% 10px;
 		}
-		
-			header nav ul li a {
-				margin-top: 72px;
-				margin-left: 50px;
-				color: #666;
-				display: block;
-				font-size: 112.5%;
-				text-decoration: none;
-			}
-			
-			header nav ul li a:hover, header nav ul li a:focus {
-					border-bottom: 3px solid #00A4E7;
-					color: #000;
-					background-color: #F5F5F5;
-					opacity: .5;
-				}
-/* MAIN CONTENT
+		.logo img {
+		    display: block;
+		}
+
+.nav {
+	width: 25%;
+    font: bold 18px "pill-gothic-300mg-1","pill-gothic-300mg-2",Calibri,Candara,"Gill Sans","Gill Sans MT",sans-serif;
+ 	margin-top: 4.6em;
+ 	margin-left: 62%;
+    text-transform: uppercase;
+}
+
+.nav li {
+    display: inline;
+}
+	.nav a {
+	    color: #EECBA5;
+		padding: 1.25em 1.25em;
+	}
+		.nav a:hover {
+		    color: #393F46;
+		}
+
+
+/* ==== START MAIN ====
 ---------------------------------------------- */
-#pageBackground {
+#main {
+	width: 65%;	/* 1237px */
+	margin: 0 auto;
 	background-color: #FFF;
 	padding-bottom: 0.5em;
-	border-radius: 15px;
-	margin-top: 1em;
-	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
 }
 	
-	#pageBody {
-		width: 940px;
-		padding-bottom: 1em;
-		border: 1px solid #CACACA;
-		margin-top: 0.5em;		
-		background-color: #F7F7F7;
-		border-radius: 10px;
-		box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
-	}
-	
 		table {
-			width: 920px;
-			margin: 30px auto 0;
+			width: 80.84074373484236%; /* 1000 / 1237 */
+			margin: 0 auto;
 			border: 1px solid #DADADA;
 			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 		}
@@ -177,19 +151,19 @@ header nav {
 			text-align: left;
 		}
 			
-			#statsFormTable caption {
+			#statsTableForm caption {
 				font-size: 1.75em;
 				font-weight: bold;
 				color: #525253;
 				text-align: left;
 			}
 			
-				#statsFormTable th {
+				#statsTableForm th {
 					padding-left: 7px;
 					text-align: left;
 				}
 				
-				#statsFormTable td {
+				#statsTableForm td {
 					padding-left: 5px;
 					text-align: left;
 				}
@@ -203,7 +177,7 @@ header nav {
 			}
 		
 			th {
-				background-color: #00A4E7;
+				background-color: #393F46;
 			    color:#FFF;
 			    font-weight: bold;
 			    cursor: default;
@@ -222,9 +196,22 @@ header nav {
 						text-align: center;
 						font-size: .75em;
 					}
-			
-				
-			
 
-/* FOOTER
+/* ==== START FOOTER ====
 ---------------------------------------------- */
+#footer {
+	background-color: #F5F5F5;
+	border-top: 1px solid #DADADA;
+	border-bottom: 1px solid #DADADA;
+	margin-top: 2em;
+}
+
+	#copy {
+		font: .9em Verdanna, sans-serif;
+		color: #666;
+	}
+		
+		#copy p+p {
+			padding: 0 0 1em 1.5em;
+		}
+

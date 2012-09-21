@@ -41,17 +41,14 @@
 	<![endif]-->
 </head>
 <!-- ==== START HEADER ==== -->
-<header id="header" role="banner">
-	<div class="container">
-		<h1><a href="#"><img src="../public/images/logo.png" alt="aMaK Stats" title="" width="250" height="100" /></a></h1>
-		<nav role="navigation">
-			<ul class="nav">
-				<li><a href="?action=pStatScoring">NHL Player Stats</a></li>
-				<li><a href="?action=tStatScoring">NHL Team Stats</a></li>
-				<li><a href="?action=tSchedule">NHL Schedule</a></li>
-			</ul>
-		</nav>
-	</div>
-	<!-- end .container -->
+<header id="header" class="section" role="banner">
+	<h1 class="logo">
+		<a href="#"><img src="../public/images/logo.png" alt="aMaK Stats" /></a>
+	</h1>
+		<ul class="nav" role="navigation">
+			<li><a href="?action=pStatScoring">Player Stats</a></li>
+			<li><a href="?action=tStatScoring">Team Stats</a></li>
+			<li><a href="?action=tSchedule">Schedule</a></li>
+		</ul>
 </header>
 <!-- end #header -->
