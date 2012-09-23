@@ -1,0 +1,527 @@
+/*----------------------------------------------------------
+Typography CSS file for Easy-Designs.net
+Created 23 November 2007 by Aaron Gustafson
+of Easy! Designs, LLC (easy-designs.net)
+----------------------------------------------------------*/
+
+/* =Reset */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline; }
+:focus { outline: 0; }
+body { line-height: 1; color: black; background: white; }
+ol, ul { list-style: none; }
+table { border-collapse: separate; border-spacing: 0; }
+caption, th, td { text-align: left; font-weight: normal; }
+blockquote:before, blockquote:after, q:before, q:after { content: ""; }
+blockquote, q { quotes: "" ""; }
+
+/* =Fonts */
+body {
+  font: 62.5%/1.5 "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
+  padding: 1em;
+}
+h1, h2, h3, h4, h5, h6, legend, caption {
+  font-weight: bold;
+  line-height: 1.5;
+  margin-bottom: .5em;
+}
+h1 {
+  font-size: 2em;
+}
+h2 {
+  border-top: 4px solid;
+  clear: right;
+  float: left;
+  font-size: 1.2em;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+p, ol, ul {
+  clear: both;
+  font-size: 1.2em;
+  line-height: 1.5;
+  margin: 0 0 1.5em;
+  padding: 0;
+}
+li {
+  margin: 0 0 0 2em;
+}
+abbr, dfn, acronym {
+  cursor: help;
+}
+
+/* =Forms */
+fieldset {
+  border-top: 1px solid;
+}
+legend {
+  font-size: 1.2em;
+  line-height: 1;
+  padding-right: .3em;
+}
+fieldset ul {
+  margin-top: .5em;
+}
+fieldset li {
+  clear: both;
+  list-style: none;
+  margin: 0 0 .5em;
+}
+label {
+  float: left;
+  display: block;
+  line-height: 1;
+  margin: 0 1em 0 0;
+  padding: .35em 0 0;
+  width: 10em;
+}
+input, select, textarea {
+  font-size: 1em;
+  width: 300px;
+}
+textarea {
+  font: 1em "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
+  height: 150px;
+}
+button {
+  font-size: 1em;
+  border: 0;
+  letter-spacing: .05em;
+  margin-left: 10em;
+  padding: .2em .4em;
+  text-transform: uppercase;
+  position: relative;
+  left: 1em;
+}
+#errors {
+  clear: both;
+  border: 2px solid;
+  margin: 1em 0;
+  padding: 1.5em;
+}
+  #errors p {
+    margin: 0 0 .5em;
+  }
+  #errors ol {
+    margin: 0;
+  }
+  #errors li {
+    list-style: decimal;
+  }
+label {
+  position: relative;
+}
+  label .e {
+    display: block;
+    white-space: nowrap;
+    margin-top: -.2em;
+    padding-right: 10px;
+    position: absolute;
+    left: 276px;
+    top: 50%;
+  }
+  label .e:before {
+    content: '\00AB\00A0';
+  }
+
+/* =Sections */
+#who,
+#work,
+#contact {
+  border-top: 1px solid;
+  clear: both;
+}
+  #work ul {
+    margin: 0 0 1.5em;
+  }
+  #work li {
+    float: left;
+    list-style: none;
+    margin: 10px 0 0 10px;
+  }
+  #work img {
+    border: 1px solid;
+  }
+  #testimonial p {
+    font: italic 1.8em Georgia, Times, "Times New Roman", serif;
+    line-height: 1.2;
+    margin: 0;
+  }
+  #testimonial cite {
+    font: .667em "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
+    display: block; margin-bottom: 1.5em;
+  }
+#copyright,
+#address {
+  font-size: .9em;
+}
+  #address p {
+    font-size: 1em;
+    margin: 0;
+  }
+  .post-office-box, .street-address {
+    display: block;
+  }
+#easy-network a {
+	font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+#easy-network a:focus,
+#easy-network a:hover {
+	text-decoration: underline;
+}
+
+@media screen {
+	
+	/*----------------------------------------------------------
+	Real Layout CSS file for Easy-Designs.net
+	Created 23 November 2007 by Aaron Gustafson
+	of Easy! Designs, LLC (easy-designs.net)
+	----------------------------------------------------------*/
+
+	body {
+	  padding: 0 0 6em;
+	}
+	#page {
+	  width: 266px;
+	  margin: 170px auto 6em;
+	  padding: 0;
+	  position: relative;
+	}
+
+	/* =Columns */
+	#logo {
+	  width: 214px;
+	  height: 133px;
+	  position: absolute;
+	  top: -113px;
+	  right: 284px;
+	}
+	#work {
+	  position: relative;
+	}
+	  #work:after {
+	    content: '.';
+	    display: block;
+	    clear: both;
+	    height: 0;
+	    visibility: hidden;
+	  }
+	  #work ul {
+	    clear: both;
+	    min-height: 365px;
+	    margin: 0 0 0 -10px;
+	  }
+	  #work h2 {
+	    margin: 0;
+	  }
+	#testimonial {
+	  text-align: right;
+	  width: 300px;
+	  overflow: visible;
+	  position: absolute;
+	  top: 0;
+	  right: 284px;
+	}
+	#contact {
+	  width: 266px;
+	  position: absolute;
+	  left: 284px;
+	  top: 0;
+	}
+	  #contact label {
+	    width: 80px;
+	  }
+	  #contact input,
+	  #contact select,
+	  #contact textarea {
+	    width: 170px;
+	    margin-right: -100px;
+	  }
+	  #contact input:focus,
+	  #contact textarea:focus {
+	    width: 200px;
+	    margin-right: -200px;
+	  }
+	  #contact button {
+	    margin-left: 80px;
+	  }
+	#copyright {
+	  line-height: 1;
+	  width: 400px;
+	  padding-top: 10px;
+	  position: absolute;
+	}
+	#address {
+	  text-align: right;
+	  margin-top: 3em;
+	  width: 266px;
+	  margin: 0;
+	  padding-top: 8px;
+	  position: absolute;
+	  right: 284px;
+	}
+
+	/* Networks */
+	#social-links {
+		position: relative;
+		top: 8px;
+	}
+	#social-links li {
+		float: left;
+		margin: 20px 10px 0 0;
+	}
+	#social-links li a {
+		background: top left no-repeat;
+		-moz-border-radius: 4px;
+		-ms-border-radius: 4px;
+		-o-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		border-radius: 4px;
+		display: block;
+		overflow: hidden;
+		text-indent: -999em;
+		width: 30px;
+		height: 30px;
+	}
+	#easy-network {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    height: 30px;
+	}
+	#easy-network ul {
+	    padding: 0;
+			overflow: hidden;
+			width: 780px;
+			margin: 0 auto;
+	}
+	#easy-network ul li {
+	    float: left;
+	    margin-right: 0px;
+	}
+	#easy-network ul li a {
+	    display: block;
+	    padding-left: 18px;
+	    height: 30px;
+			line-height: 30px;
+	}
+	#easy-network ul li.easy-readers a {
+	    padding-left: 27px;
+	}
+	#easy-network ul li.r4g a {
+	    padding-left: 16px;
+	}
+	
+	#lightbox{
+		position: absolute;
+		top: 40px;
+		left: 0;
+		width: 100%;
+		z-index: 100;
+		text-align: center;
+		line-height: 0;
+		}
+
+	#lightbox a img{ border: none; }
+
+	#outerImageContainer{
+		position: relative;
+		background-color: #fff;
+		width: 250px;
+		height: 250px;
+		margin: 0 auto;
+		}
+
+	#imageContainer{
+		padding: 10px;
+		}
+
+	#loading{
+		position: absolute;
+		top: 40%;
+		left: 0%;
+		height: 25%;
+		width: 100%;
+		text-align: center;
+		line-height: 0;
+		}
+	#hoverNav{
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		z-index: 10;
+		}
+	#imageContainer>#hoverNav{ left: 0;}
+	#hoverNav a{ outline: none;}
+
+	#prevLink, #nextLink{
+		width: 49%;
+		height: 100%;
+		background: transparent url(img/blank.gif) no-repeat; /* Trick IE into showing hover */
+		display: block;
+		}
+	#prevLink { left: 0; float: left;}
+	#nextLink { right: 0; float: right;}
+	#prevLink:hover, #prevLink:visited:hover { background: url(img/prevlabel.gif) left 15% no-repeat; }
+	#nextLink:hover, #nextLink:visited:hover { background: url(img/nextlabel.gif) right 15% no-repeat; }
+
+
+	#imageDataContainer{
+		font: 10px Verdana, Helvetica, sans-serif;
+		background-color: #fff;
+		margin: 0 auto;
+		line-height: 1.4em;
+		}
+
+	#imageData{
+		padding:0 10px;
+		}
+	#imageData #imageDetails{ width: 70%; float: left; text-align: left; }	
+	#imageData #caption{ font-weight: bold;	}
+	#imageData #numberDisplay{ display: block; clear: left; padding-bottom: 1.0em;	}			
+	#imageData #bottomNavClose{ width: 66px; float: right;  padding-bottom: 0.7em;	}	
+
+	#overlay{
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 90;
+		width: 100%;
+		height: 500px;
+		background-color: #000;
+		filter:alpha(opacity=60);
+		-moz-opacity: 0.6;
+		opacity: 0.6;
+		}
+
+
+	.clearfix:after {
+		content: "."; 
+		display: block; 
+		height: 0; 
+		clear: both; 
+		visibility: hidden;
+		}
+
+	* html>body .clearfix {
+		display: inline-block; 
+		width: 100%;
+		}
+
+	* html .clearfix {
+		/* Hides from IE-mac \*/
+		height: 1%;
+		/* End hide from IE-mac */
+		}	
+	
+}
+
+/*----------------------------------------------------------
+Color CSS file for Easy-Designs.net
+Created 23 November 2007 by Aaron Gustafson
+of Easy! Designs, LLC (easy-designs.net)
+
+Colors:
+
+----------------------------------------------------------*/
+
+/* =Base */
+html,
+body {
+  background: #ebebeb;
+  color: #515857;
+}
+a, a:link, a:visited {
+  color: #167f34;
+}
+a:focus, a:hover {
+  color: #54af46;
+}
+a img, a:link img, a:visited img {
+  border-color: #167f34;
+}
+a:focus img, a:hover img {
+  border-color: #54af46;
+}
+
+/* =Forms */
+form abbr {
+  color: #167f34;
+}
+legend, input, select, textarea {
+  color: #515857;
+}
+input:focus, select:focus, textarea:focus {
+  color: #333;
+}
+button {
+  background: #167f34;
+  color: #fff;
+}
+.error, label .e {
+  color: #bf0015;
+}
+#errors,
+.error input,
+.error textarea,
+.error select {
+  background: #ffafb8;
+  border-color: #bf0015;
+  color: #bf0015;
+}
+#errors a {
+  color: #000;
+}
+
+/* =Sections */
+#testimonial {
+  color: #167f34;
+}
+#testimonial cite {
+  color: #515857;
+}
+
+/* Networks */
+#social-links li.twitter a {
+	background-image: url(/img/twitter.png);
+}
+#social-links li.facebook a {
+	background-image: url(/img/facebook.png);
+}
+#social-links li.github a {
+	background-image: url(/img/github.png);
+}
+#easy-network {
+	background: #ddd;
+}
+#easy-network {
+    background: #ddd;
+    background: rgba(100,100,100,0.05);
+}
+#easy-network ul li a,
+#easy-network ul li a:hover,
+#easy-network ul li a:focus {
+    background: no-repeat 0 50%;
+		color: #515857;
+}
+#easy-network ul li a {
+    opacity: 0.5;
+}
+#easy-network ul li a:hover,
+#easy-network ul li a:focus {
+    opacity: 0.99;
+}
+#easy-network ul li.easy-readers a {
+    background-image: url(/img/en-easy-readers.png);
+}
+#easy-network ul li.blog a {
+    background-image: url(/img/en-blog.png);
+}
+#easy-network ul li.r4g a {
+    background-image: url(/img/en-r4g.png);
+}
+

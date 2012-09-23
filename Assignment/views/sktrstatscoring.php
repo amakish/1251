@@ -1,64 +1,50 @@
 <!DOCTYPE html>
-<!--
-	Website: 		aMaK Stats Inc | NHL Hockey Stats, Schedule | Fantasy Hockey Resource
-	URL:	 		http://www.amakstats.com
-	Developer: 		Aaron Makish
-	Date Created: 	20120828
-	Last Revised: 	20120917
-	Language:		HTML5
-
-	Website Description:
-					NHL Hockey Stats, Schedule | Fantasy Hockey Resource
-		
-	External files:
-					main.css
--->
-<!--[if lt IE 7 ]> <html lang="en-us" class="ie6"> <![endif]-->
-<!--[if IE 7 ]> <html lang="en-us" class="ie7"> <![endif]-->
-<!--[if IE 8 ]> <html lang="en-us" class="ie8"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en">
-<!--<![endif]-->
+<html id="amakstats_com" lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<title>aMaK Stats Inc</title>
-	<meta content="true" name="HandheldFriendly">
-	<meta content="320" name="MobileOptimized">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-	<meta name="author" content="Aaron Makish"/>
-	<meta name="description" content="NHL statistics &amp; schedule fantasy hockey resource" />
-	<meta name="keywords" content="NHL hockey statistics schedule fantasy tool resource" />
-	<!-- CSS link -->
-	<link rel="stylesheet" href="../public/css/main.css" />
-	<!-- JavaScript link -->
-	<script src="../public/js/sortable.js"></script>
-	<!-- Favicon links 
-	<link rel="shortcut icon" href="favicon.ico" />
-	<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+	<meta charset="utf-8">
+	<!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<title>aMaK Stats</title>
+	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<meta content="aMaK Stats" name="title">
+	<link href="../public/css/main.css" rel="stylesheet">
+	<!--[if IE 9]><link rel="stylesheet" href="/c/ie9.css" type="text/css"/><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="/c/ie8.css" type="text/css"/><![endif]-->
+	<!--[if lte IE 7]><link rel="stylesheet" href="/c/ie7.css" type="text/css"/><![endif]-->
+	<!--[if lte IE 6]><link rel="stylesheet" href="/c/ie6.css" type="text/css"/><![endif]-->
+	<!--
+		Website: 		aMaK Stats Inc | NHL Hockey Stats, Schedule | Fantasy Hockey Resource
+		URL:	 		http://www.amakstats.com
+		Developer: 		Aaron Makish
+		Date Created: 	20120828
+		Last Revised: 	20120923
+		Language:		HTML5
+	
+		Website Description:
+						NHL Hockey Stats, Schedule | Fantasy Hockey Resource
+			
+		External files:
+						main.css
 	-->
-	<!--[if lt IE 9]>
-	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
 </head>
-<body>
+<body id="home">
 	<div id="page">
-		<!-- ==== START HEADER ==== -->
+		<!-- header -->
 			<?php 
 				include 'header.php'
 			?>
-		<!-- ==== END HEADER ==== -->
-		<!-- ==== START MAIN ==== -->
-		<div id="main" class="section" role="main" >
+		<!-- / header -->
+		<!-- #content -->
+		<section role="main" id="content">
 			<table id="statsTableForm">
-				<caption>NHL Player Statistics</caption>
+				<caption class="captionPrimary">NHL Player Statistics</caption>
 				<thead>
 					<tr>
-						<th scope="col">Season</th>
-						<th scope="col">Game Type</th>
-						<th scope="col">Team</th>
-						<th scope="col">Position</th>
-						<th scope="col">Scoring View</th>
-						<th scope="col">Player Status</th>
+						<th class="leftalign" scope="col">Season</th>
+						<th class="leftalign" scope="col">Game Type</th>
+						<th class="leftalign" scope="col">Team</th>
+						<th class="leftalign" scope="col">Position</th>
+						<th class="leftalign" scope="col">Scoring View</th>
+						<th class="leftalign" scope="col">Player Status</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -142,13 +128,13 @@
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</table><!-- / #statsTableForm -->
 			<table id="statTable" class="sortable">
-				<caption>2011-12 Skater Statistics - Scoring</caption>
+				<caption class="captionSecondary">2011-12 Skater Statistics - Scoring</caption>
 				<thead>
 					<tr>
 						<th scope="col"></th>
-						<th scope="col" class="left">Name</th>
+						<th scope="col" class="leftalign">Name</th>
 						<th scope="col">Age</th>
 						<th scope="col">Team</th>
 						<th scope="col">Pos</th>
@@ -178,7 +164,7 @@
 					?>
 					<tr>
 						<td><?php echo $i;?></td>
-						<td class="left"><?php echo $sSktrStats->name;?></td>
+						<td class="leftalign"><?php echo $sSktrStats->name;?></td>
 						<td><?php echo $sSktrStats->age;?></td>
 						<td><?php echo $sSktrStats->teamcur;?></td>
 						<td><?php echo $sSktrStats->pos;?></td>
@@ -201,18 +187,15 @@
 					</tr>
 			<?php } ?>
 				</tbody>
-			</table>
-		</div>
-		<!-- end MAIN -->
-		<!-- ==== START FOOTER ==== -->
+			</table><!-- / #statTable -->
+		</section><!-- / #content -->
+		<!-- footer -->
 			<?php 
 				include 'footer.php'
 			?>
-		</div>
-		<!-- /end #footer -->
-	</div>
-	<!-- /end #page -->
-</div>
-<!-- /end .site -->
+		<!-- / footer -->		
+	</div><!-- / #page -->
+	<!-- JavaScript link -->
+	<script src="../public/js/sortable.js"></script>
 </body>
 </html>
