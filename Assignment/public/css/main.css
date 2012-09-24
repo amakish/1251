@@ -13,44 +13,51 @@
 					index.php
 					
 */
-
-/* =CSSResetDefauts (based on Eric Meyer's)
----------------------------------------------- */
-html,body,div,header,footer,nav,article,section,figure,aside,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;font-style:inherit;font-weight:inherit;vertical-align:baseline;background:transparent;}
-body{line-height:1;}
-header,footer,nav,article,aside,section,figure,figcaption{display:block;}
-ol,ul{list-style:none;}
-blockquote,q{quotes:none;}
-blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
-ins{text-decoration:none;}
-del{text-decoration:line-through;}
-table{border-collapse:collapse;border-spacing:0;}
-/* / CSSResetDefauts
----------------------------------------------- */
-
-/* =Global Typography
----------------------------------------------- */
+/* ---------------------------------------------------------------------
+/* = CSS RESET html5doctor.com/html-5-reset-stylesheet/ 
+----------------------------------------------------------------------*/
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,
+	legend,table,caption,tbody,tfoot,thead,tr,th,td,time,mark,audio,video { margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent; }
+body { line-height:1; }
+ol,ul { list-style:none; }
+blockquote,q { quotes:none; }
+blockquote:before,blockquote:after,q:before,q:after { content:'';content:none; }
+ins { text-decoration:none; }
+del { text-decoration:line-through; }
+abbr[title], dfn[title] { border-bottom:1px dotted;cursor:help; }
+table { border-collapse:collapse;border-spacing:0; }
+input, select { vertical-align:middle; }
+/* ---------------------------------------------------------------------
+/* = SELF-CLEARING FLOATS
+----------------------------------------------------------------------*/
+.mod:after,.section:after { content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.mod,.section { zoom: 1; }
+/* ---------------------------------------------------------------------
+   = BASE TYPOGRAPHY
+----------------------------------------------------------------------*/
 body {
-	font: 87.5%/1.25 'Trebuchet MS', Verdana, sans-serif;
+	/*font: 87.5%/1.25 'Trebuchet MS', Verdana, sans-serif;*/
+	font: normal 100%/1.5 Verdana, sans-serif;
 }
 a, a:hover, a:focus, li:focus a, a:focus b, button:focus {
 	text-decoration: none;
 }
 nav {
-	font-size: 1.1em;
-	line-height: 1;         
+	font-family: Georgia, Times, serif;
+	font-size: 1.5em;
+	line-height: 1;
+	text-transform: uppercase;       
 }
 button:focus {
 	outline: 0;
 }
 h1, h2, h3, h4, h5, h6, dt {
-	font-family: Georgia, Times, 'Times New Roman', serif;
+	font-family: Georgia, Times, serif;
 	font-weight: bold;
 }
 h1 {
-	font-size: 3em;
+	font-size: 1.5em;
 	line-height: 1;
-	text-align: center;
 }
 img {
 	display: block;
@@ -61,7 +68,9 @@ table {
 	width: 100%;
 }
 caption {
+	font-family: Georgia, Times, serif;
 	font-size: 1.25em;
+	font-weight: bold;
 }
 th, tfoot {
 	font-weight: bold;
@@ -74,108 +83,232 @@ tbody th {
 }
 th, td {
 	vertical-align: top;
-	padding: 1px 5px;
+	padding: 2px 5px;
+}
+th {
+	font-size: 0.875em;
+    font-weight: bold;
+    cursor: default;
+}
+td {
+	font-size: 0.75em;
+}
+footer {
+	font-size: 0.8125em; /* 13/16 */
+}
+/* ---------------------------------------------------------------------
+   = BASE LAYOUT   =STANDARD
+----------------------------------------------------------------------*/
+table {
+	font-size:inherit;
+	font: 100%;
+}
+select,
+input,
+textarea {
+	font: 99% sans-serif;
+}
+a {
+	-moz-transition: color 0.3s linear;
+	-o-transition: color 0.3s linear;
+	-webkit-transition: color 0.3s linear;
+	transition: color 0.3s linear;
+	text-decoration: none;
+}
+input.text,
+input[type=text]
+textarea {
+	border: 1px solid #7C7C7C;
+}
+ul,
+ol {
+	margin-bottom: 1em;
+}
+abbr[title],
+dfn[title] {
+	border-bottom: 1px dotted;
+	cursor: help;
+}
+hr,
+.skip,
+.ineffable {
+	left: -1000em;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	width: 0;
+}
+/* ---------------------------------------------------------------------
+   = BASE LAYOUT   =#PAGE
+----------------------------------------------------------------------*/
+#page {
+	margin: 0 auto;
+	width: 100%;
+}
+/* ---------------------------------------------------------------------
+   = BASE LAYOUT   =HEADER
+----------------------------------------------------------------------*/
+header {
+	border-top: 1px solid #DADADA;
+	border-bottom: 1px solid #DADADA;
+	width: 100%;
+	height: 7.416563658838072%; /* 120 / 1618 */
+}
+.logo {
+	float: left;
+	display: inline-block;
+	width: 15.45117428924598%; /* 250 / 1618 */
+}
+nav {
+	float: right;
+	padding-top: 2.9em;
+	width: 45.42645241038319%; /* 650 / 1618 */
+}
+.nav-primary li {
+	float: left;	
+	padding-left: 3em;
+}
+/* ---------------------------------------------------------------------
+   = BASE LAYOUT   =#CONTENT
+----------------------------------------------------------------------*/
+#contentwrap {
+	border-left: 1px solid #DADADA;
+	border-right: 1px solid #DADADA;
+}
+#content {
+	margin: 0 auto;
+}
+.lede {
+	padding: .75em 0 .5em;
+}
+table {
+	margin: 0 auto;
+	border: 1px solid;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+.tableCaption {
+	padding: 1em 0 0.25em 0;
+}
+td {
+	border: 1px solid;
+}
+.leftalign {
+	text-align: left;
+}
+tr:nth-child(even) {
+	background-color: #FFF;
 }
 
-/* =Global Layout
----------------------------------------------- */
-#page {
-	width: 100%;
-	margin: 0 auto;
-}	
+tr:nth-child(odd) {
+	background-color: #F4F4F4;
+}
+#statsTableForm tr th, #statsTableForm tr th {
+	width: 160px;
+}
 
-/* =Base Layout
----------------------------------------------- */
-@media screen {
-	/* header
-	---------------------------------------------- */
-	header {
-		width: 100%;
-		height: 100px;
-		border-top: 1px solid #DADADA;
-		border-bottom: 1px solid #DADADA;
+/* ---------------------------------------------------------------------
+   = BASE LAYOUT   =FOOTER
+----------------------------------------------------------------------*/
+footer {
+	border-top: 1px solid;
+}
+footer p {
+	text-align: center;
+}
+#venture {
+	padding-top: 2em;
+}
+#copyright {
+	padding-bottom: 2em;
+}
+/* ---RESPONSIVE LAYOUTS ---------------------------------------------*/
+/* ---------------------------------------------------------------------
+   = MAX-WIDTH = 1024px
+----------------------------------------------------------------------*/
+@media screen and (max-width: 1024px) {
+	/* =SECTION */
+	section {
+		width: 93.75%;
 	}
-	#top h1 {
-		display: inline-bloack;
-	    width: 13.13715186547556%; /* 250 / 1903 */
-		height: 100px;
-	   	float: left;
-	   	margin-left: 20%;
-
-	}
-	nav {
-		width: 22.07041513399895%;
-		margin-left: 57.96111403047819%;
-	}
-	ul {
-		display: inline-block;
-		height: 100px;
-		
-		
-	}
-	nav ul li {
-		float: left;
-		padding-left: 3em;
-	}
-	/* content
-	---------------------------------------------- */
+	/* =#CONTENT */
 	#content {
-		
-		width: 100%;	/* 1237px */
 		margin: 0 auto;
+		border-left: 1px solid #DADADA;
+		border-right: 1px solid #DADADA;
 		padding-bottom: 0.5em;
+		width: 53.80977404098791%;	/* 1024px / 1903px */
 	}
 	table {
-		width: 52.54860746190226%; /* 1000 / 1 */
-		margin: 0 auto;
-		border: 1px solid #DADADA;
-		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-	}
-	.leftalign {
-		text-align: left;
-	}
-	caption {
-		padding: 15px 0 3px 0;
-	}
-	.captionPrimary {
-		padding-top: 20px;
-	}
-	th {
-		padding: 4px 2px;
-		background-color: #393F46;
-	    color:#FFF;
-	    font-size: 0.875em;
-	    font-weight: bold;
-	    text-align: center;
-	    cursor: default;
-	}
-	td {
-		padding: 2px 0;
-		border: 1px solid #FFF;
-		color: #000;
-		font-size: 0.75em;
-		text-align: center;
+		width: 93.75%; /* 960px / 1024px */
 	}
 
-	tr:nth-child(even) {
-		background-color: #FFF;
-	}
-	
-	tr:nth-child(odd) {
-		background-color: #F4F4F4;
-	}
-	/* footer
-	---------------------------------------------- */			
+	/* =FOOTER */	
 	footer {
 		border-top: 1px solid #DADADA;
 		border-bottom: 1px solid #DADADA;
+		width: 100%;
+		height: 100px;
 	}
+
+} /* / MAX-WIDTH = 1024px */
+/* ---------------------------------------------------------------------
+   = MIN-WIDTH = 1281px
+----------------------------------------------------------------------*/
+@media screen and (min-width: 1281px) { 
+	/* =SECTION */
+	section {
+		margin: 0 auto;
+		width: 85%;
+	}
+	#contentwrap {
+		padding: 20px 0;
+	}
+	/* =HEADER */
+	header {
+		height: 110px;
+	}
+	/* =#CONTENT */
+	#content {
+		border: 1px solid #DADADA;
+		padding: 10px;
+		width: 92.7070457354759%; /* 1500px / 1618px */
+		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+	}
+	/* =FOOTER */
+
+} /* / MIN-WIDTH = 1281px */
+/* ---/ RESPONSIVE LAYOUTS -------------------------------------------*/
+
+/* ---------------------------------------------------------------------
+   = BASE COLOR
+----------------------------------------------------------------------*/
+body {
+	background: #EDEDED;
+}
+#contentwrap {
+	background: #FFF;
+}
+a {
+	color: #D53232;
+}
+a:hover {
+	color: #B52A2A;
+}
+input.text,
+input[type=text]
+textarea {
+	border-color: #7C7C7C #7C7C7C #C3C3C3 #C3C3C3;
+}
+abbr[title],
+dfn[title] {
+	border-bottom: #666;
+	border-bottom: rgba(0, 0, 0, 0.2);
 }
 
-/* =Global Color
----------------------------------------------- */
+	/* =HEADER */	
 	header, footer {
 		background: #F5F5F5;
+		border-color: #DADADA;
 	}
 	nav a {
 	    color: #00A4E7;
@@ -183,8 +316,9 @@ th, td {
 	nav a:hover {
 	    color: #393F46;
 	}
+	/* =#CONTENT */	
 	#content {
-		background: #EDEDED;
+		background: #FFF;
 	}
 	caption {
 		color: #525253;
@@ -194,14 +328,17 @@ th, td {
 	    color:#FFF;
 	}
 	td {
-		color: #000;
 		font-size: 0.75em;
+		color: #000;
+		border-color: #FFF;
 	}
-
 	tr:nth-child(even) {
 		background: #FFF;
 	}
-	
 	tr:nth-child(odd) {
 		background: #F4F4F4;
+	}
+	/* =FOOTER */
+	footer a {
+		color: #00A4E7;
 	}

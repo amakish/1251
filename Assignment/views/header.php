@@ -26,23 +26,24 @@
 						main.css
 	-->
 </head>
-<!-- ==== START HEADER ==== -->
-<header role="banner" id="top" class="section" >
-	<h1 class="logo">
-		<a href="#"><img alt="aMaK Stats" src="../public/images/logo.png"/></a>
-	</h1>
-	<nav role="navigation">
-		<ul id="main-nav">
-			<li id="player-stats">
-			 	<a title="See NHL player statistics" href="?action=pStatScoring"><b>Player Stats</b></a>
-			 </li>
-			<li id="team-stats">
-				<a title="See NHL team standings and statistics" href="?action=tStatScoring"><b>Team Stats</b></a>
-			</li>
-			<li id="league-schedule">
-				<a title="See NHL league schedule" href="?action=tSchedule"><b>Schedule</b></a>
-			</li>
-		</ul>
-	</nav>
-</header>
-<!-- end #header -->
+<!-- =header -->
+<header role="banner" id="top">
+	<section>
+		<h1 class="logo">
+			<a href="#"><img alt="aMaK Stats" src="../public/images/logo.png"/></a>
+		</h1>
+		<nav role="navigation">
+			<ul class="nav-primary">
+				<li id="player-stats">
+				 	<a title="See NHL player statistics" href="?action=pStatScoring"><b>Player Stats</b></a>
+				 </li>
+				<li id="team-stats">
+					<a title="See NHL team standings and statistics" href="?action=tStatScoring"><b>Team Stats</b></a>
+				</li>
+				<li id="league-schedule">
+					<a title="See NHL league schedule" href="?action=tSchedule"><b>Schedule</b></a>
+				</li>
+			</ul>
+		</nav>
+	</section>		
+</header><!-- / header -->

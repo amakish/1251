@@ -26,10 +26,10 @@
 						main.css
 	-->
 </head>
-<!-- ==== START FOOTER ==== -->
+<!-- =footer -->
 <footer role="contentinfo" id="bottom">
 	<section>
-		<p>aMaK Stats is an <a href="http://aaronmakish.com/" rel="external me">Aaron Makish</a> venture.</p>
+		<p id="venture">aMaK Stats is an <a href="http://aaronmakish.com/" rel="external me">Aaron Makish</a> venture.</p>
 		<p id="copyright">&copy;2012 aMaK Stats. All Rights Reserved.</p>
 	</section>
-</footer>
+</footer><!-- / footer -->
