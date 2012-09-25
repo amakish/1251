@@ -27,5 +27,4 @@
 	elseif($action == 'pStatIceTime'){
 		include '../views/sktrstaticetime.php';
 	} // End if
-	
 ?>

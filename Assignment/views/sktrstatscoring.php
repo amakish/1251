@@ -160,7 +160,8 @@
 					<tbody>
 					<?php 
 					$i=0;
-					foreach(SktrStat::find('all') as $sSktrStats){
+					$sSktrStats = new sktrstat();
+					foreach($sSktrStats->find("1") as $sSktrStats){
 					$i++;
 						?>
 						<tr>

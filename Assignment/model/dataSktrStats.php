@@ -3,6 +3,7 @@
 	// ******************************************************
 	// Active Record
 	// ******************************************************
+	/*
 	require_once '../../ActiveRecord/ActiveRecord.php';
 
 	ActiveRecord\Config::initialize(function($cfg)
@@ -16,6 +17,22 @@
 			)
 		);
 	});
+	*/
+
+	require_once('../../adodb5/adodb.inc.php');
+	require_once('../../adodb5/adodb-active-record.inc.php');
+	
+	$db = null;
+	/*if($_SERVER['SERVER_PORT'] == 8080){
+		$db = NewADOConnection('mysql://root:@localhost/nhl');
+	}else{
+		$db = NewADOConnection('mysql://syndicat_jobs:Secret55Passw0rd@localhost/syndicat_jobs');
+	}
+	*/
+	$db = NewADOConnection('mysql://root:@localhost/nhl');
+	ADOdb_Active_Record::SetDatabaseAdapter($db);
+	class sktrstat extends ADOdb_Active_Record{}
+	class GoalieStat extends ADOdb_Active_Record{}
 
 	// ******************************************************
 	// Functions
@@ -120,13 +137,12 @@
 					$sTeamCurrent = 		substr($sTeam, -3);
 					
 					// use player id to verify whether player already exists in db
-					$oSktrStat = SktrStat::find('first', array('conditions' => array('id = ?', $sId)));
+					//$oSktrStat = SktrStat::find('first', array('conditions' => array('id = ?', $sId)));
 					
 					// if player exists then update stats, if player doesn't exist then create player and insert stats
-					if(!$oSktrStat){
-						$oSktrStat = new SktrStat;
-					} // End if
-					
+					$oSktrStat = new sktrstat;
+					$oSktrStat->Load('id = ?', array($sId));
+
 					// update/insert stats
 					$oSktrStat->id  = 		$sId;
 					$oSktrStat->rk  = 		strip_tags($aCells[0][0]);
@@ -149,7 +165,7 @@
 					$oSktrStat->toiperg = 	strip_tags($aCells[0][16]);
 					$oSktrStat->shftperg = 	strip_tags($aCells[0][17]);
 					$oSktrStat->fopct = 	strip_tags($aCells[0][18]);
-					/*
+					
 					$id = 			$oSktrStat->id;
 					$rk = 			$oSktrStat->rk;
 					$name = 		$oSktrStat->name;
@@ -172,8 +188,12 @@
 					$fopct = 		$oSktrStat->fopct;
 					
 					echo "ID: {$id} | RK: {$rk} | {$name} | Team: {$teamcur} | POS: {$pos} | GP: {$gp}  | G: {$g}  | A: {$a}  | Pts: {$pts}  | +/-: {$plusminus}  | PIM: {$pim} | PPG: {$ppg} | SHG: {$shg}  | GWG: {$gwg}  | OTG: {$otg} | SOG: {$sog}  | Pct: {$shtpct} | TOI/G: {$toiperg}  | Sft/G: {$shftperg} | FO%: {$fopct} |\n";
-					*/
-					$oSktrStat->save();
+					
+					$rc = $oSktrStat->save();
+					if(!$rc){
+						
+						echo $oSktrStat->errormsg();
+					}
 			} // End if
 		} // End foreach
 	}; // End fgetRowsStatsSummary
@@ -206,20 +226,23 @@
 				$dAge = number_format(((time() - $tsDob) / 31556926), 1);
 				
 				// use player id to verify whether player already exists in db
-				$oSktrStat = SktrStat::find('first', array('conditions' => array('id = ?', $sId)));
+				// $oSktrStat = SktrStat::find('first', array('conditions' => array('id = ?', $sId)));
+				
+				$oSktrStat = new sktrstat;
+				$oSktrStat->Load('id = ?', array($sId));
 				
 				// if player exists then update stats, if player doesn't exist then create player and insert stats
-				if(!$oSktrStat){
-					$oSktrStat = new SktrStat;
+				/*if(!$oSktrStat){
+					//$oSktrStat = new SktrStat;
 				} // End if
-				
+				*/
 				// update/insert stats
-				$oSktrStat->id  = 		$sId;
+				/*$oSktrStat->id  = 		$sId;
 				$oSktrStat->rk  = 		strip_tags($aCells[0][0]);
-				$oSktrStat->name = 		$sName;
+				$oSktrStat->name = 		$sName;*/
 				$oSktrStat->dob = 		$dDob;
 				$oSktrStat->age = 		$dAge;
-				/*
+				
 				$id = 			$oSktrStat->id;
 				$rk = 			$oSktrStat->rk;
 				$name = 		$oSktrStat->name;
@@ -228,8 +251,12 @@
 				$age =			$oSktrStat->age;
 	
 				echo "ID: {$id} | RK: {$rk} | {$name} | Team: {$teamcur} | Dob: {$dob} | Age: {$age} |\n";
-				*/
-				$oSktrStat->save();
+				
+				$rc = $oSktrStat->save();
+				if(!$rc){
+					
+					echo $oSktrStat->errormsg();
+				} 
 			} // End if
 		} // End foreach
 	}; // End fgetRowsStatsBio
@@ -254,17 +281,20 @@
 				$sTeamCurrent = 		substr($sTeam, -3);
 				
 				// use player id to verify whether player already exists in db
-				$oSktrStat = SktrStat::find('first', array('conditions' => array('id = ?', $sId)));
+				// $oSktrStat = SktrStat::find('first', array('conditions' => array('id = ?', $sId)));
+				
+				$oSktrStat = new sktrstat;
+				$oSktrStat->Load('id = ?', array($sId));
 				
 				// if player exists then update stats, if player doesn't exist then create player and insert stats
-				if(!$oSktrStat){
-					$oSktrStat = new SktrStat;
+				/*if(!$oSktrStat){
+					//$oSktrStat = new SktrStat;
 				} // End if
-				
+				*/
 				// update/insert stats
-				$oSktrStat->id  = 		$sId;
+				/*$oSktrStat->id  = 		$sId;
 				$oSktrStat->rk  = 		strip_tags($aCells[0][0]);
-				$oSktrStat->name = 		$sName;
+				$oSktrStat->name = 		$sName;*/
 				$oSktrStat->esg = 		strip_tags($aCells[0][5]);
 				$oSktrStat->esa = 		strip_tags($aCells[0][6]);
 				$oSktrStat->espts = 	strip_tags($aCells[0][7]);
@@ -272,7 +302,7 @@
 				$oSktrStat->pppts = 	strip_tags($aCells[0][10]);
 				$oSktrStat->sha = 		strip_tags($aCells[0][12]);
 				$oSktrStat->shpts =		strip_tags($aCells[0][13]);
-				/*
+				
 				$id = 		$oSktrStat->id;
 				$rk = 		$oSktrStat->rk;
 				$name = 	$oSktrStat->name;
@@ -287,8 +317,12 @@
 				$shpts = 	$oSktrStat->shpts;
 				
 				echo "ID: {$id} | RK: {$rk} | {$name} | Team: {$teamcur} | ESG: {$esg} | ESA: {$esa} | ESPts: {$espts} | PPA: {$ppa} | PPP: {$pppts} | SHA: {$sha} | SHP: {$shpts} |\n";
-				*/
-				$oSktrStat->save();
+				
+				$rc = $oSktrStat->save();
+				if(!$rc){
+					
+					echo $oSktrStat->errormsg();
+				} 
 			} // End if
 		} // End foreach
 	}; // End fgetRowsStatsSpecialTeams
@@ -313,17 +347,20 @@
 				$sTeamCurrent = 			substr($sTeam, -3);
 				
 				// use player id to verify whether player already exists in db
-				$oSktrStat = SktrStat::find('first', array('conditions' => array('id = ?', $sId)));
+				// $oSktrStat = SktrStat::find('first', array('conditions' => array('id = ?', $sId)));
+				
+				$oSktrStat = new sktrstat;
+				$oSktrStat->Load('id = ?', array($sId));
 				
 				// if player exists then update stats, if player doesn't exist then create player and insert stats
-				if(!$oSktrStat){
-					$oSktrStat = new SktrStat;
+				/*if(!$oSktrStat){
+					//$oSktrStat = new SktrStat;
 				} // End if
-				
+				*/
 				// update/insert stats
-				$oSktrStat->id  = 			$sId;
+				/*$oSktrStat->id  = 			$sId;
 				$oSktrStat->rk  = 			strip_tags($aCells[0][0]);
-				$oSktrStat->name = 			$sName;
+				$oSktrStat->name = 			$sName;*/
 				$oSktrStat->estoi = 		strip_tags($aCells[0][5]);
 				$oSktrStat->estoiperg = 	strip_tags($aCells[0][6]);
 				$oSktrStat->shtoi = 		strip_tags($aCells[0][7]);
@@ -335,7 +372,7 @@
 				$oSktrStat->shft = 			strip_tags($aCells[0][13]);
 				$oSktrStat->toipershft = 	strip_tags($aCells[0][14]);
 				$oSktrStat->shftperg = 		strip_tags($aCells[0][15]);
-				/*
+				
 				$id = 			$oSktrStat->id;
 				$rk = 			$oSktrStat->rk;
 				$name = 		$oSktrStat->name;
@@ -354,8 +391,12 @@
 				$shftperg = 	$oSktrStat->shftperg;
 				
 				echo "ID: {$id} | RK: {$rk} | {$name} | Team: {$teamcur} | ESTOI: {$estoi} | ESTOI/G: {$estoiperg} | SHTOI: {$shtoi} | SHTOI/G: {$shtoiperg} | PPTOI: {$pptoi} | PPTOI/G: $pptoiperg} | TOI: {$toi} | TOI/G: {$toiperg} | SHIFTS: {$shft} | TOI/SHIFT: {$toipershft} | Shifts/G: {$shftperg}|\n";
-				*/
-				$oSktrStat->save();
+				
+				$rc = $oSktrStat->save();
+				if(!$rc){
+					
+					echo $oSktrStat->errormsg();
+				} 
 			} // End if
 		} // End foreach
 	}; // End fgetRowsStatsTOI
