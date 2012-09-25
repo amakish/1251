@@ -37,7 +37,7 @@ input, select { vertical-align:middle; }
 ----------------------------------------------------------------------*/
 body {
 	/*font: 87.5%/1.25 'Trebuchet MS', Verdana, sans-serif;*/
-	font: normal 100%/1.5 Verdana, sans-serif;
+	font: normal 100%/1.25 Verdana, sans-serif;
 }
 a, a:hover, a:focus, li:focus a, a:focus b, button:focus {
 	text-decoration: none;
@@ -65,7 +65,8 @@ img {
 }
 table {
 	line-height: 1.5;
-	width: 100%;
+	font-size: inherit;
+	font: 100%;
 }
 caption {
 	font-family: Georgia, Times, serif;
@@ -82,8 +83,8 @@ tbody th {
 	font-weight: normal;
 }
 th, td {
+	text-align: center;
 	vertical-align: top;
-	padding: 2px 5px;
 }
 th {
 	font-size: 0.875em;
@@ -100,8 +101,7 @@ footer {
    = BASE LAYOUT   =STANDARD
 ----------------------------------------------------------------------*/
 table {
-	font-size:inherit;
-	font: 100%;
+	width: 100%;
 }
 select,
 input,
@@ -139,11 +139,14 @@ hr,
 	width: 0;
 }
 /* ---------------------------------------------------------------------
-   = BASE LAYOUT   =#PAGE
+   = BASE LAYOUT   =PAGE
 ----------------------------------------------------------------------*/
 #page {
 	margin: 0 auto;
 	width: 100%;
+}
+section {
+	margin: 0 auto;
 }
 /* ---------------------------------------------------------------------
    = BASE LAYOUT   =HEADER
@@ -189,12 +192,14 @@ table {
 .tableCaption {
 	padding: 1em 0 0.25em 0;
 }
+th, td {
+	padding: 2px 5px;
+}
 td {
 	border: 1px solid;
+	
 }
-.leftalign {
-	text-align: left;
-}
+
 tr:nth-child(even) {
 	background-color: #FFF;
 }
@@ -202,8 +207,8 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
 	background-color: #F4F4F4;
 }
-#statsTableForm tr th, #statsTableForm tr th {
-	width: 160px;
+.leftalign, .selectbox {
+	text-align: left;
 }
 
 /* ---------------------------------------------------------------------
@@ -226,20 +231,46 @@ footer p {
    = MAX-WIDTH = 1024px
 ----------------------------------------------------------------------*/
 @media screen and (max-width: 1024px) {
+	/* ---------------------------------------------------------------------
+	   = MAX-WIDTH = 1024px   = TYPOGRAPHY
+	----------------------------------------------------------------------*/
+	body {
+		font-size: 0.875em; /* 14px */
+	}
+	nav {
+		font-size: 0.8571428571428571em;
+	}
+	/* ---------------------------------------------------------------------
+	   = MAX-WIDTH = 1024px   = LAYOUT
+	----------------------------------------------------------------------*/
 	/* =SECTION */
 	section {
-		width: 93.75%;
+		/*width: 93.75%;*/
+		width: 100%;
 	}
+	#contentwrap {
+		width: 100%;
+	}
+	/* =HEADER */
+	header {
+		height: 75px;
+	}
+	nav {
+		padding-top: 2.9em;
+		width: 45.42645241038319%; /* 450 / 1618 */
+	}
+	
 	/* =#CONTENT */
 	#content {
 		margin: 0 auto;
 		border-left: 1px solid #DADADA;
 		border-right: 1px solid #DADADA;
 		padding-bottom: 0.5em;
-		width: 53.80977404098791%;	/* 1024px / 1903px */
+		width: 100%;
+		box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.4);
 	}
 	table {
-		width: 93.75%; /* 960px / 1024px */
+		width: 95.33267130089374%; /* 960px / 1007px */
 	}
 
 	/* =FOOTER */	
@@ -252,12 +283,11 @@ footer p {
 
 } /* / MAX-WIDTH = 1024px */
 /* ---------------------------------------------------------------------
-   = MIN-WIDTH = 1281px
+   = MIN-WIDTH = 1281px   =LAYOUT
 ----------------------------------------------------------------------*/
 @media screen and (min-width: 1281px) { 
 	/* =SECTION */
 	section {
-		margin: 0 auto;
 		width: 85%;
 	}
 	#contentwrap {
@@ -307,7 +337,7 @@ dfn[title] {
 
 	/* =HEADER */	
 	header, footer {
-		background: #F5F5F5;
+		background-color: #F5F5F5;
 		border-color: #DADADA;
 	}
 	nav a {
@@ -318,13 +348,13 @@ dfn[title] {
 	}
 	/* =#CONTENT */	
 	#content {
-		background: #FFF;
+		background-color: #FFF;
 	}
 	caption {
 		color: #525253;
 	}
 	th {
-		background: #393F46;
+		background-color: #393F46;
 	    color:#FFF;
 	}
 	td {
@@ -333,10 +363,10 @@ dfn[title] {
 		border-color: #FFF;
 	}
 	tr:nth-child(even) {
-		background: #FFF;
+		background-color: #FFF;
 	}
 	tr:nth-child(odd) {
-		background: #F4F4F4;
+		background-color: #F4F4F4;
 	}
 	/* =FOOTER */
 	footer a {

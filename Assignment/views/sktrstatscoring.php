@@ -40,17 +40,17 @@
 					<h1 class="lede"><abbr title="National Hockey League">NHL </abbr><b>Player </b>Statistics</h1>
 					<thead>
 						<tr>
-							<th class="leftalign" scope="col">Season</th>
-							<th class="leftalign" scope="col">Game Type</th>
-							<th class="leftalign" scope="col">Team</th>
-							<th class="leftalign" scope="col">Position</th>
-							<th class="leftalign" scope="col">Scoring View</th>
-							<th class="leftalign" scope="col">Player Status</th>
+							<th class="selectbox" scope="col">Season</th>
+							<th class="selectbox" scope="col">Game Type</th>
+							<th class="selectbox" scope="col">Team</th>
+							<th class="selectbox" scope="col">Position</th>
+							<th class="selectbox" scope="col">Scoring View</th>
+							<th class="selectbox" scope="col">Player Status</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>
+							<td class="selectbox">
 								<select id="season" name="season" class="dropDownBox">
 									<option value="201112" selected="selected">2011-12</option>
 									<option value="201011">2010-11</option>
@@ -66,13 +66,13 @@
 									<option value="200001">2000-01</option>
 								</select>
 							</td>
-							<td>
+							<td class="selectbox">
 								<select id="gameType" name="gameType" class="dropDownBox">
 									<option value="1"  selected="selected">Regular Season</option>
 									<option value="2">Playoffs</option>
 								</select>
 							</td>
-							<td>
+							<td class="selectbox">
 								<select id="team" name="team" class="dropDownBox">
 									<option value="" selected="selected">All Teams</option>
 									<option value="ANA">Anaheim Ducks</option>
@@ -107,7 +107,7 @@
 									<option value="WPG">Winnipeg Jets</option>
 								</select>
 							</td>
-							<td>	
+							<td class="selectbox">	
 								<select id="position" name="position" class="dropDownBox">
 									<option value="S" selected="selected">All Skaters</option>
 									<option value="F">Forwards</option>
@@ -115,13 +115,13 @@
 									<option value="G">Goalies</option>
 								</select>
 							</td>
-							<td>	
+							<td class="selectbox">	
 								<select id="statview" name="statview" class="dropDownBox">
 									<option value="scoring" selected="selected">Standard</option>
 									<option value="icetime">Ice Time Splits</option>
 								</select>
 							</td>
-							<td>	
+							<td class="selectbox">	
 								<select id="playerstatus" name="playerstatus" class="dropDownBox">
 									<option value="All" selected="selected">All Players</option>
 									<option value="Rookie">Rookies</option>
