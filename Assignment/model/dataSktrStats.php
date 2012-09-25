@@ -18,21 +18,21 @@
 		);
 	});
 	*/
-
 	require_once('../../adodb5/adodb.inc.php');
 	require_once('../../adodb5/adodb-active-record.inc.php');
 	
 	$db = null;
-	/*if($_SERVER['SERVER_PORT'] == 8080){
+	/*
+	if($_SERVER['SERVER_PORT'] == 8080){
 		$db = NewADOConnection('mysql://root:@localhost/nhl');
-	}else{
+	}
+	else{
 		$db = NewADOConnection('mysql://syndicat_jobs:Secret55Passw0rd@localhost/syndicat_jobs');
 	}
 	*/
 	$db = NewADOConnection('mysql://root:@localhost/nhl');
 	ADOdb_Active_Record::SetDatabaseAdapter($db);
 	class sktrstat extends ADOdb_Active_Record{}
-	class GoalieStat extends ADOdb_Active_Record{}
 
 	// ******************************************************
 	// Functions
@@ -139,7 +139,7 @@
 					// use player id to verify whether player already exists in db
 					//$oSktrStat = SktrStat::find('first', array('conditions' => array('id = ?', $sId)));
 					
-					// if player exists then update stats, if player doesn't exist then create player and insert stats
+					// create new skater, if player already exists then load stats overtop
 					$oSktrStat = new sktrstat;
 					$oSktrStat->Load('id = ?', array($sId));
 
@@ -191,9 +191,9 @@
 					
 					$rc = $oSktrStat->save();
 					if(!$rc){
-						
 						echo $oSktrStat->errormsg();
-					}
+					} //db error messages
+					
 			} // End if
 		} // End foreach
 	}; // End fgetRowsStatsSummary
@@ -226,20 +226,17 @@
 				$dAge = number_format(((time() - $tsDob) / 31556926), 1);
 				
 				// use player id to verify whether player already exists in db
-				// $oSktrStat = SktrStat::find('first', array('conditions' => array('id = ?', $sId)));
-				
+				//$oSktrStat = SktrStat::find('first', array('conditions' => array('id = ?', $sId)));
+					
+				// create new skater, if player already exists then load stats overtop
 				$oSktrStat = new sktrstat;
 				$oSktrStat->Load('id = ?', array($sId));
-				
-				// if player exists then update stats, if player doesn't exist then create player and insert stats
-				/*if(!$oSktrStat){
-					//$oSktrStat = new SktrStat;
-				} // End if
-				*/
+
 				// update/insert stats
-				/*$oSktrStat->id  = 		$sId;
+				$oSktrStat->id  = 		$sId;
 				$oSktrStat->rk  = 		strip_tags($aCells[0][0]);
-				$oSktrStat->name = 		$sName;*/
+				$oSktrStat->name = 		$sName;
+				$oSktrStat->teamcur = 	$sTeamCurrent;
 				$oSktrStat->dob = 		$dDob;
 				$oSktrStat->age = 		$dAge;
 				
@@ -254,9 +251,9 @@
 				
 				$rc = $oSktrStat->save();
 				if(!$rc){
-					
 					echo $oSktrStat->errormsg();
-				} 
+				} //db error messages
+				
 			} // End if
 		} // End foreach
 	}; // End fgetRowsStatsBio
@@ -281,21 +278,19 @@
 				$sTeamCurrent = 		substr($sTeam, -3);
 				
 				// use player id to verify whether player already exists in db
-				// $oSktrStat = SktrStat::find('first', array('conditions' => array('id = ?', $sId)));
-				
+				//$oSktrStat = SktrStat::find('first', array('conditions' => array('id = ?', $sId)));
+					
+				// create new skater, if player already exists then load stats overtop
 				$oSktrStat = new sktrstat;
 				$oSktrStat->Load('id = ?', array($sId));
 				
-				// if player exists then update stats, if player doesn't exist then create player and insert stats
-				/*if(!$oSktrStat){
-					//$oSktrStat = new SktrStat;
-				} // End if
-				*/
 				// update/insert stats
-				/*$oSktrStat->id  = 		$sId;
+				$oSktrStat->id  = 		$sId;
 				$oSktrStat->rk  = 		strip_tags($aCells[0][0]);
-				$oSktrStat->name = 		$sName;*/
-				$oSktrStat->esg = 		strip_tags($aCells[0][5]);
+				$oSktrStat->name = 		$sName;
+				$oSktrStat->team = 		$sTeam;
+				$oSktrStat->teamcur = 	$sTeamCurrent;
+				$oSktrStat->esg = 		strip_tags($aCells[0][6]);
 				$oSktrStat->esa = 		strip_tags($aCells[0][6]);
 				$oSktrStat->espts = 	strip_tags($aCells[0][7]);
 				$oSktrStat->ppa = 		strip_tags($aCells[0][9]);
@@ -320,9 +315,9 @@
 				
 				$rc = $oSktrStat->save();
 				if(!$rc){
-					
 					echo $oSktrStat->errormsg();
-				} 
+				} //db error messages
+				
 			} // End if
 		} // End foreach
 	}; // End fgetRowsStatsSpecialTeams
@@ -349,18 +344,16 @@
 				// use player id to verify whether player already exists in db
 				// $oSktrStat = SktrStat::find('first', array('conditions' => array('id = ?', $sId)));
 				
+				// create new skater, if player already exists then load stats overtop
 				$oSktrStat = new sktrstat;
 				$oSktrStat->Load('id = ?', array($sId));
-				
-				// if player exists then update stats, if player doesn't exist then create player and insert stats
-				/*if(!$oSktrStat){
-					//$oSktrStat = new SktrStat;
-				} // End if
-				*/
+
 				// update/insert stats
-				/*$oSktrStat->id  = 			$sId;
+				$oSktrStat->id  = 			$sId;
 				$oSktrStat->rk  = 			strip_tags($aCells[0][0]);
-				$oSktrStat->name = 			$sName;*/
+				$oSktrStat->name = 			$sName;
+				$oSktrStat->team = 			$sTeam;
+				$oSktrStat->teamcur = 		$sTeamCurrent;
 				$oSktrStat->estoi = 		strip_tags($aCells[0][5]);
 				$oSktrStat->estoiperg = 	strip_tags($aCells[0][6]);
 				$oSktrStat->shtoi = 		strip_tags($aCells[0][7]);
@@ -394,9 +387,9 @@
 				
 				$rc = $oSktrStat->save();
 				if(!$rc){
-					
 					echo $oSktrStat->errormsg();
-				} 
+				} //db error messages
+				
 			} // End if
 		} // End foreach
 	}; // End fgetRowsStatsTOI
