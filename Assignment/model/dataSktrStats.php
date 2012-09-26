@@ -187,7 +187,7 @@
 					$shftperg = 	$oSktrStat->shftperg;
 					$fopct = 		$oSktrStat->fopct;
 					
-					echo "ID: {$id} | RK: {$rk} | {$name} | Team: {$teamcur} | POS: {$pos} | GP: {$gp}  | G: {$g}  | A: {$a}  | Pts: {$pts}  | +/-: {$plusminus}  | PIM: {$pim} | PPG: {$ppg} | SHG: {$shg}  | GWG: {$gwg}  | OTG: {$otg} | SOG: {$sog}  | Pct: {$shtpct} | TOI/G: {$toiperg}  | Sft/G: {$shftperg} | FO%: {$fopct} |\n";
+					echo " | ID: {$id} | RK: {$rk} | {$name} | Team: {$teamcur} | POS: {$pos} | GP: {$gp}  | G: {$g}  | A: {$a}  | Pts: {$pts}  | +/-: {$plusminus}  | PIM: {$pim} | PPG: {$ppg} | SHG: {$shg}  | GWG: {$gwg}  | OTG: {$otg} | SOG: {$sog}  | Pct: {$shtpct} | TOI/G: {$toiperg}  | Sft/G: {$shftperg} | FO%: {$fopct} |\n";
 					
 					$rc = $oSktrStat->save();
 					if(!$rc){
