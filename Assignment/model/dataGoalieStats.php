@@ -1,39 +1,4 @@
 <?php
-
-	// ******************************************************
-	// Active Record
-	// ******************************************************
-	/*
-	require_once '../../ActiveRecord/ActiveRecord.php';
-	
-	ActiveRecord\Config::initialize(function($cfg)
-	{
-		$cfg->set_model_directory('.');
-		$cfg->set_connections(
-			array(
-				'development' => 'mysql://root:@localhost/nhl',
-				'test' => 'mysql://username:password@localhost/test_database_name',
-				'production' => 'mysql://username:password@localhost/production_database_name'
-			)
-		);
-	});
-	*/
-	require_once('../../adodb5/adodb.inc.php');
-	require_once('../../adodb5/adodb-active-record.inc.php');
-	
-	$db = null;
-	/*
-	if($_SERVER['SERVER_PORT'] == 8080){
-	 	$db = NewADOConnection('mysql://root:@localhost/nhl');
-	}
-	else{
-		$db = NewADOConnection('mysql://syndicat_jobs:Secret55Passw0rd@localhost/syndicat_jobs');
-	}
-	*/
-	$db = NewADOConnection('mysql://root:@localhost/nhl');
-	ADOdb_Active_Record::SetDatabaseAdapter($db);
-	class goaliestat extends ADOdb_Active_Record{}
-
 	// ******************************************************
 	// Functions
 	// ******************************************************
@@ -120,7 +85,7 @@
 	// ******************************************************
 	// fgetRowsStatsSummary
 	// ******************************************************
-	$fgetRowsStatsSummary = function($aRows){
+	function fgetRowsStatsSummary($aRows){
 		foreach ($aRows[0] as $aRow){
 			if ((strpos($aRow,'<th')===false)){
 				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
@@ -135,10 +100,7 @@
 					$sTeam = 				strip_tags($aCells[0][2]);
 					$sTeamFirst = 			substr($sTeam, 0, 3);
 					$sTeamCurrent = 		substr($sTeam, -3);
-	
-					// use player id to verify whether player already exists in db
-					// $oGoalieStat = GoalieStat::find('first', array('conditions' => array('id = ?', $sId)));
-					
+
 					// create new skater, if player already exists then load stats overtop
 					$oGoalieStat = new goaliestat;
 					$oGoalieStat->Load('id = ?', array($sId));
@@ -187,7 +149,7 @@
 					$pim =	 		$oGoalieStat->pim;
 					$toi =		 	$oGoalieStat->toi;
 					
-					echo "ID: {$id} | RK: {$rk} | {$name} | Team: {$teamcur} | Pos: {$pos} | GP: {$gp} | GS: {$gs}  | W: {$w}  | L: {$l}  | OT: {$ot}  | SA: {$sa}  | GA: {$ga} | GAA: {$gaa} | SV: {$sv}  | SV%: {$svper}  | SO: {$so} | G: {$g}  | A: {$a} | PIM: {$pim}  | TOI: {$toi} |\n";
+					echo " | ID: {$id} | RK: {$rk} | {$name} | Team: {$teamcur} | Pos: {$pos} | GP: {$gp} | GS: {$gs}  | W: {$w}  | L: {$l}  | OT: {$ot}  | SA: {$sa}  | GA: {$ga} | GAA: {$gaa} | SV: {$sv}  | SV%: {$svper}  | SO: {$so} | G: {$g}  | A: {$a} | PIM: {$pim}  | TOI: {$toi} |\n";
 
 					$rc = $oGoalieStat->save();
 					if(!$rc){
@@ -200,7 +162,7 @@
 	// ******************************************************
 	// fgetRowsStatsBio
 	// ******************************************************
-	$fgetRowsStatsBio = function($aRows){
+	function fgetRowsStatsBio($aRows){
 		foreach ($aRows[0] as $aRow){
 			if ((strpos($aRow,'<th')===false)){
 				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
@@ -211,10 +173,10 @@
 				$sId = substr($aNameUrl['query'], 3, 7);
 
 				// get name and team
-				$sName = 				strip_tags($aCells[0][1]);
-				$sTeam = 				strip_tags($aCells[0][2]);
-				$sTeamFirst = 			substr($sTeam, 0, 3);
-				$sTeamCurrent = 		substr($sTeam, -3);
+				//$sName = 				strip_tags($aCells[0][1]);
+				//$sTeam = 				strip_tags($aCells[0][2]);
+				//$sTeamFirst = 			substr($sTeam, 0, 3);
+				//$sTeamCurrent = 		substr($sTeam, -3);
 
 				// get dob
 				$sDob =	strip_tags($aCells[0][3]);
@@ -232,23 +194,23 @@
 				$oGoalieStat->Load('id = ?', array($sId));
 				
 				// update/insert stats
-				$oGoalieStat->id  = 		$sId;
-				$oGoalieStat->rk  = 		strip_tags($aCells[0][0]);
-				$oGoalieStat->name = 		$sName;
-				$oGoalieStat->team = 		$sTeam;
-				$oGoalieStat->teamcur = 	$sTeamCurrent;
+				//$oGoalieStat->id  = 		$sId;
+				//$oGoalieStat->rk  = 		strip_tags($aCells[0][0]);
+				//$oGoalieStat->name = 		$sName;
+				//$oGoalieStat->team = 		$sTeam;
+				//$oGoalieStat->teamcur = 	$sTeamCurrent;
 				$oGoalieStat->dob = 		$dDob;
 				$oGoalieStat->age = 		$dAge;
 				
-				$id = 			$oGoalieStat->id;
-				$rk = 			$oGoalieStat->rk;
-				$name = 		$oGoalieStat->name;
-				$team = 		$oGoalieStat->team;
-				$teamcur = 		$oGoalieStat->teamcur;
+				//$id = 			$oGoalieStat->id;
+				//$rk = 			$oGoalieStat->rk;
+				//$name = 		$oGoalieStat->name;
+				//$team = 		$oGoalieStat->team;
+				//$teamcur = 		$oGoalieStat->teamcur;
 				$dob = 			$oGoalieStat->dob;
 				$age =			$oGoalieStat->age;
 				
-				echo "ID: {$id} | RK: {$rk} | {$name} | Team: {$teamcur} | Dob: {$dob} | Age: {$age} |\n";
+				echo " | Dob: {$dob} | Age: {$age} |\n";
 				
 				$rc = $oGoalieStat->save();
 				if(!$rc){	
@@ -267,7 +229,7 @@
 	$sPlyrNumOfYYY = "";
 
 	for($i=1; $sPlyrNumXXOf != $sPlyrNumOfYYY; $i++) {
-		$sStatsSummary = getGoalieStats("http://www.nhl.com/ice/playerstats.htm?fetchKey=20122ALLGAGALL&viewName=summary&sort=wins&pg=$i", $fgetRowsStatsSummary);
+		$sStatsSummary = getGoalieStats("http://www.nhl.com/ice/playerstats.htm?fetchKey=20122ALLGAGALL&viewName=summary&sort=wins&pg=$i", "fgetRowsStatsSummary");
 		$aPlyrNum = getPlyrNumXXofYYY($sStatsSummary);
 	
 		$sPlyrNumXXOf = $aPlyrNum[0];
@@ -281,7 +243,7 @@
 	$sPlyrNumOfYYY = "";
 	
 	for($i=1; $sPlyrNumXXOf != $sPlyrNumOfYYY; $i++) {
-		$sStatsBio = getGoalieStats("http://www.nhl.com/ice/playerstats.htm?fetchKey=20122ALLGAGALL&viewName=goalieBios&sort=player.birthCountryAbbrev&pg=$i", $fgetRowsStatsBio);
+		$sStatsBio = getGoalieStats("http://www.nhl.com/ice/playerstats.htm?fetchKey=20122ALLGAGALL&viewName=goalieBios&sort=player.birthCountryAbbrev&pg=$i", "fgetRowsStatsBio");
 		$aPlyrNum = getPlyrNumXXofYYY($sStatsBio);
 	
 		$sPlyrNumXXOf = $aPlyrNum[0];

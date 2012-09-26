@@ -6,7 +6,7 @@
 	<title>aMaK Stats</title>
 	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	<meta content="aMaK Stats" name="title">
-	<link href="../public/css/main.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
 	<!--[if IE 9]><link rel="stylesheet" href="/c/ie9.css" type="text/css"/><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="/c/ie8.css" type="text/css"/><![endif]-->
 	<!--[if lte IE 7]><link rel="stylesheet" href="/c/ie7.css" type="text/css"/><![endif]-->
@@ -30,7 +30,7 @@
 <header role="banner" id="top">
 	<section>
 		<h1 class="logo">
-			<a href="#"><img alt="aMaK Stats" src="../public/images/logo.png"/></a>
+			<a href="#"><img alt="aMaK Stats" src="images/logo.png"/></a>
 		</h1>
 		<nav role="navigation">
 			<ul class="nav-primary">
