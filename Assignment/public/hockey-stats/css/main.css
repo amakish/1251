@@ -304,6 +304,12 @@ footer p {
 		width: 92.7070457354759%; /* 1500px / 1618px */
 		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 	}
+	#statsTableForm th  {
+		width: 13.33333333333333%; /* 93.33333333333333 / 7 */
+	}
+	#statsTableForm th p {
+		text-align: center;
+	}
 	/* =FOOTER */
 
 } /* / MIN-WIDTH = 1281px */

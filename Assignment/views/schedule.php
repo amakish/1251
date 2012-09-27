@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<title>aMaK Stats | Player Statistics</title>
+	<title>aMaK Stats | NHL Schedule</title>
 	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	<meta content="aMaK Stats" name="title">
 	<link href="css/main.css" rel="stylesheet">
@@ -44,9 +44,6 @@
 								<th class="selectbox" scope="col">Season</th>
 								<th class="selectbox" scope="col">Game Type</th>
 								<th class="selectbox" scope="col">Team</th>
-								<th class="selectbox" scope="col">Position</th>
-								<th class="selectbox" scope="col">Scoring View</th>
-								<th class="selectbox" scope="col">Player Status</th>
 								<th class="selectbox" scope="col">
 									<p class="searchbutton">
 										<input type='submit' name='action' value='Search' />
@@ -104,97 +101,43 @@
 										<option value="WSH">Washington Capitals</option>
 										<option value="WPG">Winnipeg Jets</option>
 									</select>
-								</td>
-								<td class="selectbox">	
-									<select id="position" name="position" class="dropDownBox">
-										<option value="S" selected="selected">All Skaters</option>
-										<option value="F">Forwards</option>
-										<option value="D">Defenseman</option>
-										<option value="G">Goalies</option>
-									</select>
-								</td>
-								<td class="selectbox">	
-									<select id="statview" name="statview" class="dropDownBox">
-										<option value="scoring" selected="selected">Standard</option>
-										<option value="icetime">Ice Time Splits</option>
-									</select>
-								</td>
-								<td class="selectbox">	
-									<select id="playerstatus" name="playerstatus" class="dropDownBox">
-										<option value="All" selected="selected">All Players</option>
-										<option value="Rookie">Rookies</option>
-									</select>
-								</td>
+								</td>>
 								<td class="searchbutton">
 								</td>
-								
 							</tr>
 						</tbody>
 					</table><!-- / #statsTableForm -->
 
 				</form>
 				
-				<table id="statTable" class="sortable">
+				<table id="schedTable">
 					<caption class="tableCaption">2011-12 Skater Statistics - Scoring</caption>
 					<thead>
 						<tr>
-							<th scope="col"></th>
-							<th scope="col" class="leftalign">Name</th>
-							<th scope="col">Age</th>
-							<th scope="col">Team</th>
-							<th scope="col">Pos</th>
-							<th scope="col">GP</th>
-							<th scope="col">G</th>
-							<th scope="col">A</th>
-							<th scope="col">Pts</th>
-							<th scope="col">+/-</th>
-							<th scope="col">PIM</th>
-							<th scope="col">PPG</th>
-							<th scope="col">SHG</th>
-							<th scope="col">GWG</th>
-							<th scope="col">OTG</th>
-							<th scope="col">SOG</th>
-							<th scope="col">S%</th>
-							<th scope="col">FO%</th>
-							<th scope="col">TOI/G</th>
-							<th scope="col">PP TOI/G</th>
-							<th scope="col">SH TOI/G</th>
+							<th scope="col">Date</th>
+							<th scope="col">Visiting Team</th>
+							<th scope="col">Home Team</th>
+							<th scope="col">Time</th>
 						</tr>
 					</thead>
 					<tbody>
 
 					<?php 
 					$i=0;
-					$sSktrStats = new sktrstat();
-					foreach($sSktrStats->find("1") as $sSktrStats){
+					$sSchedule = new schedule();
+					foreach($sSchedule->find("1") as $sGame){
 					$i++;
 						?>
 						<tr>
-							<td><?php echo $i;?></td>
-							<td class="leftalign"><?php echo $sSktrStats->name;?></td>
-							<td><?php echo $sSktrStats->age;?></td>
-							<td><?php echo $sSktrStats->teamcur;?></td>
-							<td><?php echo $sSktrStats->pos;?></td>
-							<td><?php echo $sSktrStats->gp;?></td>
-							<td><?php echo $sSktrStats->g;?></td>
-							<td><?php echo $sSktrStats->a;?></td>
-							<td><?php echo $sSktrStats->pts;?></td>
-							<td><?php echo $sSktrStats->plusminus;?></td>
-							<td><?php echo $sSktrStats->pim;?></td>
-							<td><?php echo $sSktrStats->ppg;?></td>
-							<td><?php echo $sSktrStats->shg;?></td>
-							<td><?php echo $sSktrStats->gwg;?></td>
-							<td><?php echo $sSktrStats->otg;?></td>
-							<td><?php echo $sSktrStats->sog;?></td>
-							<td><?php echo $sSktrStats->shtpct;?></td>
-							<td><?php echo $sSktrStats->fopct;?></td>
-							<td><?php echo $sSktrStats->toiperg;?></td>
-							<td><?php echo $sSktrStats->pptoiperg;?></td>
-							<td><?php echo $sSktrStats->shtoiperg;?></td>
+							<td><?php echo $sGame->date;?></td>
+							<td><?php echo $sGame->vteam;?></td>
+							<td><?php echo $sGame->hteam;?></td>
+							<td><?php echo $sGame->time;?></td>
+							<td><?php echo $sGame->result;?></td>
 						</tr>
 				<?php } ?>
 					</tbody>
-				</table><!-- / #statTable -->
+				</table><!-- / #schedTable -->
 			</article>
 		</section><!-- / #content -->
 		<!-- footer -->
@@ -203,7 +146,5 @@
 			?>
 		<!-- / footer -->		
 	</div><!-- / #page -->
-	<!-- JavaScript link -->
-	<script src="js/sortable.js"></script>
 </body>
 </html>

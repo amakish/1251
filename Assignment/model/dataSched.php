@@ -2,7 +2,50 @@
 	// ******************************************************
 	// Functions
 	// ******************************************************
+
+	// ******************************************************
+	// CURL
+	// Function: 	Run CURL
+	// Description: Executes a CURL request
+	// Parameters:  url (string) - URL to make request to
+	//              method (string) - HTTP transfer method
+	//              headers - HTTP transfer headers
+	//              postvals - post values
+	// ******************************************************
+	function run_curl($url, $method = 'GET', $postvals = null){
+		$ch = curl_init($url);
+	
+		//GET request: send headers and return data transfer
+		if ($method == 'GET'){
+			$options = array(
+					CURLOPT_URL => $url,
+					CURLOPT_RETURNTRANSFER => 1,
+					CURLOPT_SSL_VERIFYPEER => false
+			);
+			curl_setopt_array($ch, $options);
+			//POST / PUT request: send post object and return data transfer
+		} else {
+			$options = array(
+					CURLOPT_URL => $url,
+					CURLOPT_POST => 1,
+					CURLOPT_POSTFIELDS => http_build_query($postvals),
+					CURLOPT_RETURNTRANSFER => 1,
+					CURLOPT_SSL_VERIFYPEER => false
+			);
+			curl_setopt_array($ch, $options);
+		}
+		if( ! $response = curl_exec($ch))
+		{
+			trigger_error(curl_error($ch));
+		}
+		curl_close($ch);
+	
+		return $response;
+	} // End run_curl
+
+	// ******************************************************
 	// getSched
+	// ******************************************************
 	function getSched($sUrl, $fgetRows) {
 		// get file contents
 		$sUrlInternal = $sUrl;
@@ -42,9 +85,12 @@
 				(strpos($aRow,'<td rowspan="1" style="display: none;" colspan="100%"') === false) &&
 				(strpos($aRow,'<td rowspan="1" style="color: #fff; font-weight: bold; background-color: #999; border-top: 1px solid #777;" colspan="100%"') === false) &&
 				(strpos($aRow,'<td rowspan="1" style="border-bottom: 1px solid #666; background-color: #fff; height: 8px; border-width: 0 0 1px 0" colspan="100%"') === false)) {
-
 				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
-	
+				
+				// create new schedule
+				$oSchedule = new schedule;
+				
+				// update/insert stats
 				$sDateInternal = 	strip_tags($aCells[0][0]);
 				$iDateInternalLen = ((int)strlen($sDateInternal) / 2);
 				$sDate =			substr($sDateInternal, 0, $iDateInternalLen);
@@ -54,6 +100,12 @@
 				$sResult =			strip_tags($aCells[0][4]);
 	
 				echo "Date: {$sDate} | Visiting Team: {$sVTeam}  | Home Team: {$sHTeam}  | Time: {$sTime} | Result: {$sResult} |\n";
+				
+				$rc = $oSchedule->save();
+				if(!$rc){
+					echo $oSchedule->errormsg();
+				} //db error messages
+				
 			} // End if
 		} // End foreach
 	}; // End fgetRowsSched

@@ -17,6 +17,7 @@
 	ADOdb_Active_Record::SetDatabaseAdapter($db);
 	class sktrstat extends ADOdb_Active_Record{}
 	class goaliestat extends ADOdb_Active_Record{}
+	class schedule extends ADOdb_Active_Record{}
 		
 	// ******************************************************
 	// Views Control
@@ -24,16 +25,20 @@
 	$action = (array_key_exists('action', $_POST)?$_POST['action']: '');
 	$action = (array_key_exists('action', $_GET)?$_GET['action']: $action);
 	
-	if($action == '' || $action == 'pStatScoring'){
+	if($action == '' || $action == 'pStats'){
 		include '../../views/sktrstatscoring.php';
 	} // End if
-	elseif($action == 'pStatIceTime'){
-		include '../../views/sktrstaticetime.php';
+	elseif($action == 'tSchedule'){
+		include '../../views/schedule.php';
 	} // End if
+	
 	elseif($action == 'scrape1'){
 		include '../../model/dataSktrStats.php';
 	} // End if
 	elseif($action == 'scrape2'){
 		include '../../model/dataGoalieStats.php';
+	} // End if
+	elseif($action == 'scrape3'){
+		include '../../model/dataSched.php';
 	} // End if
 ?>

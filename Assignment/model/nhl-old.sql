@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.5
+-- version 3.5.2
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 27, 2012 at 11:38 PM
--- Server version: 5.5.16
--- PHP Version: 5.3.8
+-- Generation Time: Sep 26, 2012 at 06:48 PM
+-- Server version: 5.5.25a
+-- PHP Version: 5.4.4
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -151,22 +151,6 @@ INSERT INTO `goaliestats` (`id`, `rk`, `name`, `dob`, `age`, `team`, `teamcur`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sched`
---
-
-CREATE TABLE IF NOT EXISTS `sched` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date` varchar(20) NOT NULL,
-  `vteam` varchar(50) NOT NULL,
-  `hteam` varchar(50) NOT NULL,
-  `time` varchar(20) NOT NULL,
-  `result` varchar(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `sktrstats`
 --
 
@@ -191,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `sktrstats` (
   `otg` int(11) DEFAULT NULL,
   `sog` int(11) DEFAULT NULL,
   `shtpct` decimal(11,1) DEFAULT NULL,
-  `toiperg` varchar(11) DEFAULT NULL,
+  `toiperg` time DEFAULT NULL,
   `shftperg` decimal(11,1) DEFAULT NULL,
   `fopct` decimal(11,1) DEFAULT NULL,
   `esg` int(11) DEFAULT NULL,

@@ -35,11 +35,8 @@
 		<nav role="navigation">
 			<ul class="nav-primary">
 				<li id="player-stats">
-				 	<a title="See NHL player statistics" href="?action=pStatScoring"><b>Player Stats</b></a>
+				 	<a title="See NHL player statistics" href="?action=pStats"><b>Player Stats</b></a>
 				 </li>
-				<li id="team-stats">
-					<a title="See NHL team standings and statistics" href="?action=tStatScoring"><b>Team Stats</b></a>
-				</li>
 				<li id="league-schedule">
 					<a title="See NHL league schedule" href="?action=tSchedule"><b>Schedule</b></a>
 				</li>
