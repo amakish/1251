@@ -48,42 +48,34 @@
 		$sStatView 		= ($_POST['statView']);
 		$sPlayerStatus 	= ($_POST['playerStatus']);
 		
-		if ($sTeam != "All" || $sPosition != "Sktr" || $sPlayerStatus != "All") {
-			if($sWhere){
-				$sWhere .= " and ";
-			} // End inner if
-			$sWhere .= "team ='" 			. $sTeam 			. "'";
-			$sWhere .= "position ='" 		. $sPosition 		. "'";
-			$sWhere .= "playerStatus ='" 	. $sPlayerStatus 	. "'";
-		} // End if
-		
-		elseif ($sStatView != "scoring") {
-			include '../../views/sktrstaticetime.php';
+		if($sPosition == 'Fwd' || $sPosition == 'Def' ) {
+			$sPosition = 'sktrstat';
+		}
+		else {
+			$sPosition = 'goaliestat';
 		}
 		
-		if(!$sWhere) {
-			$sWhere = 1;
-		} // End if
+		$sTable = "team='"	. $sTeam . "gameType='" . $sGameType . "position='" . $sPosition . "'";
 		
+		//$oPlayer = new $sTable;
 		
-		$aSktrStats = $sSktrStats->find($sWhere);
+		//$aSktrStat = $oPlayer->find($sWhere....);
+		
 		include '../../views/sktrstatscoring.php';
 		
-	} // End elseif
-
-	elseif($action == 'tSchedule'){
-		include '../../views/schedule.php';
-		
+		print_r($sTable);
+	}
+	
 	/*
 	 
-	 if(pos=l || pos=c || pos=r) {
+	 if($sPosition == 'Fwd') {
 	 	$sPosition = sktrstat;
 	 }
 	 else {
 	 	$sPosition = goaliestat;
 	 }
 	 
-	 $sTable = $sSeason . $sType . $sPosition;
+	 $sTable = $sSeason . $sGameType . $sPosition;
 	 
 	 $sView = $sStatView;
 	 
@@ -95,7 +87,6 @@
 	 
 	 */	
 
-	} // End if
 	
 	
 	// ******************************************************

@@ -37,7 +37,7 @@
 		<section id="contentwrap">
 			<article role="main" id="content">
 				<form method="POST" action=".">
-					<table id="schedTableForm">
+					<table id="statsTableForm">
 						<h1 class="lede"><abbr title="National Hockey League">NHL </abbr><b>Player </b>Statistics</h1>
 						<thead>
 							<tr>

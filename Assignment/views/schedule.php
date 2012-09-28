@@ -37,8 +37,9 @@
 		<section id="contentwrap">
 			<article role="main" id="content">
 				<form method="POST" action=".">
-					<table id="statsTableForm">
-						<h1 class="lede"><abbr title="National Hockey League">NHL </abbr>Schedule</h1>
+					<table id="schedTableForm">
+						<h1 class="lede"></h1>
+						<abbr title="National Hockey League">NHL </abbr>Schedule
 						<thead>
 							<tr>
 								<th class="selectbox" scope="col">Season</th>
@@ -99,14 +100,13 @@
 										<option value="WSH">Washington Capitals</option>
 										<option value="WPG">Winnipeg Jets</option>
 									</select>
-								</td>>
+								</td>
 								<td class="searchbutton">
 								</td>
 							</tr>
 						</tbody>
 					</table><!-- / #statsTableForm -->
 				</form>
-				
 				<table id="schedTable">
 					<caption class="tableCaption">2011-12</caption>
 					<thead>
