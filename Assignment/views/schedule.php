@@ -38,7 +38,7 @@
 			<article role="main" id="content">
 				<form method="POST" action=".">
 					<table id="statsTableForm">
-						<h1 class="lede"><abbr title="National Hockey League">NHL </abbr><b>Player </b>Statistics</h1>
+						<h1 class="lede"><abbr title="National Hockey League">NHL </abbr>Schedule</h1>
 						<thead>
 							<tr>
 								<th class="selectbox" scope="col">Season</th>
@@ -50,9 +50,7 @@
 									</p>
 								</th>
 							</tr>
-							
 						</thead>
-						
 						<tbody>
 							<tr>
 								<td class="selectbox">
@@ -107,11 +105,10 @@
 							</tr>
 						</tbody>
 					</table><!-- / #statsTableForm -->
-
 				</form>
 				
 				<table id="schedTable">
-					<caption class="tableCaption">2011-12 Skater Statistics - Scoring</caption>
+					<caption class="tableCaption">2011-12</caption>
 					<thead>
 						<tr>
 							<th scope="col">Date</th>
@@ -133,7 +130,6 @@
 							<td><?php echo $sGame->vteam;?></td>
 							<td><?php echo $sGame->hteam;?></td>
 							<td><?php echo $sGame->time;?></td>
-							<td><?php echo $sGame->result;?></td>
 						</tr>
 				<?php } ?>
 					</tbody>

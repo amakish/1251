@@ -96,10 +96,18 @@
 				$sDate =			substr($sDateInternal, 0, $iDateInternalLen);
 				$sVTeam = 			strip_tags($aCells[0][1]);
 				$sHTeam = 			strip_tags($aCells[0][2]);
-				$sTime =			strip_tags($aCells[0][3]);
+				$sTimeInternal =	strip_tags($aCells[0][3]);
+				$iTimeInternalLen = (int)(strlen($sTimeInternal) / 2);
+				$sTime =			substr($sTimeInternal, 0, $iTimeInternalLen);
 				$sResult =			strip_tags($aCells[0][4]);
-	
-				echo "Date: {$sDate} | Visiting Team: {$sVTeam}  | Home Team: {$sHTeam}  | Time: {$sTime} | Result: {$sResult} |\n";
+				
+				$oSchedule->date = 			$sDate;
+				$oSchedule->vteam = 		$sVTeam;
+				$oSchedule->hteam = 		$sHTeam;
+				$oSchedule->time = 			$sTime;
+				$oSchedule->result = 		$sResult;
+
+				echo " | Date: {$sDate} | Visiting Team: {$sVTeam}  | Home Team: {$sHTeam}  | Time: {$sTime} | TimeInternal: {$sTimeInternal} | Result: {$sResult} |\n";
 				
 				$rc = $oSchedule->save();
 				if(!$rc){

@@ -165,32 +165,32 @@
 								</tr>
 						</thead>
 						<tbody>
-						<?php 
-						$i=0;
-						foreach(SktrStat::find('all') as $sSktrStats){
-						$i++;
-							?>
-							<tr>
-								<td><?php echo $i;?></td>
-								<td class="left"><?php echo $sSktrStats->name;?></td>
-								<td><?php echo $sSktrStats->teamcur;?></td>
-								<td><?php echo $sSktrStats->pos;?></td>
-								<td><?php echo $sSktrStats->gp;?></td>
-								<td><?php echo $sSktrStats->esg;?></td>
-								<td><?php echo $sSktrStats->esa;?></td>
-								<td><?php echo $sSktrStats->espts;?></td>
-								<td><?php echo $sSktrStats->ppa;?></td>
-								<td><?php echo $sSktrStats->ppg;?></td>
-								<td><?php echo $sSktrStats->pppts;?></td>
-								<td><?php echo $sSktrStats->sha;?></td>
-								<td><?php echo $sSktrStats->shg;?></td>
-								<td><?php echo $sSktrStats->shpts;?></td>
-								<td><?php echo $sSktrStats->estoiperg;?></td>
-								<td><?php echo $sSktrStats->pptoiperg;?></td>
-								<td><?php echo $sSktrStats->shtoiperg;?></td>
-								<td><?php echo $sSktrStats->toiperg;?></td>
-							</tr>
-					<?php } ?>
+							<?php 
+							$i=0;
+							foreach($aSktrStats as $sSktrStats){
+							$i++;
+								?>
+								<tr>
+									<td><?php echo $i;?></td>
+									<td class="left"><?php echo $sSktrStats->name;?></td>
+									<td><?php echo $sSktrStats->teamcur;?></td>
+									<td><?php echo $sSktrStats->pos;?></td>
+									<td><?php echo $sSktrStats->gp;?></td>
+									<td><?php echo $sSktrStats->esg;?></td>
+									<td><?php echo $sSktrStats->esa;?></td>
+									<td><?php echo $sSktrStats->espts;?></td>
+									<td><?php echo $sSktrStats->ppa;?></td>
+									<td><?php echo $sSktrStats->ppg;?></td>
+									<td><?php echo $sSktrStats->pppts;?></td>
+									<td><?php echo $sSktrStats->sha;?></td>
+									<td><?php echo $sSktrStats->shg;?></td>
+									<td><?php echo $sSktrStats->shpts;?></td>
+									<td><?php echo $sSktrStats->estoiperg;?></td>
+									<td><?php echo $sSktrStats->pptoiperg;?></td>
+									<td><?php echo $sSktrStats->shtoiperg;?></td>
+									<td><?php echo $sSktrStats->toiperg;?></td>
+								</tr>
+						<?php } ?>
 						</tbody>
 					</table>
 				</div>

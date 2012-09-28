@@ -37,7 +37,7 @@
 		<section id="contentwrap">
 			<article role="main" id="content">
 				<form method="POST" action=".">
-					<table id="statsTableForm">
+					<table id="schedTableForm">
 						<h1 class="lede"><abbr title="National Hockey League">NHL </abbr><b>Player </b>Statistics</h1>
 						<thead>
 							<tr>
@@ -66,13 +66,13 @@
 								</td>
 								<td class="selectbox">
 									<select id="gameType" name="gameType" class="dropDownBox">
-										<option value="1"  selected="selected">Regular Season</option>
-										<option value="2">Playoffs</option>
+										<option value="RegSeason"  selected="selected">Regular Season</option>
+										<option value="PostSeason">Playoffs</option>
 									</select>
 								</td>
 								<td class="selectbox">
 									<select id="team" name="team" class="dropDownBox">
-										<option value="" selected="selected">All Teams</option>
+										<option value="All" selected="selected">All Teams</option>
 										<option value="ANA">Anaheim Ducks</option>
 										<option value="BOS">Boston Bruins</option>
 										<option value="BUF">Buffalo Sabres</option>
@@ -107,20 +107,20 @@
 								</td>
 								<td class="selectbox">	
 									<select id="position" name="position" class="dropDownBox">
-										<option value="S" selected="selected">All Skaters</option>
-										<option value="F">Forwards</option>
-										<option value="D">Defenseman</option>
-										<option value="G">Goalies</option>
+										<option value="Sktr" selected="selected">All Skaters</option>
+										<option value="Fwd">Forwards</option>
+										<option value="Def">Defenseman</option>
+										<option value="Goal">Goalies</option>
 									</select>
 								</td>
 								<td class="selectbox">	
-									<select id="statview" name="statview" class="dropDownBox">
+									<select id="statview" name="statView" class="dropDownBox">
 										<option value="scoring" selected="selected">Standard</option>
-										<option value="icetime">Ice Time Splits</option>
+										<option value="iceTime">Ice Time Splits</option>
 									</select>
 								</td>
 								<td class="selectbox">	
-									<select id="playerstatus" name="playerstatus" class="dropDownBox">
+									<select id="playerstatus" name="playerStatus" class="dropDownBox">
 										<option value="All" selected="selected">All Players</option>
 										<option value="Rookie">Rookies</option>
 									</select>
@@ -162,37 +162,35 @@
 						</tr>
 					</thead>
 					<tbody>
-
-					<?php 
-					$i=0;
-					$sSktrStats = new sktrstat();
-					foreach($sSktrStats->find("1") as $sSktrStats){
-					$i++;
-						?>
-						<tr>
-							<td><?php echo $i;?></td>
-							<td class="leftalign"><?php echo $sSktrStats->name;?></td>
-							<td><?php echo $sSktrStats->age;?></td>
-							<td><?php echo $sSktrStats->teamcur;?></td>
-							<td><?php echo $sSktrStats->pos;?></td>
-							<td><?php echo $sSktrStats->gp;?></td>
-							<td><?php echo $sSktrStats->g;?></td>
-							<td><?php echo $sSktrStats->a;?></td>
-							<td><?php echo $sSktrStats->pts;?></td>
-							<td><?php echo $sSktrStats->plusminus;?></td>
-							<td><?php echo $sSktrStats->pim;?></td>
-							<td><?php echo $sSktrStats->ppg;?></td>
-							<td><?php echo $sSktrStats->shg;?></td>
-							<td><?php echo $sSktrStats->gwg;?></td>
-							<td><?php echo $sSktrStats->otg;?></td>
-							<td><?php echo $sSktrStats->sog;?></td>
-							<td><?php echo $sSktrStats->shtpct;?></td>
-							<td><?php echo $sSktrStats->fopct;?></td>
-							<td><?php echo $sSktrStats->toiperg;?></td>
-							<td><?php echo $sSktrStats->pptoiperg;?></td>
-							<td><?php echo $sSktrStats->shtoiperg;?></td>
-						</tr>
-				<?php } ?>
+						<?php 
+						$i=0;
+						foreach($aSktrStats as $sSktrStats){
+						$i++;
+							?>
+							<tr>
+								<td><?php echo $i;?></td>
+								<td class="leftalign"><?php echo $sSktrStats->name;?></td>
+								<td><?php echo $sSktrStats->age;?></td>
+								<td><?php echo $sSktrStats->teamcur;?></td>
+								<td><?php echo $sSktrStats->pos;?></td>
+								<td><?php echo $sSktrStats->gp;?></td>
+								<td><?php echo $sSktrStats->g;?></td>
+								<td><?php echo $sSktrStats->a;?></td>
+								<td><?php echo $sSktrStats->pts;?></td>
+								<td><?php echo $sSktrStats->plusminus;?></td>
+								<td><?php echo $sSktrStats->pim;?></td>
+								<td><?php echo $sSktrStats->ppg;?></td>
+								<td><?php echo $sSktrStats->shg;?></td>
+								<td><?php echo $sSktrStats->gwg;?></td>
+								<td><?php echo $sSktrStats->otg;?></td>
+								<td><?php echo $sSktrStats->sog;?></td>
+								<td><?php echo $sSktrStats->shtpct;?></td>
+								<td><?php echo $sSktrStats->fopct;?></td>
+								<td><?php echo $sSktrStats->toiperg;?></td>
+								<td><?php echo $sSktrStats->pptoiperg;?></td>
+								<td><?php echo $sSktrStats->shtoiperg;?></td>
+							</tr>
+					<?php } ?>
 					</tbody>
 				</table><!-- / #statTable -->
 			</article>
