@@ -1,380 +1,203 @@
 /*
-	Website: 		aMaK Stats Inc | NHL Hockey Stats, Schedule | Fantasy Hockey Resource
-	URL:	 		http://www.amakstats.com
-	Developer: 		Aaron Makish
-	Date Created: 	20120828
-	Last Revised: 	20120923
-	Language:		HTML5
-
-	Website Description:
-					NHL Hockey Stats, Schedule | Fantasy Hockey Resource
-		
-	External files:
-					index.php
-					
-*/
-/* ---------------------------------------------------------------------
-/* = CSS RESET html5doctor.com/html-5-reset-stylesheet/ 
-----------------------------------------------------------------------*/
-html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,
-	legend,table,caption,tbody,tfoot,thead,tr,th,td,time,mark,audio,video { margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent; }
-body { line-height:1; }
-ol,ul { list-style:none; }
-blockquote,q { quotes:none; }
-blockquote:before,blockquote:after,q:before,q:after { content:'';content:none; }
-ins { text-decoration:none; }
-del { text-decoration:line-through; }
-abbr[title], dfn[title] { border-bottom:1px dotted;cursor:help; }
-table { border-collapse:collapse;border-spacing:0; }
-input, select { vertical-align:middle; }
-/* ---------------------------------------------------------------------
-/* = SELF-CLEARING FLOATS
-----------------------------------------------------------------------*/
-.mod:after,.section:after { content: ".";display: block;height: 0;clear: both;visibility: hidden;}
-.mod,.section { zoom: 1; }
-/* ---------------------------------------------------------------------
-   = BASE TYPOGRAPHY
-----------------------------------------------------------------------*/
-body {
-	/*font: 87.5%/1.25 'Trebuchet MS', Verdana, sans-serif;*/
-	font: normal 100%/1.25 Verdana, sans-serif;
+ | ~ CSS Reset ~
+ |---------------------------------------------------------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box;
+}          
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section{ 
+    display:block;
 }
-a, a:hover, a:focus, li:focus a, a:focus b, button:focus {
-	text-decoration: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
 }
-nav {
-	font-family: Georgia, Times, serif;
-	font-size: 1.5em;
-	line-height: 1;
-	text-transform: uppercase;       
+a:hover {
+    text-decoration: underline;
 }
-button:focus {
-	outline: 0;
+ol,
+ul {
+    list-style: none
 }
-h1, h2, h3, h4, h5, h6, dt {
-	font-family: Georgia, Times, serif;
-	font-weight: bold;
+blockquote,
+q {
+    quotes: none
 }
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+:focus {
+    outline: none
+}
+/*
+ | / ~ CSS Reset ~
+ |---------------------------------------------------------------*/
+/*
+ | ~ Typography ~
+ |---------------------------------------------------------------*/
 h1 {
-	font-size: 1.5em;
-	line-height: 1;
+	font-size: 2.5em; /* 40px / 16px */
+    line-height: 1.2em; /* 48px / 40px */
 }
-img {
-	display: block;
+h1 img{
 	max-width: 100%;
 }
 table {
-	line-height: 1.5;
-	font-size: inherit;
-	font: 100%;
+    font-size: 1em; /* 16px/16px */
+    line-height: 1.5em; /* 24px/16px */
 }
-caption {
-	font-family: Georgia, Times, serif;
-	font-size: 1.25em;
-	font-weight: bold;
-}
-th, tfoot {
-	font-weight: bold;
-}
-caption, th {
-	text-align: left;
-}
-tbody th {
-	font-weight: normal;
-}
-th, td {
-	text-align: center;
-	vertical-align: top;
-}
-th {
-	font-size: 0.875em;
-    font-weight: bold;
-    cursor: default;
-}
-td {
-	font-size: 0.75em;
-}
-footer {
-	font-size: 0.8125em; /* 13/16 */
-}
-/* ---------------------------------------------------------------------
-   = BASE LAYOUT   =STANDARD
-----------------------------------------------------------------------*/
-table {
-	width: 100%;
-}
-select,
-input,
-textarea {
-	font: 99% sans-serif;
+a:hover {
+    text-decoration: underline
 }
 a {
-	-moz-transition: color 0.3s linear;
-	-o-transition: color 0.3s linear;
-	-webkit-transition: color 0.3s linear;
-	transition: color 0.3s linear;
-	text-decoration: none;
+	color: #00A4E7;
+    text-decoration: none;
 }
-input.text,
-input[type=text]
-textarea {
-	border: 1px solid #7C7C7C;
+/*
+ | ~ Base Styles ~
+ |---------------------------------------------------------------*/
+body {
+    background: #FFF;
+    color: #333;
+    font: 100%/1.5em Georgia, 'Times New Roman', serif;
 }
-ul,
-ol {
-	margin-bottom: 1em;
-}
-abbr[title],
-dfn[title] {
-	border-bottom: 1px dotted;
-	cursor: help;
-}
-hr,
-.skip,
-.ineffable {
-	left: -1000em;
-	overflow: hidden;
-	position: absolute;
-	top: 0;
-	width: 0;
-}
-/* ---------------------------------------------------------------------
-   = BASE LAYOUT   =PAGE
-----------------------------------------------------------------------*/
 #page {
-	margin: 0 auto;
 	width: 100%;
+	background: #EDEDED;
 }
 section {
 	margin: 0 auto;
 }
-/* ---------------------------------------------------------------------
-   = BASE LAYOUT   =HEADER
-----------------------------------------------------------------------*/
-header {
-	border-top: 1px solid #DADADA;
-	border-bottom: 1px solid #DADADA;
+p,
+ul,
+ol {
+    margin-bottom: 1em;
+}
+header,footer {
+	background: #F5F5F5;
+    -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,.5); /* FF3.5 - 3.6 */
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,.5); /* Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,.5); /* Opera 10.5, IE9, FF4+, Chrome 6+, iOS 5 */
+}
+#container {
+    margin: auto 0;
+    overflow: hidden;
+    width: 95%;
+    padding: .625em 1.0548523% 1.5em; /* 10px/16px, 10px/948, 24px/16px */
+}
+.inner {
+    margin: auto;
+    overflow: hidden;
+    width: 97.89805570152391%;  /* 100% - 40px/1903px */
+}
+/*
+ | ~ Nav Primary ~
+ |---------------------------------------------------------------*/
+#nav-collapse{
+	display: none;
+	color: #FFF;
+	text-align: right;
 	width: 100%;
-	height: 7.416563658838072%; /* 120 / 1618 */
+	padding: .625em 0 .625em 0;
 }
-.logo {
-	float: left;
-	display: inline-block;
-	width: 15.45117428924598%; /* 250 / 1618 */
+#nav-collapse.active{
+	display: block;
 }
-nav {
-	float: right;
-	padding-top: 2.9em;
-	width: 45.42645241038319%; /* 650 / 1618 */
+nav[role="navigation"] {
+    background-color: #393F46;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#393F46), to(#293F46));
+    background-image: -webkit-linear-gradient(top, #393F46, #293F46);
+    background-image: -moz-linear-gradient(top, #393F46, #293F46);
+    background-image: -ms-linear-gradient(top, #393F46, #293F46);
+    background-image: -o-linear-gradient(top, #393F46, #293F46);
+    background-image: linear-gradient(to bottom, #393F46, #293F46);
+    font-family: Helvetica, Arial, serif;
+    overflow: hidden;
+    text-transform: uppercase;
+    width: 100%;
 }
-.nav-primary li {
-	float: left;	
-	padding-left: 3em;
-}
-/* ---------------------------------------------------------------------
-   = BASE LAYOUT   =#CONTENT
-----------------------------------------------------------------------*/
-#contentwrap {
-	border-left: 1px solid #DADADA;
-	border-right: 1px solid #DADADA;
-}
-#content {
-	margin: 0 auto;
-}
-.lede {
-	padding: .75em 0 .5em;
-}
-table {
-	margin: 0 auto;
-	border: 1px solid;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-}
-.tableCaption {
-	padding: 1em 0 0.25em 0;
-}
-th, td {
-	padding: 2px 5px;
-}
-td {
-	border: 1px solid;
-	
+nav[role="navigation"] ul {
+	margin-bottom: 0;
 }
 
-tr:nth-child(even) {
-	background-color: #FFF;
+nav[role="navigation"] ul.hide {
+	display: none;
 }
-
-tr:nth-child(odd) {
-	background-color: #F4F4F4;
-}
-.leftalign, .selectbox {
-	text-align: left;
-}
-
-/* ---------------------------------------------------------------------
-   = BASE LAYOUT   =FOOTER
-----------------------------------------------------------------------*/
-footer {
-	border-top: 1px solid;
-}
-footer p {
-	text-align: center;
-}
-#venture {
-	padding-top: 2em;
-}
-#copyright {
-	padding-bottom: 2em;
-}
-/* ---RESPONSIVE LAYOUTS ---------------------------------------------*/
-/* ---------------------------------------------------------------------
-   = MAX-WIDTH = 1024px
-----------------------------------------------------------------------*/
-@media screen and (max-width: 1024px) {
-	/* ---------------------------------------------------------------------
-	   = MAX-WIDTH = 1024px   = TYPOGRAPHY
-	----------------------------------------------------------------------*/
-	body {
-		font-size: 0.875em; /* 14px */
-	}
-	nav {
-		font-size: 0.8571428571428571em;
-	}
-	/* ---------------------------------------------------------------------
-	   = MAX-WIDTH = 1024px   = LAYOUT
-	----------------------------------------------------------------------*/
-	/* =SECTION */
-	section {
-		/*width: 93.75%;*/
-		width: 100%;
-	}
-	#contentwrap {
-		width: 100%;
-	}
-	/* =HEADER */
-	header {
-		height: 75px;
-	}
-	nav {
-		padding-top: 2.9em;
-		width: 45.42645241038319%; /* 450 / 1618 */
+	nav[role="navigation"] li.active a {
+		color: #FFF;
+		font-weight: bold;
 	}
 	
-	/* =#CONTENT */
-	#content {
-		margin: 0 auto;
-		border-left: 1px solid #DADADA;
-		border-right: 1px solid #DADADA;
-		padding-bottom: 0.5em;
-		width: 100%;
-		box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.4);
+	nav[role="navigation"] li a:active {
+		color: #FFF;
 	}
-	table {
-		width: 95.33267130089374%; /* 960px / 1007px */
+	
+	nav[role="navigation"] li a:hover,nav[role="navigation"] li a:focus {
+		color: #FFF;
 	}
-
-	/* =FOOTER */	
-	footer {
-		border-top: 1px solid #DADADA;
-		border-bottom: 1px solid #DADADA;
-		width: 100%;
-		height: 100px;
+	
+	nav[role="navigation"] ul {
+		margin: 0;
 	}
-
-} /* / MAX-WIDTH = 1024px */
-/* ---------------------------------------------------------------------
-   = MIN-WIDTH = 1281px   =LAYOUT
-----------------------------------------------------------------------*/
-@media screen and (min-width: 1281px) { 
-	/* =SECTION */
-	section {
-		width: 85%;
+	
+	nav[role="navigation"] li {
+		padding: .625em 2em .625em 0;
+		border-top: 1px solid #333;
 	}
-	#contentwrap {
-		padding: 20px 0;
+	
+	nav[role="navigation"] a {
+		color: #DDD;
+		display: block;
+		text-decoration: none;
 	}
-	/* =HEADER */
-	header {
-		height: 110px;
-	}
-	/* =#CONTENT */
-	#content {
-		border: 1px solid #DADADA;
-		padding: 10px;
-		width: 92.7070457354759%; /* 1500px / 1618px */
-		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
-	}
-	#statsTableForm th  {
-		width: 13.33333333333333%; /* 93.33333333333333 / 7 */
-	}
-	#statsTableForm th p {
-		text-align: center;
-	}
-	/* =FOOTER */
-
-} /* / MIN-WIDTH = 1281px */
-/* ---/ RESPONSIVE LAYOUTS -------------------------------------------*/
-
-/* ---------------------------------------------------------------------
-   = BASE COLOR
-----------------------------------------------------------------------*/
-body {
-	background: #EDEDED;
+/*
+/*
+ | ~ Nav Secondary ~
+ |---------------------------------------------------------------*/
+footer[role="contentinfo"] h1, p  {
+	margin-left: .5em; /* 20px / 40px */
+	margin-right: .5em;/* 20px / 40px */
+	text-align: center
 }
-#contentwrap {
-	background: #FFF;
-}
-a {
-	color: #D53232;
-}
-a:hover {
-	color: #B52A2A;
-}
-input.text,
-input[type=text]
-textarea {
-	border-color: #7C7C7C #7C7C7C #C3C3C3 #C3C3C3;
-}
-abbr[title],
-dfn[title] {
-	border-bottom: #666;
-	border-bottom: rgba(0, 0, 0, 0.2);
+footer[role="contentinfo"] ul {
+	margin-bottom: 0
 }
 
-	/* =HEADER */	
-	header, footer {
-		background-color: #F5F5F5;
-		border-color: #DADADA;
+
+/*
+ | ~ Media Queries ~
+ |---------------------------------------------------------------*/
+/* 860px */
+@media all and (min-width: 53.75em) {
+	nav[role="navigation"] li {
+	    float: left;
+		border-top: 0;
 	}
-	nav a {
-	    color: #00A4E7;
+	nav[role="navigation"] a {
+		float: left;
 	}
-	nav a:hover {
-	    color: #393F46;
+	footer[role="contentinfo"] .top {
+		float: right;
 	}
-	/* =#CONTENT */	
-	#content {
-		background-color: #FFF;
-	}
-	caption {
-		color: #525253;
-	}
-	th {
-		background-color: #393F46;
-	    color:#FFF;
-	}
-	td {
-		font-size: 0.75em;
-		color: #000;
-		border-color: #FFF;
-	}
-	tr:nth-child(even) {
-		background-color: #FFF;
-	}
-	tr:nth-child(odd) {
-		background-color: #F4F4F4;
-	}
-	/* =FOOTER */
-	footer a {
-		color: #00A4E7;
-	}
+}
