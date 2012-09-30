@@ -79,7 +79,7 @@
 	
 		return $aPlyrNum;
 	} // End getPlyrNumXXofYYY
-	
+
 	// ******************************************************
 	// Anonymous Functions (Callback)
 	// ******************************************************
@@ -95,12 +95,6 @@
 					$aNameUrl = parse_url($sNameUrl);
 					$sId = substr($aNameUrl['query'], 3, 7);
 
-					// get name and team
-					$sName = 				strip_tags($aCells[0][1]);
-					$sTeam = 				strip_tags($aCells[0][2]);
-					$sTeamFirst = 			substr($sTeam, 0, 3);
-					$sTeamCurrent = 		substr($sTeam, -3);
-					
 					// create new skater, if player already exists then load stats overtop
 					$oSktrStat = new sktrstat;
 					$oSktrStat->Load('id = ?', array($sId));
@@ -108,9 +102,6 @@
 					// update/insert stats
 					$oSktrStat->id  = 		$sId;
 					$oSktrStat->rk  = 		strip_tags($aCells[0][0]);
-					$oSktrStat->name = 		$sName;
-					$oSktrStat->team = 		$sTeam;
-					$oSktrStat->teamcur = 	$sTeamCurrent;
 					$oSktrStat->pos = 		strip_tags($aCells[0][3]);
 					$oSktrStat->gp = 		strip_tags($aCells[0][4]);
 					$oSktrStat->g = 		strip_tags($aCells[0][5]);
@@ -127,11 +118,9 @@
 					$oSktrStat->toiperg = 	strip_tags($aCells[0][16]);
 					$oSktrStat->shftperg = 	strip_tags($aCells[0][17]);
 					$oSktrStat->fopct = 	strip_tags($aCells[0][18]);
-					
+					/*
 					$id = 			$oSktrStat->id;
 					$rk = 			$oSktrStat->rk;
-					$name = 		$oSktrStat->name;
-					$teamcur = 		$oSktrStat->teamcur;
 					$pos = 			$oSktrStat->pos;
 					$gp = 			$oSktrStat->gp;
 					$g =	 		$oSktrStat->g;
@@ -149,8 +138,8 @@
 					$shftperg = 	$oSktrStat->shftperg;
 					$fopct = 		$oSktrStat->fopct;
 					
-					echo " | ID: {$id} | RK: {$rk} | {$name} | Team: {$teamcur} | POS: {$pos} | GP: {$gp}  | G: {$g}  | A: {$a}  | Pts: {$pts}  | +/-: {$plusminus}  | PIM: {$pim} | PPG: {$ppg} | SHG: {$shg}  | GWG: {$gwg}  | OTG: {$otg} | SOG: {$sog}  | Pct: {$shtpct} | TOI/G: {$toiperg}  | Sft/G: {$shftperg} | FO%: {$fopct} |\n";
-					
+					echo " | ID: {$id} | RK: {$rk} | POS: {$pos} | GP: {$gp}  | G: {$g}  | A: {$a}  | Pts: {$pts}  | +/-: {$plusminus}  | PIM: {$pim} | PPG: {$ppg} | SHG: {$shg}  | GWG: {$gwg}  | OTG: {$otg} | SOG: {$sog}  | Pct: {$shtpct} | TOI/G: {$toiperg}  | Sft/G: {$shftperg} | FO%: {$fopct} |\n";
+					*/
 					$rc = $oSktrStat->save();
 					if(!$rc){
 						echo $oSktrStat->errormsg();
@@ -159,49 +148,7 @@
 			} // End if
 		} // End foreach
 	}; // End fgetRowsStatsSummary
-	
-	// ******************************************************
-	// fgetRowsStatsBio
-	// ******************************************************
-	function fgetRowsStatsBio($aRows){
-		foreach ($aRows[0] as $aRow){
-			if ((strpos($aRow,'<th')===false)){
-				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
-				
-				// get Id
-				$sNameUrl = $aCells[0][1];
-				$aNameUrl = parse_url($sNameUrl);
-				$sId = substr($aNameUrl['query'], 3, 7);
 
-				// get dob
-				$sDob =	strip_tags($aCells[0][4]);
-				$sDobFormat = str_replace("'","", $sDob);
-				$tsDob = strtotime(str_replace(" ","-", $sDobFormat));
-				$dDob = date("Y-m-d", $tsDob);
-				// calculate age
-				$dAge = number_format(((time() - $tsDob) / 31556926), 1);
-					
-				// create new skater, if player already exists then load stats overtop
-				$oSktrStat = new sktrstat;
-				$oSktrStat->Load('id = ?', array($sId));
-
-				$oSktrStat->dob = 		$dDob;
-				$oSktrStat->age = 		$dAge;
-
-				$dob = 			$oSktrStat->dob;
-				$age =			$oSktrStat->age;
-	
-				echo " | Dob: {$dob} | Age: {$age} |\n";
-				
-				$rc = $oSktrStat->save();
-				if(!$rc){
-					echo $oSktrStat->errormsg();
-				} //db error messages
-				
-			} // End if
-		} // End foreach
-	}; // End fgetRowsStatsBio
-	
 	// ******************************************************
 	// fgetRowsStatsSpecialTeams
 	// ******************************************************
@@ -214,11 +161,20 @@
 				$sNameUrl = $aCells[0][1];
 				$aNameUrl = parse_url($sNameUrl);
 				$sId = substr($aNameUrl['query'], 3, 7);
-
+				
+				// get name and team
+				$sName = 				strip_tags($aCells[0][1]);
+				$sTeam = 				strip_tags($aCells[0][2]);
+				$sTeamFirst = 			substr($sTeam, 0, 3);
+				$sTeamCurrent = 		substr($sTeam, -3);
+				
 				// create new skater, if player already exists then load stats overtop
 				$oSktrStat = new sktrstat;
 				$oSktrStat->Load('id = ?', array($sId));
-
+				
+				$oSktrStat->name = 		$sName;
+				$oSktrStat->team = 		$sTeam;
+				$oSktrStat->teamcur = 	$sTeamCurrent;
 				$oSktrStat->esg = 		strip_tags($aCells[0][5]);
 				$oSktrStat->esa = 		strip_tags($aCells[0][6]);
 				$oSktrStat->espts = 	strip_tags($aCells[0][7]);
@@ -226,7 +182,10 @@
 				$oSktrStat->pppts = 	strip_tags($aCells[0][10]);
 				$oSktrStat->sha = 		strip_tags($aCells[0][12]);
 				$oSktrStat->shpts =		strip_tags($aCells[0][13]);
-				
+				/*
+				$name = 	$oSktrStat->name;
+				$team = 	$oSktrStat->team;
+				$teamcur = 	$oSktrStat->teamcur;
 				$esg = 		$oSktrStat->esg;
 				$esa = 		$oSktrStat->esa;
 				$espts = 	$oSktrStat->espts;
@@ -235,8 +194,8 @@
 				$sha = 		$oSktrStat->sha;
 				$shpts = 	$oSktrStat->shpts;
 				
-				echo " | ESG: {$esg} | ESA: {$esa} | ESPts: {$espts} | PPA: {$ppa} | PPP: {$pppts} | SHA: {$sha} | SHP: {$shpts} |\n";
-				
+				echo " | {$name} | Team: {$team} | TeamCur: {$teamcur} | ESG: {$esg} | ESA: {$esa} | ESPts: {$espts} | PPA: {$ppa} | PPP: {$pppts} | SHA: {$sha} | SHP: {$shpts} |\n";
+				*/
 				$rc = $oSktrStat->save();
 				if(!$rc){
 					echo $oSktrStat->errormsg();
@@ -273,7 +232,7 @@
 				$oSktrStat->toiperg = 		strip_tags($aCells[0][12]);
 				$oSktrStat->shft = 			preg_replace("/,/", "", strip_tags($aCells[0][13]));
 				$oSktrStat->toipershft = 	strip_tags($aCells[0][14]);
-
+				/*
 				$estoi = 		$oSktrStat->estoi;
 				$estoiperg = 	$oSktrStat->estoiperg;
 				$shtoi = 		$oSktrStat->shtoi;
@@ -286,7 +245,7 @@
 				$toipershft = 	$oSktrStat->toipershft;
 				
 				echo " | ESTOI: {$estoi} | ESTOI/G: {$estoiperg} | SHTOI: {$shtoi} | SHTOI/G: {$shtoiperg} | PPTOI: {$pptoi} | PPTOI/G: $pptoiperg} | TOI: {$toi} | TOI/G: {$toiperg} | SHIFTS: {$shft} | TOI/SHIFT: {$toipershft} |\n";
-				
+				*/
 				$rc = $oSktrStat->save();
 				if(!$rc){
 					echo $oSktrStat->errormsg();
@@ -296,8 +255,54 @@
 		} // End foreach
 	}; // End fgetRowsStatsTOI
 
+
+	// ******************************************************
+	// fgetRowsStatsBio
+	// *****************************************************	
+	function fgetRowsStatsBio($aRows){
+		foreach ($aRows[0] as $aRow){
+			if ((strpos($aRow,'<th')===false)){
+				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
+	
+				// get Id
+				$sNameUrl = $aCells[0][1];
+				$aNameUrl = parse_url($sNameUrl);
+				$sId = substr($aNameUrl['query'], 3, 7);
+	
+				// get dob
+				$sDob =	strip_tags($aCells[0][4]);
+				$sDobFormat = str_replace("'","", $sDob);
+				$tsDob = strtotime(str_replace(" ","-", $sDobFormat));
+				$dDob = date("Y-m-d", $tsDob);
+				// calculate age
+				$dAge = number_format(((time() - $tsDob) / 31556926), 1);
+					
+				// create new skater, if player already exists then load stats overtop
+				$oSktrStat = new sktrstat;
+				$oSktrStat->Load('id = ?', array($sId));
+	
+				$oSktrStat->dob = 		$dDob;
+				$oSktrStat->age = 		$dAge;
+				/*
+				$dob = 			$oSktrStat->dob;
+				$age =			$oSktrStat->age;
+	
+				echo " | Dob: {$dob} | Age: {$age} |\n";
+				*/
+				$rc = $oSktrStat->save();
+				if(!$rc){
+				echo $oSktrStat->errormsg();
+				} //db error messages
+	
+			} // End if
+		} // End foreach
+	}; // End fgetRowsStatsBio
+
+
 	// ******************************************************
 	// Logic
+	// ******************************************************
+
 	// ******************************************************
 	// Stats - Summary
 	// ******************************************************
@@ -312,6 +317,7 @@
 		$sPlyrNumOfYYY = $aPlyrNum[2];
 	} // End for loop
 	
+	
 	// ******************************************************
 	// Stats -  Bio
 	// ******************************************************
@@ -325,8 +331,7 @@
 		$sPlyrNumXXOf = $aPlyrNum[0];
 		$sPlyrNumOfYYY = $aPlyrNum[2];
 	} // End for loop
-	
-	
+
 	// ******************************************************
 	// Stats - Special Teams
 	// ******************************************************
@@ -354,4 +359,5 @@
 		$sPlyrNumXXOf = $aPlyrNum[0];
 		$sPlyrNumOfYYY = $aPlyrNum[2];
 	} // End for loop
+
 ?>

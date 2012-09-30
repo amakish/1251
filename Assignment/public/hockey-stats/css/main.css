@@ -22,7 +22,7 @@ time, mark, audio, video {
   vertical-align: baseline;
   box-sizing: border-box;
 }          
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section{ 
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { 
     display:block;
 }
 blockquote:before,
@@ -61,6 +61,7 @@ h1 {
     line-height: 1.2em; /* 48px / 40px */
 }
 h1 img{
+	min-width: 50%; /* Jacked? */
 	max-width: 100%;
 }
 table {
@@ -93,6 +94,9 @@ p,
 ul,
 ol {
     margin-bottom: 1em;
+}
+img {
+	display: block;
 }
 header,footer {
 	background: #F5F5F5;
@@ -188,8 +192,8 @@ footer[role="contentinfo"] ul {
 /*
  | ~ Media Queries ~
  |---------------------------------------------------------------*/
-/* 860px */
-@media all and (min-width: 53.75em) {
+/* ~ 600px ~ |37.5em = 600px/16px| */
+@media all and (min-width: 37.5em) {
 	nav[role="navigation"] li {
 	    float: left;
 		border-top: 0;
