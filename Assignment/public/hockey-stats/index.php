@@ -15,10 +15,10 @@
 	}	
 	
 	ADOdb_Active_Record::SetDatabaseAdapter($db);
-	class sktrstat extends ADOdb_Active_Record{}
-	class goaliestat extends ADOdb_Active_Record{}
-	class schedule extends ADOdb_Active_Record{}
-		
+	class reg201112sstat extends ADOdb_Active_Record{}
+	class reg201112gstat extends ADOdb_Active_Record{}
+	class tschedule extends ADOdb_Active_Record{}
+	
 	// ******************************************************
 	// Views Control
 	// ******************************************************
@@ -26,78 +26,94 @@
 	$action = (array_key_exists('action', $_GET)?$_GET['action']: $action);
 	
 	if($action == '' || $action == 'pStats'){
-		
-		$sSktrStats = new sktrstat();
-		$aSktrStats = $sSktrStats->find("1 order by pts desc");
-		include '../../views/sktrstatscoring.php';
-		
+		$sSktrStats = new reg201112sstat();
+		$aPlayerStats = $sSktrStats->find("1 order by pts desc");
+		include '../../views/sstatscoring.php';
+	} // End if
+	
+	elseif($action == 'tSchedule'){
+		$sGame = new reg201112sstat();
+		$aTsched = $sGame->find("1 order by date desc");
+		include '../../views/tschedule.php';
 	} // End if
 	
 	elseif($action == 'Search'){
-		// Temp print POST array
-		print_r($_POST);
-		
-		$sSktrStats = new sktrstat();
-		// initialize where clause to be empty
-		$sWhere = "";
-		
 		$sSeason	 	= ($_POST['season']);
 		$sGameType 		= ($_POST['gameType']);
 		$sTeam 			= ($_POST['team']);
-		$sPosition 		= ($_POST['position']);
+		$sPposition 	= ($_POST['position']); /* s, f, d or g */
 		$sStatView 		= ($_POST['statView']);
 		$sPlayerStatus 	= ($_POST['playerStatus']);
 		
-		if ($sTeam != "All" || $sPosition != "Sktr" || $sPlayerStatus != "All") {
+		print_r($_POST);
+		
+		if($sPposition == "g") {
+			$sPosition = "gstat";
+		}
+		else {
+			$sPosition = "sstat";
+		}
+		
+		$sTable = $sGameType . $sSeason . $sPosition;
+		$sView = $sStatView;
+
+		$sWhere = "";
+		
+		if ($sTeam != "All") {
 			if($sWhere){
 				$sWhere .= " and ";
 			} // End inner if
-			$sWhere .= "team ='" 			. $sTeam 			. "'";
-			$sWhere .= "position ='" 		. $sPosition 		. "'";
-			$sWhere .= "playerStatus ='" 	. $sPlayerStatus 	. "'";
-		} // End if
-		
-		elseif ($sStatView != "scoring") {
-			include '../../views/sktrstaticetime.php';
+			$sWhere .= "team ='" . $sTeam . "'";
 		}
+		
+		if($sPposition != "s") {
+			switch ($sPposition) {
+				case "s":
+					if($sWhere){
+						$sWhere .= " and ";
+					} // End inner if
+					$sWhere .= "pos != 'G'";
+					break;
+				case "f":
+					if($sWhere){
+						$sWhere .= " and ";
+					} // End inner if
+					$sWhere .= "pos in('L', 'C', 'R')";
+					break;
+				case "d":
+					if($sWhere){
+						$sWhere .= " and ";
+					} // End inner if
+					$sWhere .= "pos = 'D'";
+					break;
+				case "g":
+					$sTable = $sGameType . $sSeason . "gstat";
+					$sView = "gstat";
+					break;
+			} // End switch
+		} // End if
+
+		if($sPlayerStatus != "All") {
+			if($sWhere){
+				$sWhere .= " and ";
+			} // End inner if
+			$sWhere .= "rookie = 1";
+		} // End if
 		
 		if(!$sWhere) {
 			$sWhere = 1;
 		} // End if
+
+		$oPlayer = new $sTable;
+	
+		$aPlayerStats = $oPlayer->find($sWhere);
+
+		echo $sWhere;
 		
-		
-		$aSktrStats = $sSktrStats->find($sWhere);
-		include '../../views/sktrstatscoring.php';
-		
+		include "../../views/$sView.php";
+
 	} // End elseif
 
-	elseif($action == 'tSchedule'){
-		include '../../views/schedule.php';
-		
-	/*
-	 
-	 if(pos=l || pos=c || pos=r) {
-	 	$sPosition = sktrstat;
-	 }
-	 else {
-	 	$sPosition = goaliestat;
-	 }
-	 
-	 $sTable = $sSeason . $sType . $sPosition;
-	 
-	 $sView = $sStatView;
-	 
-	 $oPlayer = new $sTable;
-	 
-	 $aSktrStat = $oPlayer->find($sWhere....);
-	 
-	 include '../../views/$sView.php';
-	 
-	 */	
-
-	} // End if
-	
-	
 	// ******************************************************
 	// Data Scrape Control
 	// ******************************************************	

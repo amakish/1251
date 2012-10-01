@@ -16,7 +16,7 @@
 		URL:	 		http://www.amakstats.com
 		Developer: 		Aaron Makish
 		Date Created: 	20120828
-		Last Revised: 	20120929
+		Last Revised: 	20121001
 		Language:		HTML5
 	
 		Website Description:
@@ -46,15 +46,15 @@
 				<p>
 					<label>Game Type</label>
 					<select id="gameType" name="gameType">
-						<option value="RegSeason"  selected="selected">Regular Season</option>
-						<option value="PostSeason">Playoffs</option>
+						<option value="reg"  selected="selected">Regular Season</option>
+						<option value="post">Playoffs</option>
 					</select>
 				</p>
 				<p>
 					<label>Scoring View</label>
 					<select id="statview" name="statView">
-						<option value="scoring" selected="selected">Standard</option>
-						<option value="iceTime">Ice Time Splits</option>
+						<option value="sstatscoring" selected="selected">Standard</option>
+						<option value="sstaticetime">Ice Time Splits</option>
 					</select>					
 				</p>
 				<p>
@@ -96,10 +96,10 @@
 				<p>
 					<label>Position</label>
 					<select id="position" name="position">
-						<option value="Sktr" selected="selected">All Skaters</option>
-						<option value="Fwd">Forwards</option>
-						<option value="Def">Defenseman</option>
-						<option value="Goal">Goalies</option>
+						<option value="s" selected="selected">All Skaters</option>
+						<option value="f">Forwards</option>
+						<option value="d">Defenseman</option>
+						<option value="g">Goalies</option>
 					</select>
 				</p>
 				<p>
@@ -114,48 +114,56 @@
 				</p>
 			</form>
 			<table class="sortable">
-				<caption class="tableCaption">2011-12 Skater Statistics - Scoring</caption>
+				<caption class="tableCaption">2011-12 Skater Statistics</caption>
 				<thead>
 					<tr>
 						<th scope="col"></th>
 						<th scope="col" class="name">Name</th>
+						<th scope="col">Age</th>
 						<th scope="col">Team</th>
 						<th scope="col">Pos</th>
 						<th scope="col">GP</th>
-						<th scope="col">G</th>
-						<th scope="col">A</th>
-						<th scope="col">Pts</th>
-						<!--
-						<th scope="col">+/-</th>
-						<th scope="col">PIM</th>
+						<th scope="col">ESG</th>
+						<th scope="col">ESA</th>
+						<th scope="col">ESPts</th>
+						<th scope="col">PPA</th>
 						<th scope="col">PPG</th>
+						<th scope="col">PPPts</th>
+						<th scope="col">SHA</th>
 						<th scope="col">SHG</th>
-						<th scope="col">GWG</th>
-						<th scope="col">OTG</th>
-						<th scope="col">SOG</th>
-						<th scope="col">S%</th>
-						<th scope="col">FO%</th>
-						<th scope="col">TOI/G</th>
+						<th scope="col">SHPts</th>
+						<th scope="col">ES TOI/G</th>
 						<th scope="col">PP TOI/G</th>
 						<th scope="col">SH TOI/G</th>
-						-->
+						<th scope="col">TOI/G</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php 
 					$i=0;
-					foreach($aSktrStats as $sSktrStats){
+					foreach($aPlayerStats as $sSktrStats){
 					$i++;
 						?>
 						<tr>
 							<td><?php echo $i;?></td>
-							<td class="l-align"><?php echo $sSktrStats->name;?></td>
-							<td class="c-align"><?php echo $sSktrStats->teamcur;?></td>
-							<td class="c-align"><?php echo $sSktrStats->pos;?></td>
-							<td class="c-align"><?php echo $sSktrStats->gp;?></td>
-							<td class="c-align"><?php echo $sSktrStats->g;?></td>
-							<td class="c-align"><?php echo $sSktrStats->a;?></td>
-							<td class="c-align"><?php echo $sSktrStats->pts;?></td>
+							<td class="name"><?php echo $sSktrStats->name;?></td>
+							<td><?php echo $sSktrStats->age;?></td>
+							<td><?php echo $sSktrStats->teamcur;?></td>
+							<td><?php echo $sSktrStats->pos;?></td>
+							<td><?php echo $sSktrStats->gp;?></td>
+							<td><?php echo $sSktrStats->esg;?></td>
+							<td><?php echo $sSktrStats->esa;?></td>
+							<td><?php echo $sSktrStats->espts;?></td>
+							<td><?php echo $sSktrStats->ppa;?></td>
+							<td><?php echo $sSktrStats->ppg;?></td>
+							<td><?php echo $sSktrStats->pppts;?></td>
+							<td><?php echo $sSktrStats->sha;?></td>
+							<td><?php echo $sSktrStats->shg;?></td>
+							<td><?php echo $sSktrStats->shpts;?></td>
+							<td><?php echo $sSktrStats->estoiperg;?></td>
+							<td><?php echo $sSktrStats->pptoiperg;?></td>
+							<td><?php echo $sSktrStats->shtoiperg;?></td>
+							<td><?php echo $sSktrStats->toiperg;?></td>
 						</tr>
 				<?php } ?>
 				</tbody>

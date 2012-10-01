@@ -121,8 +121,7 @@
 
 					<?php 
 					$i=0;
-					$sSchedule = new schedule();
-					foreach($sSchedule->find("1") as $sGame){
+					foreach($aTsched as $sGame) {
 					$i++;
 						?>
 						<tr>

@@ -96,7 +96,7 @@
 					$sId = substr($aNameUrl['query'], 3, 7);
 
 					// create new skater, if player already exists then load stats overtop
-					$oSktrStat = new sktrstat;
+					$oSktrStat = new reg201112sstat;
 					$oSktrStat->Load('id = ?', array($sId));
 
 					// update/insert stats
@@ -169,7 +169,7 @@
 				$sTeamCurrent = 		substr($sTeam, -3);
 				
 				// create new skater, if player already exists then load stats overtop
-				$oSktrStat = new sktrstat;
+				$oSktrStat = new reg201112sstat;
 				$oSktrStat->Load('id = ?', array($sId));
 				
 				$oSktrStat->name = 		$sName;
@@ -219,7 +219,7 @@
 				$sId = substr($aNameUrl['query'], 3, 7);
 
 				// create new skater, if player already exists then load stats overtop
-				$oSktrStat = new sktrstat;
+				$oSktrStat = new reg201112sstat;
 				$oSktrStat->Load('id = ?', array($sId));
 
 				$oSktrStat->estoi = 		strip_tags($aCells[0][5]);
@@ -278,7 +278,7 @@
 				$dAge = number_format(((time() - $tsDob) / 31556926), 1);
 					
 				// create new skater, if player already exists then load stats overtop
-				$oSktrStat = new sktrstat;
+				$oSktrStat = new reg201112sstat;
 				$oSktrStat->Load('id = ?', array($sId));
 	
 				$oSktrStat->dob = 		$dDob;
@@ -298,11 +298,38 @@
 		} // End foreach
 	}; // End fgetRowsStatsBio
 
+	// ******************************************************
+	// fgetRowsStatsRookie
+	// *****************************************************
+	function fgetRowsStatsRookie($aRows){
+		foreach ($aRows[0] as $aRow){
+			if ((strpos($aRow,'<th')===false)){
+				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
+	
+				// get Id
+				$sNameUrl = $aCells[0][1];
+				$aNameUrl = parse_url($sNameUrl);
+				$sId = substr($aNameUrl['query'], 3, 7);
+					
+				// create new skater, if player already exists then load stats overtop
+				$oSktrStat = new reg201112sstat;
+				$oSktrStat->Load('id = ?', array($sId));
+	
+				$oSktrStat->rookie = 1;
 
+				$rc = $oSktrStat->save();
+				if(!$rc){
+					echo $oSktrStat->errormsg();
+				} //db error messages
+	
+			} // End if
+		} // End foreach
+	}; // End fgetRowsStatsBio
+	
 	// ******************************************************
 	// Logic
 	// ******************************************************
-
+	/*
 	// ******************************************************
 	// Stats - Summary
 	// ******************************************************
@@ -331,7 +358,7 @@
 		$sPlyrNumXXOf = $aPlyrNum[0];
 		$sPlyrNumOfYYY = $aPlyrNum[2];
 	} // End for loop
-
+	*/
 	// ******************************************************
 	// Stats - Special Teams
 	// ******************************************************
@@ -345,7 +372,7 @@
 		$sPlyrNumXXOf = $aPlyrNum[0];
 		$sPlyrNumOfYYY = $aPlyrNum[2];
 	} // End for loop
-
+	/*
 	// ******************************************************
 	// Stats -  Time On Ice
 	// ******************************************************
@@ -359,5 +386,19 @@
 		$sPlyrNumXXOf = $aPlyrNum[0];
 		$sPlyrNumOfYYY = $aPlyrNum[2];
 	} // End for loop
-
+	
+	// ******************************************************
+	// Stats -  Rookie?
+	// ******************************************************
+	$sPlyrNumXXOf = "junk";
+	$sPlyrNumOfYYY = "";
+	
+	for($i=1; $sPlyrNumXXOf != $sPlyrNumOfYYY; $i++) {
+		$sStatsRookie = getSktrStats("http://www.nhl.com/ice/playerstats.htm?fetchKey=20122ALLSRSALL&viewName=summary&sort=points&pg=$i", "fgetRowsStatsRookie");
+		$aPlyrNum = getPlyrNumXXofYYY($sStatsRookie);
+	
+		$sPlyrNumXXOf = $aPlyrNum[0];
+		$sPlyrNumOfYYY = $aPlyrNum[2];
+	} // End for loop
+	*/
 ?>
