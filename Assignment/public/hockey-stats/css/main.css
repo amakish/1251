@@ -68,8 +68,8 @@ nav  {
 }
 
 h1 {
-	font-size: 2em;   /* 32px / 16px */
-    line-height: 1.25em; /* 40px / 32px */
+	font-size: 1.5em;   /* 24px / 16px */
+    line-height: 1.166666666666667em; /* 28px / 24px */
     font-weight: bold;
 }
 caption {
@@ -86,6 +86,12 @@ form p {
 form label, form select {
 	font-size: 0.875em;   /* 14px / 16px */
 	line-height: 1.142857142857143em; /* 16px / 14px */
+}
+input[type="submit"] {
+	font-size: 1em;   /* 16px / 16px */
+	line-height: 1.25em; /* 20px / 16px */
+	text-align: center;
+	
 }
 table {
     font-size: 0.6875em; 	/* 11px/16px */
@@ -133,21 +139,37 @@ header,footer {
 #container {
     overflow: hidden;
     width: 100%;
-    padding: 0.625em; /* 10px/16px */
 }
-#container h1 {
-	padding-bottom: 0.5em;
+article h1 {
+	width: 100%;
+	border-top: 1px solid #CCC;
+	margin: 0.5em 0;
+	padding: 0.5em 0 0.25em 0.25em;
+	color: #525253;
+	background-color: #F5F5F5;
+	box-shadow: 0 3px 0 #CCC, 0 -1px #FFFFFF inset;
 }
 form {
-	width: 320px;
+	width: 100%;
+
+}
+#formwrap {
+	padding: 0.5254860746190226%; /* 10px/1903px */
+}
+form p {
+	
 }
 form label {
 	display: inline-block;
-	width: 35.9375%; /* 115px / 320px */
+	width: 6.25em; /* 90px/16px */
 	padding-bottom: 0.125em; /* 2px/16px */
 	box-shadow: 0 3px 0 #CCC, 0 -1px #FFFFFF inset;
 }
-select {
+form select {
+	display: inline-block;
+	width: 11.5625em; /* 185px/16px */
+    margin: 0;
+    padding: 0.125em;
     -moz-appearance: none;
     background: none repeat scroll 0 0 #F5F5F5;
     border: medium none;
@@ -155,14 +177,24 @@ select {
     box-shadow: 0 3px 0 #CCC, 0 -1px #FFFFFF inset;
     color: #888888;
     cursor: pointer;
-    display: inline-block;
-    margin: 0;
-    outline: medium none;
-    padding: 0.125em;
+	outline: medium none;
+}
+table {
+	margin: 0.2627430373095113%; /* 5px/1903px */
 }
 th, td {
 	padding: 0 0.25em;
 }
+input[type="submit"] {
+	margin: 0.5em 0 0 8.5em;
+	-moz-appearance: none;
+    background: none repeat scroll 0 0 #00A4E7;
+    border: medium none;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 3px 0 #CCC, 0 -1px #FFFFFF inset;
+	color: #FFF;
+}
+
 .inner {
     margin: auto;
     overflow: hidden;
