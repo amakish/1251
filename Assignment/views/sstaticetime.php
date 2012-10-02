@@ -39,74 +39,74 @@
 				<p>
 					<label>Season</label>
 					<select id="season" name="season">
-						<option value="201112" selected="selected">2011-12</option>
-						<option value="201011">2010-11</option>
+						<option value="201112" <?php if($sSeason == "201112"){echo 'selected="selected"';}?>>2011-12</option>
+						<option value="201011" <?php if($sSeason == "201011"){echo 'selected="selected"';}?>>2010-11</option>
 					</select>
 				</p>
 				<p>
 					<label>Game Type</label>
 					<select id="gameType" name="gameType">
-						<option value="reg"  selected="selected">Regular Season</option>
-						<option value="post">Playoffs</option>
+						<option value="reg" <?php if($sGameType == "reg"){echo 'selected="selected"';}?>>Regular Season</option>
+						<option value="post" <?php if($sGameType == "post"){echo 'selected="selected"';}?>>Playoffs</option>
 					</select>
 				</p>
 				<p>
 					<label>Scoring View</label>
 					<select id="statview" name="statView">
-						<option value="sstatscoring" selected="selected">Standard</option>
-						<option value="sstaticetime">Ice Time Splits</option>
+						<option value="sstatscoring" <?php if($sStatView == "sstatscoring"){echo 'selected="selected"';}?>>Standard</option>
+						<option value="sstaticetime" <?php if($sStatView == "sstaticetime"){echo 'selected="selected"';}?>>Ice Time Splits</option>
 					</select>					
 				</p>
 				<p>
 					<label>Team</label>
 					<select id="team" name="team">
-						<option value="All" selected="selected">All Teams</option>
-						<option value="ANA">Anaheim Ducks</option>
-						<option value="BOS">Boston Bruins</option>
-						<option value="BUF">Buffalo Sabres</option>
-						<option value="CGY">Calgary Flames</option>
-						<option value="CAR">Carolina Hurricanes</option>
-						<option value="CHI">Chicago Blackhawks</option>
-						<option value="COL">Colorado Avalanche</option>
-						<option value="CBJ">Columbus Blue Jackets</option>
-						<option value="DAL">Dallas Stars</option>
-						<option value="DET">Detroit Red Wings</option>
-						<option value="EDM">Edmonton Oilers</option>
-						<option value="FLA">Florida Panthers</option>
-						<option value="LAK">Los Angeles Kings</option>
-						<option value="MIN">Minnesota Wild</option>
-						<option value="MTL">Montreal Canadiens</option>
-						<option value="NSH">Nashville Predators</option>
-						<option value="NJD">New Jersey Devils</option>
-						<option value="NYI">New York Islanders</option>
-						<option value="NYR">New York Rangers</option>
-						<option value="OTT">Ottawa Senators</option>
-						<option value="PHI">Philadelphia Flyers</option>
-						<option value="PHX">Phoenix Coyotes</option>
-						<option value="PIT">Pittsburgh Penguins</option>
-						<option value="SJS">San Jose Sharks</option>
-						<option value="STL">St. Louis Blues</option>
-						<option value="TBL">Tampa Bay Lightning</option>
-						<option value="TOR">Toronto Maple Leafs</option>
-						<option value="VAN">Vancouver Canucks</option>
-						<option value="WSH">Washington Capitals</option>
-						<option value="WPG">Winnipeg Jets</option>
+						<option value="All" <?php if($sTeam == "All"){echo 'selected="selected"';}?>>All Teams</option>
+						<option value="ANA" <?php if($sTeam == "ANA"){echo 'selected="selected"';}?>>Anaheim Ducks</option>
+						<option value="BOS" <?php if($sTeam == "BOS"){echo 'selected="selected"';}?>>Boston Bruins</option>
+						<option value="BUF" <?php if($sTeam == "BUF"){echo 'selected="selected"';}?>>Buffalo Sabres</option>
+						<option value="CGY" <?php if($sTeam == "CGY"){echo 'selected="selected"';}?>>Calgary Flames</option>
+						<option value="CAR" <?php if($sTeam == "CAR"){echo 'selected="selected"';}?>>Carolina Hurricanes</option>
+						<option value="CHI" <?php if($sTeam == "CHI"){echo 'selected="selected"';}?>>Chicago Blackhawks</option>
+						<option value="COL" <?php if($sTeam == "COL"){echo 'selected="selected"';}?>>Colorado Avalanche</option>
+						<option value="CBJ" <?php if($sTeam == "CBJ"){echo 'selected="selected"';}?>>Columbus Blue Jackets</option>
+						<option value="DAL" <?php if($sTeam == "DAL"){echo 'selected="selected"';}?>>Dallas Stars</option>
+						<option value="DET" <?php if($sTeam == "DET"){echo 'selected="selected"';}?>>Detroit Red Wings</option>
+						<option value="EDM" <?php if($sTeam == "EDM"){echo 'selected="selected"';}?>>Edmonton Oilers</option>
+						<option value="FLA" <?php if($sTeam == "FLA"){echo 'selected="selected"';}?>>Florida Panthers</option>
+						<option value="LAK" <?php if($sTeam == "LAK"){echo 'selected="selected"';}?>>Los Angeles Kings</option>
+						<option value="MIN" <?php if($sTeam == "MIN"){echo 'selected="selected"';}?>>Minnesota Wild</option>
+						<option value="MTL" <?php if($sTeam == "MTL"){echo 'selected="selected"';}?>>Montreal Canadiens</option>
+						<option value="NSH" <?php if($sTeam == "NSH"){echo 'selected="selected"';}?>>Nashville Predators</option>
+						<option value="NJD" <?php if($sTeam == "NJD"){echo 'selected="selected"';}?>>New Jersey Devils</option>
+						<option value="NYI" <?php if($sTeam == "NYI"){echo 'selected="selected"';}?>>New York Islanders</option>
+						<option value="NYR" <?php if($sTeam == "NYR"){echo 'selected="selected"';}?>>New York Rangers</option>
+						<option value="OTT" <?php if($sTeam == "OTT"){echo 'selected="selected"';}?>>Ottawa Senators</option>
+						<option value="PHI" <?php if($sTeam == "PHI"){echo 'selected="selected"';}?>>Philadelphia Flyers</option>
+						<option value="PHX" <?php if($sTeam == "PHX"){echo 'selected="selected"';}?>>Phoenix Coyotes</option>
+						<option value="PIT" <?php if($sTeam == "PIT"){echo 'selected="selected"';}?>>Pittsburgh Penguins</option>
+						<option value="SJS" <?php if($sTeam == "SJS"){echo 'selected="selected"';}?>>San Jose Sharks</option>
+						<option value="STL" <?php if($sTeam == "STL"){echo 'selected="selected"';}?>>St. Louis Blues</option>
+						<option value="TBL" <?php if($sTeam == "TBL"){echo 'selected="selected"';}?>>Tampa Bay Lightning</option>
+						<option value="TOR" <?php if($sTeam == "TOR"){echo 'selected="selected"';}?>>Toronto Maple Leafs</option>
+						<option value="VAN" <?php if($sTeam == "VAN"){echo 'selected="selected"';}?>>Vancouver Canucks</option>
+						<option value="WSH" <?php if($sTeam == "WSH"){echo 'selected="selected"';}?>>Washington Capitals</option>
+						<option value="WPG" <?php if($sTeam == "WPG"){echo 'selected="selected"';}?>>Winnipeg Jets</option>
 					</select>
 				</p>
 				<p>
 					<label>Position</label>
 					<select id="position" name="position">
-						<option value="s" selected="selected">All Skaters</option>
-						<option value="f">Forwards</option>
-						<option value="d">Defenseman</option>
-						<option value="g">Goalies</option>
+						<option value="s" <?php if($sPposition == "s"){echo 'selected="selected"';}?>>All Skaters</option>
+						<option value="f" <?php if($sPposition == "f"){echo 'selected="selected"';}?>>Forwards</option>
+						<option value="d" <?php if($sPposition == "d"){echo 'selected="selected"';}?>>Defenseman</option>
+						<option value="g" <?php if($sPposition == "g"){echo 'selected="selected"';}?>>Goalies</option>
 					</select>
 				</p>
 				<p>
 					<label>Player Status</label>
 					<select id="playerstatus" name="playerStatus">
-						<option value="All" selected="selected">All Players</option>
-						<option value="Rookie">Rookies</option>
+						<option value="All" <?php if($sPlayerStatus == "All"){echo 'selected="selected"';}?>>All Players</option>
+						<option value="Rookie" <?php if($sPlayerStatus == "Rookie"){echo 'selected="selected"';}?>>Rookies</option>
 					</select>
 				</p>
 				<p class="searchbutton">

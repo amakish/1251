@@ -121,7 +121,7 @@
 
 					<?php 
 					$i=0;
-					foreach($aTsched as $sGame) {
+					foreach($aTschedule as $sGame) {
 					$i++;
 						?>
 						<tr>

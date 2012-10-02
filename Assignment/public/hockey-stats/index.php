@@ -31,25 +31,26 @@
 	
 	class reg201011tschedule extends ADOdb_Active_Record{}
 	class reg201112tschedule extends ADOdb_Active_Record{}
-	
+
 	// ******************************************************
 	// Views Control
 	// ******************************************************
 	$action = (array_key_exists('action', $_POST)?$_POST['action']: '');
 	$action = (array_key_exists('action', $_GET)?$_GET['action']: $action);
 	
+	$sSeason = "201112";
+	$sGameType = "reg";
+	$sTeam = "All";
+	$sPposition = "s";
+	$sStatView = "sstatscoring";
+	$sPlayerStatus = "All";
+	
 	if($action == '' || $action == 'pStats'){
 		$sSktrStats = new reg201112sstat();
 		$aPlayerStats = $sSktrStats->find("1 order by pts desc");
 		include '../../views/sstatscoring.php';
 	} // End if
-	
-	elseif($action == 'tSchedule'){
-		$sGame = new reg201112sstat();
-		$aTsched = $sGame->find("1 order by date desc");
-		include '../../views/tschedule.php';
-	} // End if
-	
+
 	elseif($action == 'Search'){
 		$sSeason	 	= ($_POST['season']);
 		$sGameType 		= ($_POST['gameType']);
@@ -58,7 +59,7 @@
 		$sStatView 		= ($_POST['statView']);
 		$sPlayerStatus 	= ($_POST['playerStatus']);
 		
-		print_r($_POST);
+		//print_r($_POST);
 		
 		if($sPposition == "g") {
 			$sPosition = "gstat";
@@ -120,13 +121,21 @@
 		$oPlayer = new $sTable;
 	
 		$aPlayerStats = $oPlayer->find($sWhere);
-
-		echo $sWhere;
 		
 		include "../../views/$sView.php";
 
 	} // End elseif
-
+	
+	elseif($action == 'tSchedule'){
+		$sGame = new reg201112tschedule();
+		$aTschedule = $sGame->find("1 order by date desc");
+		if(!$aTschedule){
+			echo $db->errormsg();
+		} //db error messages
+		include '../../views/tschedule.php';
+	} // End if
+	
+	
 	// ******************************************************
 	// Data Scrape Control
 	// ******************************************************	
