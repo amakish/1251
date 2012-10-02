@@ -15,9 +15,22 @@
 	}	
 	
 	ADOdb_Active_Record::SetDatabaseAdapter($db);
+	
+	class post201011gstat extends ADOdb_Active_Record{}
+	class post201011sstat extends ADOdb_Active_Record{}
+	class post201112gstat extends ADOdb_Active_Record{}
+	class post201112sstat extends ADOdb_Active_Record{}
+	
+	class reg201011gstat extends ADOdb_Active_Record{}	
+	class reg201011sstat extends ADOdb_Active_Record{}
+	class reg201112gstat extends ADOdb_Active_Record{}	
 	class reg201112sstat extends ADOdb_Active_Record{}
-	class reg201112gstat extends ADOdb_Active_Record{}
-	class tschedule extends ADOdb_Active_Record{}
+
+	class post201011tschedule extends ADOdb_Active_Record{}
+	class post201112tschedule extends ADOdb_Active_Record{}
+	
+	class reg201011tschedule extends ADOdb_Active_Record{}
+	class reg201112tschedule extends ADOdb_Active_Record{}
 	
 	// ******************************************************
 	// Views Control
@@ -118,10 +131,10 @@
 	// Data Scrape Control
 	// ******************************************************	
 	elseif($action == 'scrape1'){
-		include '../../model/dataSktrStats.php';
+		include '../../model/post201112dataSktrStats.php';
 	} // End if
 	elseif($action == 'scrape2'){
-		include '../../model/dataGoalieStats.php';
+		include '../../model/post201112dataGoalieStats.php';
 	} // End if
 	elseif($action == 'scrape3'){
 		include '../../model/dataSched.php';

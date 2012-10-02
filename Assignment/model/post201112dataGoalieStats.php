@@ -102,7 +102,7 @@
 					$sTeamCurrent = 		substr($sTeam, -3);
 
 					// create new skater, if player already exists then load stats overtop
-					$oGoalieStat = new reg201112gstat;
+					$oGoalieStat = new post201112gstat;
 					$oGoalieStat->Load('id = ?', array($sId));
 					
 					// update/insert stats
@@ -171,7 +171,13 @@
 				$sNameUrl = $aCells[0][1];
 				$aNameUrl = parse_url($sNameUrl);
 				$sId = substr($aNameUrl['query'], 3, 7);
-
+				
+				// get name and team
+				$sName = 				strip_tags($aCells[0][1]);
+				$sTeam = 				strip_tags($aCells[0][2]);
+				$sTeamFirst = 			substr($sTeam, 0, 3);
+				$sTeamCurrent = 		substr($sTeam, -3);
+				
 				// get dob
 				$sDob =	strip_tags($aCells[0][3]);
 				$sDobFormat = str_replace("'","", $sDob);
@@ -181,12 +187,34 @@
 				$dAge = number_format(((time() - $tsDob) / 31556926), 1);
 
 				// create new goalie, if player already exists then load stats overtop
-				$oGoalieStat = new reg201112gstat;
+				$oGoalieStat = new post201112gstat;
 				$oGoalieStat->Load('id = ?', array($sId));
 				
 				// update/insert stats
+				$oGoalieStat->id  = 		$sId;
+				$oGoalieStat->id  = 		$sId;
 				$oGoalieStat->dob = 		$dDob;
 				$oGoalieStat->age = 		$dAge;
+				$oGoalieStat->rk  = 		strip_tags($aCells[0][0]);
+				$oGoalieStat->name = 		$sName;
+				$oGoalieStat->team = 		$sTeam;
+				$oGoalieStat->teamcur = 	$sTeamCurrent;
+				$oGoalieStat->pos = 		"G";
+				$oGoalieStat->gp = 			strip_tags($aCells[0][3]);
+				$oGoalieStat->gs = 			strip_tags($aCells[0][4]);
+				$oGoalieStat->w = 			strip_tags($aCells[0][5]);
+				$oGoalieStat->l = 			strip_tags($aCells[0][6]);
+				$oGoalieStat->ot =			strip_tags($aCells[0][7]);
+				$oGoalieStat->sa =			strip_tags($aCells[0][8]);
+				$oGoalieStat->ga = 			strip_tags($aCells[0][9]);
+				$oGoalieStat->gaa = 		strip_tags($aCells[0][10]);
+				$oGoalieStat->sv = 			strip_tags($aCells[0][11]);
+				$oGoalieStat->svper = 		strip_tags($aCells[0][12]);
+				$oGoalieStat->so = 			strip_tags($aCells[0][13]);
+				$oGoalieStat->g = 			strip_tags($aCells[0][14]);
+				$oGoalieStat->a = 			strip_tags($aCells[0][15]);
+				$oGoalieStat->pim = 		strip_tags($aCells[0][16]);
+				$oGoalieStat->toi = 		strip_tags($aCells[0][17]);
 				/*
 				$dob = 			$oGoalieStat->dob;
 				$age =			$oGoalieStat->age;
@@ -213,12 +241,23 @@
 				$sNameUrl = $aCells[0][1];
 				$aNameUrl = parse_url($sNameUrl);
 				$sId = substr($aNameUrl['query'], 3, 7);
-					
+
+				// get name and team
+				$sName = 				strip_tags($aCells[0][1]);
+				$sTeam = 				strip_tags($aCells[0][2]);
+				$sTeamFirst = 			substr($sTeam, 0, 3);
+				$sTeamCurrent = 		substr($sTeam, -3);
+				
 				// create new skater, if player already exists then load stats overtop
-				$oGoalieStat = new reg201112gstat;
+				$oGoalieStat = new post201112gstat;
 				$oGoalieStat->Load('id = ?', array($sId));
-	
-				$oGoalieStat->rookie = 1;
+				
+				// update/insert stats
+				$oGoalieStat->id  = 		$sId;
+				$oGoalieStat->name = 		$sName;
+				$oGoalieStat->team = 		$sTeam;
+				$oGoalieStat->teamcur = 	$sTeamCurrent;
+				$oGoalieStat->rookie = 	1;
 	
 				$rc = $oGoalieStat->save();
 				if(!$rc){
@@ -229,7 +268,7 @@
 		} // End foreach
 	}; // End fgetRowsStatsBio
 	
-	
+
 	// ******************************************************
 	// Logic
 	// ******************************************************
@@ -239,12 +278,13 @@
 	$sPlyrNumOfYYY = "";
 
 	for($i=1; $sPlyrNumXXOf != $sPlyrNumOfYYY; $i++) {
-		$sStatsSummary = getGoalieStats("http://www.nhl.com/ice/playerstats.htm?fetchKey=20122ALLGAGALL&viewName=summary&sort=wins&pg=$i", "fgetRowsStatsSummary");
+		$sStatsSummary = getGoalieStats("http://www.nhl.com/ice/playerstats.htm?season=20112012&gameType=3&team=&position=G&country=&status=&viewName=summary&pg=$i", "fgetRowsStatsSummary");
 		$aPlyrNum = getPlyrNumXXofYYY($sStatsSummary);
 	
 		$sPlyrNumXXOf = $aPlyrNum[0];
 		$sPlyrNumOfYYY = $aPlyrNum[2];
 	} // End for loop
+
 	
 	// ******************************************************
 	// Goalie Stats -  Bio
@@ -253,14 +293,14 @@
 	$sPlyrNumOfYYY = "";
 	
 	for($i=1; $sPlyrNumXXOf != $sPlyrNumOfYYY; $i++) {
-		$sStatsBio = getGoalieStats("http://www.nhl.com/ice/playerstats.htm?fetchKey=20122ALLGAGALL&viewName=goalieBios&sort=player.birthCountryAbbrev&pg=$i", "fgetRowsStatsBio");
+		$sStatsBio = getGoalieStats("http://www.nhl.com/ice/playerstats.htm?gameType=3&position=G&season=20112012&sort=player.birthCountryAbbrev&status=A&viewName=goalieBios&page=i", "fgetRowsStatsBio");
 		$aPlyrNum = getPlyrNumXXofYYY($sStatsBio);
 	
 		$sPlyrNumXXOf = $aPlyrNum[0];
 		$sPlyrNumOfYYY = $aPlyrNum[2];
 	} // End for loop
 
-	
+
 	// ******************************************************
 	// Stats -  Rookie?
 	// ******************************************************
@@ -268,11 +308,11 @@
 	$sPlyrNumOfYYY = "";
 	
 	for($i=1; $sPlyrNumXXOf != $sPlyrNumOfYYY; $i++) {
-		$sStatsRookie = getGoalieStats("http://www.nhl.com/ice/playerstats.htm?season=20112012&gameType=2&team=&position=G&country=&status=R&viewName=summary&sort=points&pg=$i", "fgetRowsStatsRookie");
+		$sStatsRookie = getGoalieStats("http://www.nhl.com/ice/playerstats.htm?season=20112012&gameType=3&team=&position=G&country=&status=R&viewName=goalieBios&page=$i", "fgetRowsStatsRookie");
 		$aPlyrNum = getPlyrNumXXofYYY($sStatsRookie);
 	
 		$sPlyrNumXXOf = $aPlyrNum[0];
 		$sPlyrNumOfYYY = $aPlyrNum[2];
 	} // End for loop
-	
+		
 ?>
