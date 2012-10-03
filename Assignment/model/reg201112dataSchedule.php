@@ -88,7 +88,7 @@
 				preg_match_all("|<td(.*)</td>|U", $aRow, $aCells);
 				
 				// create new schedule
-				$oSchedule = new schedule;
+				$oSchedule = new reg201112tschedule;
 				
 				// update/insert stats
 				$sDateInternal = 	strip_tags($aCells[0][0]);
@@ -96,9 +96,11 @@
 				$sDate =			substr($sDateInternal, 0, $iDateInternalLen);
 				$sVTeam = 			strip_tags($aCells[0][1]);
 				$sHTeam = 			strip_tags($aCells[0][2]);
+
 				$sTimeInternal =	strip_tags($aCells[0][3]);
-				$iTimeInternalLen = (int)(strlen($sTimeInternal) / 2);
-				$sTime =			substr($sTimeInternal, 0, $iTimeInternalLen);
+				$aTime = explode("ET", $sTimeInternal, -1);
+
+				$sTime =			$aTime[0] . "ET";
 				$sResult =			strip_tags($aCells[0][4]);
 				
 				$oSchedule->date = 			$sDate;
@@ -107,7 +109,7 @@
 				$oSchedule->time = 			$sTime;
 				$oSchedule->result = 		$sResult;
 
-				echo " | Date: {$sDate} | Visiting Team: {$sVTeam}  | Home Team: {$sHTeam}  | Time: {$sTime} | TimeInternal: {$sTimeInternal} | Result: {$sResult} |\n";
+				echo " | Date: {$sDate} | Visiting Team: {$sVTeam}  | Home Team: {$sHTeam}  | Time: {$sTime} | Result: {$sResult} |\n";
 				
 				$rc = $oSchedule->save();
 				if(!$rc){
@@ -120,5 +122,5 @@
 
 	// ******************************************************
 	// Logic
-	$sSched = getSched("http://www.nhl.com/ice/schedulebyseason.htm?season=20122013&gameType=2&team=&network=&venue=", $fgetRowsSched);
+	$sSched = getSched("http://www.nhl.com/ice/schedulebyseason.htm?season=20112012&gameType=2&team=&network=&venue=", $fgetRowsSched);
 ?>

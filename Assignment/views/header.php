@@ -3,7 +3,7 @@
 		<a href="#nav" class="nav-collapse" id="nav-collapse">Menu</a>
 		<ul class="nav" id="nav">
 			<li class="active"><a title="See NHL player statistics" href="?action=pStats">Player Stats</a></li>
-			<li><a title="See NHL Teams statistics" href="?action=tStats">Team Stats</a></li>
+			<li><a title="See NHL Teams statistics" href="#">Team Stats</a></li>
 			<li><a title="See NHL Schedule" href="?action=tSchedule">Schedule</a></li>
 		</ul>
 	</div><!-- /.inner -->

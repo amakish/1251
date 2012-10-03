@@ -16,7 +16,7 @@
 		URL:	 		http://www.amakstats.com
 		Developer: 		Aaron Makish
 		Date Created: 	20120828
-		Last Revised: 	20121001
+		Last Revised: 	20121002
 		Language:		HTML5
 	
 		Website Description:
@@ -114,33 +114,31 @@
 					<p class="searchbutton">
 						<input type='submit' name='action' value='Search' />
 					</p>
-				</div>
+				</div><!-- / #formwrap -->
 			</form>
 			<table class="sortable">
 				<caption class="tableCaption"><?php echo substr($sSeason, 0, 4) . "-" . substr($sSeason, 4, 2)?> Skater Statistics</caption>
 				<thead>
 					<tr>
-						<th scope="col"></th>
-						<th scope="col" class="name">Name</th>
-						<th scope="col">Age</th>
-						<th scope="col">Team</th>
-						<th scope="col">Pos</th>
-						<th scope="col">GP</th>
-						<th scope="col">G</th>
-						<th scope="col">A</th>
-						<th scope="col">Pts</th>
-						<th scope="col">+/-</th>
-						<th scope="col">PIM</th>
-						<th scope="col">PPG</th>
-						<th scope="col">SHG</th>
-						<th scope="col">GWG</th>
-						<th scope="col">OTG</th>
-						<th scope="col">SOG</th>
-						<th scope="col">S%</th>
-						<th scope="col">FO%</th>
-						<th scope="col">TOI/G</th>
-						<th scope="col">PP TOI/G</th>
-						<th scope="col">SH TOI/G</th>
+						<th scope="col" class="cbase"></th>
+						<th scope="col" class="cbase name">Name</th>
+						<th scope="col" class="cbase">Age</th>
+						<th scope="col" class="cbase">Team</th>
+						<th scope="col" class="cbase">Pos</th>
+						<th scope="col" class="cbase">GP</th>
+						<th scope="col" class="cbase">G</th>
+						<th scope="col" class="cbase">A</th>
+						<th scope="col" class="cbase">Pts</th>
+						<th scope="col" class="cbp1">+/-</th>
+						<th scope="col" class="cbp1">PIM</th>
+						<th scope="col" class="cbp1">PPG</th>
+						<th scope="col" class="cbp1">SHG</th>
+						<th scope="col" class="cbp1">GWG</th>
+						<th scope="col" class="cbp2">SOG</th>
+						<th scope="col" class="cbp2">S%</th>
+						<th scope="col" class="cbp2">TOI/G</th>
+						<th scope="col" class="cbp2">PP TOI/G</th>
+						<th scope="col" class="cbp2">SH TOI/G</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -150,27 +148,25 @@
 					$i++;
 						?>
 						<tr>
-							<td><?php echo $i;?></td>
-							<td class="name"><?php echo $sSktrStats->name;?></td>
-							<td><?php echo $sSktrStats->age;?></td>
-							<td><?php echo $sSktrStats->teamcur;?></td>
-							<td><?php echo $sSktrStats->pos;?></td>
-							<td><?php echo $sSktrStats->gp;?></td>
-							<td><?php echo $sSktrStats->g;?></td>
-							<td><?php echo $sSktrStats->a;?></td>
-							<td><?php echo $sSktrStats->pts;?></td>
-							<td><?php echo $sSktrStats->plusminus;?></td>
-							<td><?php echo $sSktrStats->pim;?></td>
-							<td><?php echo $sSktrStats->ppg;?></td>
-							<td><?php echo $sSktrStats->shg;?></td>
-							<td><?php echo $sSktrStats->gwg;?></td>
-							<td><?php echo $sSktrStats->otg;?></td>
-							<td><?php echo $sSktrStats->sog;?></td>
-							<td><?php echo $sSktrStats->shtpct;?></td>
-							<td><?php echo $sSktrStats->fopct;?></td>
-							<td><?php echo $sSktrStats->toiperg;?></td>
-							<td><?php echo $sSktrStats->pptoiperg;?></td>
-							<td><?php echo $sSktrStats->shtoiperg;?></td>
+							<td class="cbase"><?php echo $i;?></td>
+							<td class="cbase name"><?php echo $sSktrStats->name;?></td>
+							<td class="cbase"><?php echo $sSktrStats->age;?></td>
+							<td class="cbase"><?php echo $sSktrStats->teamcur;?></td>
+							<td class="cbase"><?php echo $sSktrStats->pos;?></td>
+							<td class="cbase"><?php echo $sSktrStats->gp;?></td>
+							<td class="cbase"><?php echo $sSktrStats->g;?></td>
+							<td class="cbase"><?php echo $sSktrStats->a;?></td>
+							<td class="cbase"><?php echo $sSktrStats->pts;?></td>
+							<td class="cbp1"><?php echo $sSktrStats->plusminus;?></td>
+							<td class="cbp1"><?php echo $sSktrStats->pim;?></td>
+							<td class="cbp1"><?php echo $sSktrStats->ppg;?></td>
+							<td class="cbp1"><?php echo $sSktrStats->shg;?></td>
+							<td class="cbp1"><?php echo $sSktrStats->gwg;?></td>
+							<td class="cbp2"><?php echo $sSktrStats->sog;?></td>
+							<td class="cbp2"><?php echo $sSktrStats->shtpct;?></td>
+							<td class="cbp2"><?php echo $sSktrStats->toiperg;?></td>
+							<td class="cbp2"><?php echo $sSktrStats->pptoiperg;?></td>
+							<td class="cbp2"><?php echo $sSktrStats->shtoiperg;?></td>
 						</tr>
 				<?php } ?>
 				</tbody>

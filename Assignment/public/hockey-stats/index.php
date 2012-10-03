@@ -31,7 +31,8 @@
 	
 	class reg201011tschedule extends ADOdb_Active_Record{}
 	class reg201112tschedule extends ADOdb_Active_Record{}
-
+	class reg201213tschedule extends ADOdb_Active_Record{}
+	
 	// ******************************************************
 	// Views Control
 	// ******************************************************
@@ -129,11 +130,41 @@
 	elseif($action == 'tSchedule'){
 		$sGame = new reg201112tschedule();
 		$aTschedule = $sGame->find("1 order by date desc");
+		
 		if(!$aTschedule){
 			echo $db->errormsg();
 		} //db error messages
+		
 		include '../../views/tschedule.php';
-	} // End if
+	} // End elseif
+	
+	elseif($action == 'Search'){
+		$sSeason	 	= ($_POST['season']);
+		$sGameType 		= ($_POST['gameType']);
+		$sTeam 			= ($_POST['team']);
+	
+		//print_r($_POST);
+	
+		$sTable = $sGameType . $sSeason;
+	
+		$sWhere = "";
+	
+		if ($sTeam != "All") {
+			if($sWhere){
+				$sWhere .= " and ";
+			} // End inner if
+			$sWhere .= "team ='" . $sTeam . "'";
+		} // End if
+		
+		if(!$sWhere) {
+			$sWhere = 1;
+		} // End if
+		
+		$oSchedule = new $sTable;
+		
+		$aTschedule = $sGame->find($sWhere);
+
+	} // End else if
 	
 	
 	// ******************************************************
@@ -145,7 +176,5 @@
 	elseif($action == 'scrape2'){
 		include '../../model/post201112dataGoalieStats.php';
 	} // End if
-	elseif($action == 'scrape3'){
-		include '../../model/dataSched.php';
-	} // End if
+
 ?>
