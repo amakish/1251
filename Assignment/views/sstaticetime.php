@@ -141,7 +141,7 @@
 				<tbody>
 					<?php 
 					$i=0;
-					foreach($aPlayerStats as $sSktrStats){
+					foreach($aData as $sSktrStats){
 					$i++;
 						?>
 						<tr>

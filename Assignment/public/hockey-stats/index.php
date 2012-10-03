@@ -25,9 +25,11 @@
 	class reg201011sstat extends ADOdb_Active_Record{}
 	class reg201112gstat extends ADOdb_Active_Record{}	
 	class reg201112sstat extends ADOdb_Active_Record{}
-
+	class reg201213sstat extends ADOdb_Active_Record{}
+	
 	class post201011tschedule extends ADOdb_Active_Record{}
 	class post201112tschedule extends ADOdb_Active_Record{}
+	class post201213tschedule extends ADOdb_Active_Record{}
 	
 	class reg201011tschedule extends ADOdb_Active_Record{}
 	class reg201112tschedule extends ADOdb_Active_Record{}
@@ -48,27 +50,30 @@
 	
 	if($action == '' || $action == 'pStats'){
 		$sSktrStats = new reg201112sstat();
-		$aPlayerStats = $sSktrStats->find("1 order by pts desc");
+		$aData = $sSktrStats->find("1 order by pts desc");
 		include '../../views/sstatscoring.php';
 	} // End if
 
 	elseif($action == 'Search'){
-		$sSeason	 	= ($_POST['season']);
-		$sGameType 		= ($_POST['gameType']);
-		$sTeam 			= ($_POST['team']);
-		$sPposition 	= ($_POST['position']); /* s, f, d or g */
-		$sStatView 		= ($_POST['statView']);
-		$sPlayerStatus 	= ($_POST['playerStatus']);
+		$sSeason		= ($_POST['season']);
+		$sGameType		= ($_POST['gameType']);
+		$sTeam			= ($_POST['team']);		
+		$sPposition		= (array_key_exists('position', $_POST)?$_POST['position']: '');
+		$sStatView		= (array_key_exists('statView', $_POST)?$_POST['statView']: 'tschedule');
+		$sPlayerStatus	= (array_key_exists('playerStatus', $_POST)?$_POST['playerStatus']: 'All');
 		
-		//print_r($_POST);
+		print_r($_POST);
 		
 		if($sPposition == "g") {
 			$sPosition = "gstat";
 		}
+		elseif($sPposition == "") {
+			$sPosition = "tschedule";
+		}
 		else {
 			$sPosition = "sstat";
 		}
-		
+
 		$sTable = $sGameType . $sSeason . $sPosition;
 		$sView = $sStatView;
 
@@ -78,9 +83,14 @@
 			if($sWhere){
 				$sWhere .= " and ";
 			} // End inner if
-			$sWhere .= "team ='" . $sTeam . "'";
+			if($sStatView == 'tschedule') {
+				$sWhere .= "hteam ='" . $sTeam . "' || vteam ='" . $sTeam . "'";
+			}
+			else {
+				$sWhere .= "team ='" . $sTeam . "'";
+			}
 		}
-		
+
 		if($sPposition != "s") {
 			switch ($sPposition) {
 				case "s":
@@ -116,12 +126,44 @@
 		} // End if
 		
 		if(!$sWhere) {
-			$sWhere = 1;
+			$sWhere = 1;	
 		} // End if
+		
+		// ******************************************************
+		// Session Control
+		// ******************************************************
+		session_start();
 
-		$oPlayer = new $sTable;
-	
-		$aPlayerStats = $oPlayer->find($sWhere);
+		if (!isset($_SESSION['pagenum'])) {
+			$_SESSION['pagenum'] = 0;
+		}
+		elseif($action == 'Next') {
+			$_SESSION['pagenum']++;
+		}
+		elseif($action == 'Previous' && $iPageNum > 0) {
+			$_SESSION['pagenum']--;
+		}
+		elseif($action == 'All') {
+		
+		}
+		
+		$iPerPage = 20;
+		$iPageNum = $_SESSION['pagenum'];
+			
+		print_r($_SESSION);
+			
+		$sWhere .= " Limit $iPageNum, $iPerPage";
+		
+		
+		$oData = new $sTable;
+		
+		echo "$sWhere";
+		
+		$aData = $oData->find($sWhere);
+		
+		if(!$aData){
+			echo $db->errormsg();
+		} //db error messages
 		
 		include "../../views/$sView.php";
 
@@ -129,44 +171,15 @@
 	
 	elseif($action == 'tSchedule'){
 		$sGame = new reg201112tschedule();
-		$aTschedule = $sGame->find("1 order by date desc");
+		$aData = $sGame->find("1 order by date desc");
 		
-		if(!$aTschedule){
+		if(!$aData){
 			echo $db->errormsg();
 		} //db error messages
 		
 		include '../../views/tschedule.php';
 	} // End elseif
-	
-	elseif($action == 'Search'){
-		$sSeason	 	= ($_POST['season']);
-		$sGameType 		= ($_POST['gameType']);
-		$sTeam 			= ($_POST['team']);
-	
-		//print_r($_POST);
-	
-		$sTable = $sGameType . $sSeason;
-	
-		$sWhere = "";
-	
-		if ($sTeam != "All") {
-			if($sWhere){
-				$sWhere .= " and ";
-			} // End inner if
-			$sWhere .= "team ='" . $sTeam . "'";
-		} // End if
-		
-		if(!$sWhere) {
-			$sWhere = 1;
-		} // End if
-		
-		$oSchedule = new $sTable;
-		
-		$aTschedule = $sGame->find($sWhere);
 
-	} // End else if
-	
-	
 	// ******************************************************
 	// Data Scrape Control
 	// ******************************************************	
