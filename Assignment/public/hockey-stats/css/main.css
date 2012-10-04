@@ -198,7 +198,7 @@ tr:nth-child(even) {
 }
 
 input[type="submit"] {
-	margin: 0.5em 0 0 8.5em;
+	margin: 0.5em 0 0 0;
 	-moz-appearance: none;
     background: none repeat scroll 0 0 #00A4E7;
     border: medium none;

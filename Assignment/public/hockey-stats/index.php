@@ -73,47 +73,99 @@
 	}
 	*/
 	/*
-	 | POST/GET Array Control
+	 | $_POST / $_GET Array Control
 	|_________________________________________________________________________*/
 	$action = (array_key_exists('action', $_POST)?$_POST['action']: '');
 	$action = (array_key_exists('action', $_GET)?$_GET['action']: $action);
 	
 	/*
-	| Session Control
+	| $_SESSION Control
 	|_________________________________________________________________________*/
 	session_start();
 
-	// $sWhere 	= $_SESSION['where'];
-	// $sTable 	= $_SESSION['table'];
-	// $sOrder 	= $_SESSION['order'];
-	$iPageNumber = $_SESSION['pagenum'];
+	if (!isset($_SESSION['where'])) {
+		$_SESSION['where'] = "";
+	}
+	if (!isset($_SESSION['table'])) {
+		$_SESSION['table'] = "reg201112sstat";
+	}
+	if (!isset($_SESSION['order'])) {
+		$_SESSION['order'] = " order by pts desc";
+	}
+	if (!isset($_SESSION['view'])) {
+		$_SESSION['view'] = "sstatscoring";
+	}
+	
+	if (!isset($_SESSION['season'])) {
+		$_SESSION['season'] = "201112";
+	}
+	if (!isset($_SESSION['gameType'])) {
+		$_SESSION['gameType'] = "reg";
+	}
+	if (!isset($_SESSION['statView'])) {
+		$_SESSION['statView'] = "sstatscoring";
+	}
+	if (!isset($_SESSION['team'])) {
+		$_SESSION['team'] = "All";
+	}
+	if (!isset($_SESSION['position'])) {
+		$_SESSION['position'] = "s";
+	}
+	if (!isset($_SESSION['playerStatus'])) {
+		$_SESSION['playerStatus'] = "All";
+	}
+	
+	
+	$sWhere 	= $_SESSION['where'];
+	$sTable 	= $_SESSION['table'];
+	$sOrder 	= $_SESSION['order'];
+	$sView	 	= $_SESSION['view'];
+	
+	$sSeason 		= $_SESSION['season'];
+	$sGameType		= $_SESSION['gameType'];
+	$sTeam			= $_SESSION['team'];
+	$sStatView      = $_SESSION['statView'];
+	$sPposition		= $_SESSION['position'];
+	$sPlayerStatus	= $_SESSION['playerStatus'];
+	
 	
 	if($action == 'Search') {
 	
-		$sGameType		= ($_POST['gameType']);
 		$sSeason		= ($_POST['season']);
+		$sGameType		= ($_POST['gameType']);
 		$sTeam			= ($_POST['team']);
-		$sStatView		= (array_key_exists('statView', $_POST)?$_POST['statView']: 'tschedule');
 		$sPposition		= (array_key_exists('position', $_POST)?$_POST['position']: '');
+		$sStatView		= (array_key_exists('statView', $_POST)?$_POST['statView']: 'tschedule');
 		$sPlayerStatus	= (array_key_exists('playerStatus', $_POST)?$_POST['playerStatus']: 'All');
-
-		/*
-		| $sWhere
-		|_________________________________________________________________________*/
+		
+		//print_r($_POST);
+		
+		if($sPposition == "g") {
+			$sPosition = "gstat";
+		}
+		elseif($sPposition == "") {
+			$sPosition = "tschedule";
+		}
+		else {
+			$sPosition = "sstat";
+		}
+		
+		$sTable = $sGameType . $sSeason . $sPosition;
+		$sView = $sStatView;
+		
 		$sWhere = "";
-		$sView  = $sStatView;
 		
 		if ($sTeam != "All") {
 			if($sWhere){
 				$sWhere .= " and ";
-			}
+			} // End inner if
 			if($sStatView == 'tschedule') {
 				$sWhere .= "hteam ='" . $sTeam . "' || vteam ='" . $sTeam . "'";
 			}
 			else {
 				$sWhere .= "team ='" . $sTeam . "'";
 			}
-		} // End if
+		}
 		
 		if($sPposition != "s") {
 			switch ($sPposition) {
@@ -142,6 +194,21 @@
 			} // End switch
 		} // End if
 		
+		switch ($sView) {
+			case "gstat":
+				$sOrder = " order by w desc";
+				break;
+			case "sstatscoring":
+				$sOrder = " order by pts desc";
+				break;
+			case "sstaticetime":
+				$sOrder = " order by pppts desc";
+				break;
+			case "tschedule":
+				$sOrder = " order by id";
+				break;
+		} // End switch
+		
 		if($sPlayerStatus != "All") {
 			if($sWhere){
 				$sWhere .= " and ";
@@ -153,55 +220,83 @@
 			$sWhere = 1;
 		} // End if
 
-		$sTable = $sGameType . $sSeason . $sPposition;
-
-		$sOrder = "1 order by pts desc";
+		$_SESSION['view'] 		= $sView;
+		$_SESSION['table'] 		= $sTable;
+		$_SESSION['where'] 		= $sWhere;
+		$_SESSION['order'] 		= $sOrder;
+		
+		$_SESSION['season'] 		= $sSeason;
+		$_SESSION['gameType'] 		= $sGameType;
+		$_SESSION['statview']		= $sStatView;
+		$_SESSION['team'] 			= $sTeam;
+		$_SESSION['position'] 		= $sPposition;
+		$_SESSION['playerStatus'] 	= $sPlayerStatus;
+		
+		$_SESSION['pagenum'] = 0;
 		
 	} // End if /* ($action == 'Search')*/
-
-	elseif($action == 'tSchedule'){
-
-		$sOrder = "1 order by pts desc";
-		
-		
-		
-	}  // End elseif /* ($action == 'tSchedule')*/
-
-	else {
-		/*
-		| $sWhere
-		|_________________________________________________________________________*/	
-		
-
-		
-		if (!isset($_SESSION['pagenum'])) {
-			$_SESSION['pagenum'] = 0;
-		} else {
-			$_SESSION['pagenum']++;
-		}
-		
-		print_r($_SESSION);
-		
-		$iPerPage = 20;
-		$sPagination .= " Limit $iPageNumber * , $iPageNum";
-
-	}  // End else /* ($action == 'pStats')*/
 	
+	switch ($action) {
+		case "Name":
+			$sOrder = " order by name";
+			$_SESSION['pagenum'] = 0;
+			break;
+		case "Age":
+			$sOrder = " order by age";
+			$_SESSION['pagenum'] = 0;
+			break;
+	} // End switch
+	
+	
+	/*
+	| Pagination ControL
+	|_________________________________________________________________________*/	
+
+	$iPerPage = 20;
+	$iPageNum = $_SESSION['pagenum'];
+	
+	if($action == 'Next') {
+		$iPageNum++;
+		$_SESSION['pagenum'] = $iPageNum;
+	}
+	elseif($action == 'Previous' && $iPageNum > 0) {
+		$iPageNum--;
+		$_SESSION['pagenum'] = $iPageNum;
+	}
+	
+	print_r ("action" . $action);
+	print_r ("PageNum" . $iPageNum);
+	print_r($_SESSION);
+	
+	$iStartPage = 0;
+	
+	if($action == 'All') {
+		$sPagination ="";
+	}
+	else {
+		$iStartPage = $iPageNum * $iPerPage;
+		$sPagination = " Limit $iStartPage , $iPerPage";
+	}
+	$iStartPage++;
 	/*
 	| Data ControL
 	|_________________________________________________________________________*/	
 	$oData = new $sTable;
-	$aData = $oData->find($sWhere . $sOrder . $sPagination);
+	
+	$sSql = $sWhere . $sOrder . $sPagination;
+	$aData = $oData->find($sSql);
+	
+	
+	if(!$aData){
+		echo $db->errormsg()." ".$sSql;
+	} //db error messages
+	
 
 	/*
 	| View ControL
-	|_________________________________________________________________________*/	
-	if($sStatView == 'tschedule') {
-		include '../../views/tschedule.php';
-	}
-	else {
-		include "../../views/$sView.php";
-	}
+	|_________________________________________________________________________*/
+	
+
 
 	/*
 	| Data Scrape ControL
@@ -212,5 +307,8 @@
 	elseif($action == 'scrape2'){
 		include '../../model/post201112dataGoalieStats.php';
 	} // End if
+	else {
+		include "../../views/$sView.php";
+	}
 ?>
 	

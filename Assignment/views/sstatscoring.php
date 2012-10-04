@@ -55,8 +55,8 @@
 					<p>
 						<label>Scoring View</label>
 						<select id="statview" name="statView">
-							<option value="sstatscoring" <?php if($sStatView == "sstatscoring"){echo 'selected="selected"';}?>>Standard</option>
-							<option value="sstaticetime" <?php if($sStatView == "sstaticetime"){echo 'selected="selected"';}?>>Ice Time Splits</option>
+							<option value="sstatscoring" <?php if($sView == "sstatscoring"){echo 'selected="selected"';}?>>Standard</option>
+							<option value="sstaticetime" <?php if($sView == "sstaticetime"){echo 'selected="selected"';}?>>Ice Time Splits</option>
 						</select>					
 					</p>
 					<p>
@@ -119,27 +119,28 @@
 			<table class="sortable">
 				<caption class="tableCaption"><?php echo substr($sSeason, 0, 4) . "-" . substr($sSeason, 4, 2)?> Skater Statistics</caption>
 				<thead>
-					<tr>
-						<th scope="col" class="cbase"></th>
-						<th scope="col" class="cbase name">Name</th>
-						<th scope="col" class="cbase">Age</th>
-						<th scope="col" class="cbase">Team</th>
-						<th scope="col" class="cbase">Pos</th>
-						<th scope="col" class="cbase">GP</th>
-						<th scope="col" class="cbase">G</th>
-						<th scope="col" class="cbase">A</th>
-						<th scope="col" class="cbase">Pts</th>
-						<th scope="col" class="cbp1">+/-</th>
-						<th scope="col" class="cbp1">PIM</th>
-						<th scope="col" class="cbp1">PPG</th>
-						<th scope="col" class="cbp1">SHG</th>
-						<th scope="col" class="cbp1">GWG</th>
-						<th scope="col" class="cbp2">SOG</th>
-						<th scope="col" class="cbp2">S%</th>
-						<th scope="col" class="cbp2">TOI/G</th>
-						<th scope="col" class="cbp2">PP TOI/G</th>
-						<th scope="col" class="cbp2">SH TOI/G</th>
-					</tr>
+					<form class="thead" action='.' method="post">
+						<tr>
+							<input type='submit' name='action' scope="col" value='' />
+							<input type='submit' name='action' scope="col" value='Name' />
+							<input type='submit' name='action' scope="col" value='Age' />
+							<input type='submit' name='action' scope="col" value='Team' />
+							<input type='submit' name='action' scope="col" value='Pos' />
+							<input type='submit' name='action' scope="col" value='GP' />
+							<input type='submit' name='action' scope="col" value='G' />
+							<input type='submit' name='action' scope="col" value='A' />
+							<input type='submit' name='action' scope="col" value='+/-' />
+							<input type='submit' name='action' scope="col" value='PIM' />
+							<input type='submit' name='action' scope="col" value='PPG' />
+							<input type='submit' name='action' scope="col" value='SHG' />
+							<input type='submit' name='action' scope="col" value='GWG' />
+							<input type='submit' name='action' scope="col" value='SOG' />
+							<input type='submit' name='action' scope="col" value='S%' />
+							<input type='submit' name='action' scope="col" value='TOI/G' />
+							<input type='submit' name='action' scope="col" value='PP TOI/G' />
+							<input type='submit' name='action' scope="col" value='SH TOI/G' />
+						</tr>
+					</form>
 				</thead>
 				<tbody>
 					<?php 
@@ -148,7 +149,7 @@
 					$i++;
 						?>
 						<tr>
-							<td class="cbase"><?php echo $i;?></td>
+							<td class="cbase"><?php echo $iStartPage++;?></td>
 							<td class="cbase name"><?php echo $sSktrStats->name;?></td>
 							<td class="cbase"><?php echo $sSktrStats->age;?></td>
 							<td class="cbase"><?php echo $sSktrStats->teamcur;?></td>
@@ -172,7 +173,7 @@
 				</tbody>
 				
 			</table><!-- / #statTable -->
-			<div id="pagination">
+			<form id="pagination" action='.' method="post">
 				<p class="searchbutton">
 					<input type='submit' name='action' value='Previous' />
 				</p>
@@ -182,7 +183,7 @@
 				<p class="searchbutton">
 					<input type='submit' name='action' value='All' />
 				</p>
-			</div>
+			</form><!-- / #pagination -->
 		</article>
 	</div><!-- / #container -->
 	<!-- footer -->

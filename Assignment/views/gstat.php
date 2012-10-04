@@ -141,7 +141,7 @@
 				<tbody>
 					<?php 
 					$i=0;
-					foreach($aPlayerStats as $sGoalieStats){
+					foreach($aData as $sGoalieStats){
 					$i++;
 						?>
 						<tr>
@@ -169,6 +169,17 @@
 				<?php } ?>
 				</tbody>
 			</table><!-- / #statTable -->
+			<div id="pagination">
+				<p class="searchbutton">
+					<input type='submit' name='action' value='Previous' />
+				</p>
+				<p class="searchbutton">
+					<input type='submit' name='action' value='Next' />
+				</p>
+				<p class="searchbutton">
+					<input type='submit' name='action' value='All' />
+				</p>
+			</div><!-- / #pagination -->
 		</article>
 	</div><!-- / #container -->
 	<!-- footer -->
