@@ -129,6 +129,7 @@
 							<input type='submit' name='action' scope="col" value='GP' />
 							<input type='submit' name='action' scope="col" value='G' />
 							<input type='submit' name='action' scope="col" value='A' />
+							<input type='submit' name='action' scope="col" value='Pts' />
 							<input type='submit' name='action' scope="col" value='+/-' />
 							<input type='submit' name='action' scope="col" value='PIM' />
 							<input type='submit' name='action' scope="col" value='PPG' />
@@ -149,25 +150,25 @@
 					$i++;
 						?>
 						<tr>
-							<td class="cbase"><?php echo $iStartPage++;?></td>
-							<td class="cbase name"><?php echo $sSktrStats->name;?></td>
-							<td class="cbase"><?php echo $sSktrStats->age;?></td>
-							<td class="cbase"><?php echo $sSktrStats->teamcur;?></td>
-							<td class="cbase"><?php echo $sSktrStats->pos;?></td>
-							<td class="cbase"><?php echo $sSktrStats->gp;?></td>
-							<td class="cbase"><?php echo $sSktrStats->g;?></td>
-							<td class="cbase"><?php echo $sSktrStats->a;?></td>
-							<td class="cbase"><?php echo $sSktrStats->pts;?></td>
-							<td class="cbp1"><?php echo $sSktrStats->plusminus;?></td>
-							<td class="cbp1"><?php echo $sSktrStats->pim;?></td>
-							<td class="cbp1"><?php echo $sSktrStats->ppg;?></td>
-							<td class="cbp1"><?php echo $sSktrStats->shg;?></td>
-							<td class="cbp1"><?php echo $sSktrStats->gwg;?></td>
-							<td class="cbp2"><?php echo $sSktrStats->sog;?></td>
-							<td class="cbp2"><?php echo $sSktrStats->shtpct;?></td>
-							<td class="cbp2"><?php echo $sSktrStats->toiperg;?></td>
-							<td class="cbp2"><?php echo $sSktrStats->pptoiperg;?></td>
-							<td class="cbp2"><?php echo $sSktrStats->shtoiperg;?></td>
+							<td><?php echo $iStartPage++;?></td>
+							<td><?php echo $sSktrStats->name;?></td>
+							<td><?php echo $sSktrStats->age;?></td>
+							<td><?php echo $sSktrStats->teamcur;?></td>
+							<td><?php echo $sSktrStats->pos;?></td>
+							<td><?php echo $sSktrStats->gp;?></td>
+							<td><?php echo $sSktrStats->g;?></td>
+							<td><?php echo $sSktrStats->a;?></td>
+							<td><?php echo $sSktrStats->pts;?></td>
+							<td><?php echo $sSktrStats->plusminus;?></td>
+							<td><?php echo $sSktrStats->pim;?></td>
+							<td><?php echo $sSktrStats->ppg;?></td>
+							<td><?php echo $sSktrStats->shg;?></td>
+							<td><?php echo $sSktrStats->gwg;?></td>
+							<td><?php echo $sSktrStats->sog;?></td>
+							<td><?php echo $sSktrStats->shtpct;?></td>
+							<td><?php echo $sSktrStats->toiperg;?></td>
+							<td><?php echo $sSktrStats->pptoiperg;?></td>
+							<td><?php echo $sSktrStats->shtoiperg;?></td>
 						</tr>
 				<?php } ?>
 				</tbody>
