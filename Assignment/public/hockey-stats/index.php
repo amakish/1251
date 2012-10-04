@@ -73,29 +73,30 @@
 	}
 	*/
 	/*
-	| Session Control
-	|_________________________________________________________________________*/
-	session_start();
-	
-	$sWhere = $_SESSION('where');
-	$sTable = $_SESSION('table');
-	$sOrder = $_SESSION('order');
-	
-	/*
-	| POST/GET Array Control
+	 | POST/GET Array Control
 	|_________________________________________________________________________*/
 	$action = (array_key_exists('action', $_POST)?$_POST['action']: '');
 	$action = (array_key_exists('action', $_GET)?$_GET['action']: $action);
 	
-	$sGameType		= ($_POST['gameType']);
-	$sSeason		= ($_POST['season']);
-	$sTeam			= ($_POST['team']);
-	$sStatView		= (array_key_exists('statView', $_POST)?$_POST['statView']: 'tschedule');
-	$sPposition		= (array_key_exists('position', $_POST)?$_POST['position']: '');
-	$sPlayerStatus	= (array_key_exists('playerStatus', $_POST)?$_POST['playerStatus']: 'All');
+	/*
+	| Session Control
+	|_________________________________________________________________________*/
+	session_start();
 
-	/*CASE 1*/
+	// $sWhere 	= $_SESSION['where'];
+	// $sTable 	= $_SESSION['table'];
+	// $sOrder 	= $_SESSION['order'];
+	$iPageNumber = $_SESSION['pagenum'];
+	
 	if($action == 'Search') {
+	
+		$sGameType		= ($_POST['gameType']);
+		$sSeason		= ($_POST['season']);
+		$sTeam			= ($_POST['team']);
+		$sStatView		= (array_key_exists('statView', $_POST)?$_POST['statView']: 'tschedule');
+		$sPposition		= (array_key_exists('position', $_POST)?$_POST['position']: '');
+		$sPlayerStatus	= (array_key_exists('playerStatus', $_POST)?$_POST['playerStatus']: 'All');
+
 		/*
 		| $sWhere
 		|_________________________________________________________________________*/
@@ -151,69 +152,65 @@
 		if(!$sWhere) {
 			$sWhere = 1;
 		} // End if
-		
-		/*
-		| $sTable
-		|_________________________________________________________________________*/
 
-		$sTable = $sGameType . $sSeason . $sPosition;
-		
-		/*
-		| $sOrder
-		|_________________________________________________________________________*/
+		$sTable = $sGameType . $sSeason . $sPposition;
 
 		$sOrder = "1 order by pts desc";
 		
-	}
-	
-	/*CASE 2*/
-	elseif($action == '') {
-		/*
-		| $sWhere
-		|_________________________________________________________________________*/
-	
-	
-		$sWhere = ;
-	
-		/*
-		| $sTable
-		|_________________________________________________________________________*/
-	
-	
-		$sTable = ;
-	
-		/*
-		| $sOrder
-		|_________________________________________________________________________*/
-	
-	
-		$sOrder = ;
-	
-	}
-	
-	/*CASE 3*/
+	} // End if /* ($action == 'Search')*/
+
+	elseif($action == 'tSchedule'){
+
+		$sOrder = "1 order by pts desc";
+		
+		
+		
+	}  // End elseif /* ($action == 'tSchedule')*/
+
 	else {
 		/*
 		| $sWhere
-		|_________________________________________________________________________*/
+		|_________________________________________________________________________*/	
+		
+
+		
+		if (!isset($_SESSION['pagenum'])) {
+			$_SESSION['pagenum'] = 0;
+		} else {
+			$_SESSION['pagenum']++;
+		}
+		
+		print_r($_SESSION);
+		
+		$iPerPage = 20;
+		$sPagination .= " Limit $iPageNumber * , $iPageNum";
+
+	}  // End else /* ($action == 'pStats')*/
 	
-	
-		$sWhere = ;
-	
-		/*
-		| $sTable
-		|_________________________________________________________________________*/
-	
-	
-		$sTable = ;
-	
-		/*
-		| $sOrder
-		|_________________________________________________________________________*/
-	
-	
-		$sOrder = ;
-	
+	/*
+	| Data ControL
+	|_________________________________________________________________________*/	
+	$oData = new $sTable;
+	$aData = $oData->find($sWhere . $sOrder . $sPagination);
+
+	/*
+	| View ControL
+	|_________________________________________________________________________*/	
+	if($sStatView == 'tschedule') {
+		include '../../views/tschedule.php';
 	}
+	else {
+		include "../../views/$sView.php";
+	}
+
+	/*
+	| Data Scrape ControL
+	|_________________________________________________________________________*/
+	if($action == 'scrape1'){
+		include '../../model/post201112dataSktrStats.php';
+	} // End if
+	elseif($action == 'scrape2'){
+		include '../../model/post201112dataGoalieStats.php';
+	} // End if
 ?>
 	
