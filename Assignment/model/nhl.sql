@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 03, 2012 at 02:15 AM
+-- Generation Time: Oct 05, 2012 at 03:43 AM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -1166,6 +1166,22 @@ INSERT INTO `post201112tschedules` (`id`, `date`, `vteam`, `hteam`, `time`, `res
 (84, 'Wed Jun 6, 2012', 'New Jersey', 'Los Angeles', '8:00 PM ET', 'FINAL: NJD(3) - LAK (1)'),
 (85, 'Sat Jun 9, 2012', 'Los Angeles', 'New Jersey', '8:00 PM ET', 'FINAL: LAK(1) - NJD (2)'),
 (86, 'Mon Jun 11, 2012', 'New Jersey', 'Los Angeles', '8:00 PM ET', 'FINAL: NJD(1) - LAK (6)');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post201213tschedules`
+--
+
+CREATE TABLE IF NOT EXISTS `post201213tschedules` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` varchar(20) NOT NULL,
+  `vteam` varchar(50) NOT NULL,
+  `hteam` varchar(50) NOT NULL,
+  `time` varchar(50) NOT NULL,
+  `result` varchar(40) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

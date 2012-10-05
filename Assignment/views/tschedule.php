@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html id="amakstats_com" lang="en">
 <head>
 	<meta charset="utf-8">
@@ -97,8 +97,8 @@
 				</div><!-- / #formwrap -->
 			</form>
 			<table id="schedTable">
-				<caption class="tableCaption">2011-12</caption>
 				<thead>
+					<h1 class="tableCaption"><?php echo substr($sSeason, 0, 4) . "-" . substr($sSeason, 4, 2)?> Schedule</h1>
 					<tr>
 						<th scope="col">Date</th>
 						<th scope="col">Visiting Team</th>

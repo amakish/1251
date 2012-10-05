@@ -111,77 +111,77 @@
 							<option value="Rookie" <?php if($sPlayerStatus == "Rookie"){echo 'selected="selected"';}?>>Rookies</option>
 						</select>
 					</p>
-					<p class="searchbutton">
+					<p class="button">
 						<input type='submit' name='action' value='Search' />
 					</p>
 				</div><!-- / #formwrap -->
 			</form>
-			<table class="sortable">
-				<caption class="tableCaption"><?php echo substr($sSeason, 0, 4) . "-" . substr($sSeason, 4, 2)?> Skater Statistics</caption>
-				<thead>
-					<form class="thead" action='.' method="post">
-						<tr>
-							<input type='submit' name='action' scope="col" value='' />
-							<input type='submit' name='action' scope="col" value='Name' />
-							<input type='submit' name='action' scope="col" value='Age' />
-							<input type='submit' name='action' scope="col" value='Team' />
-							<input type='submit' name='action' scope="col" value='Pos' />
-							<input type='submit' name='action' scope="col" value='GP' />
-							<input type='submit' name='action' scope="col" value='G' />
-							<input type='submit' name='action' scope="col" value='A' />
-							<input type='submit' name='action' scope="col" value='Pts' />
-							<input type='submit' name='action' scope="col" value='+/-' />
-							<input type='submit' name='action' scope="col" value='PIM' />
-							<input type='submit' name='action' scope="col" value='PPG' />
-							<input type='submit' name='action' scope="col" value='SHG' />
-							<input type='submit' name='action' scope="col" value='GWG' />
-							<input type='submit' name='action' scope="col" value='SOG' />
-							<input type='submit' name='action' scope="col" value='S%' />
-							<input type='submit' name='action' scope="col" value='TOI/G' />
-							<input type='submit' name='action' scope="col" value='PP TOI/G' />
-							<input type='submit' name='action' scope="col" value='SH TOI/G' />
-						</tr>
-					</form>
-				</thead>
-				<tbody>
-					<?php 
-					$i=0;
-					foreach($aData as $sSktrStats){
-					$i++;
-						?>
-						<tr>
-							<td><?php echo $iStartPage++;?></td>
-							<td><?php echo $sSktrStats->name;?></td>
-							<td><?php echo $sSktrStats->age;?></td>
-							<td><?php echo $sSktrStats->teamcur;?></td>
-							<td><?php echo $sSktrStats->pos;?></td>
-							<td><?php echo $sSktrStats->gp;?></td>
-							<td><?php echo $sSktrStats->g;?></td>
-							<td><?php echo $sSktrStats->a;?></td>
-							<td><?php echo $sSktrStats->pts;?></td>
-							<td><?php echo $sSktrStats->plusminus;?></td>
-							<td><?php echo $sSktrStats->pim;?></td>
-							<td><?php echo $sSktrStats->ppg;?></td>
-							<td><?php echo $sSktrStats->shg;?></td>
-							<td><?php echo $sSktrStats->gwg;?></td>
-							<td><?php echo $sSktrStats->sog;?></td>
-							<td><?php echo $sSktrStats->shtpct;?></td>
-							<td><?php echo $sSktrStats->toiperg;?></td>
-							<td><?php echo $sSktrStats->pptoiperg;?></td>
-							<td><?php echo $sSktrStats->shtoiperg;?></td>
-						</tr>
-				<?php } ?>
-				</tbody>
-				
-			</table><!-- / #statTable -->
+			<form class="columnsort" action='.' method="post">
+				<table class="sortable">
+					<thead>
+						<h1 class="tableCaption"><?php echo substr($sSeason, 0, 4) . "-" . substr($sSeason, 4, 2)?> Skater Scoring Stats</h1>
+							<tr>
+								<th><input type='submit' name='action' scope="col" value='' /></th>
+								<th class="name"><input type='submit' name='action' scope="col" value='Name' /></th>
+								<th><input type='submit' name='action' scope="col" value='Age' /></th>
+								<th><input type='submit' name='action' scope="col" value='Team' /></th>
+								<th><input type='submit' name='action' scope="col" value='Pos' /></th>
+								<th><input type='submit' name='action' scope="col" value='GP' /></th>
+								<th><input type='submit' name='action' scope="col" value='G' /></th>
+								<th><input type='submit' name='action' scope="col" value='A' /></th>
+								<th><input type='submit' name='action' scope="col" value='Pts' /></th>
+								<th><input type='submit' name='action' scope="col" value='+/-' /></th>
+								<th><input type='submit' name='action' scope="col" value='PIM' /></th>
+								<th><input type='submit' name='action' scope="col" value='PPG' /></th>
+								<th><input type='submit' name='action' scope="col" value='SHG' /></th>
+								<th><input type='submit' name='action' scope="col" value='GWG' /></th>
+								<th><input type='submit' name='action' scope="col" value='SOG' /></th>
+								<th><input type='submit' name='action' scope="col" value='S%' /></th>
+								<th><input type='submit' name='action' scope="col" value='TOI/G' /></th>
+								<th><input type='submit' name='action' scope="col" value='PP TOI/G' /></th>
+								<th><input type='submit' name='action' scope="col" value='SH TOI/G' /></th>
+							</tr>
+					</thead>
+					<tbody>
+						<?php 
+						$i=0;
+						foreach($aData as $sSktrStats){
+						$i++;
+							?>
+							<tr>
+								<td><?php echo $iStartPage++;?></td>
+								<td class="name" class="left"><?php echo $sSktrStats->name;?></td>
+								<td><?php echo $sSktrStats->age;?></td>
+								<td><?php echo $sSktrStats->teamcur;?></td>
+								<td><?php echo $sSktrStats->pos;?></td>
+								<td><?php echo $sSktrStats->gp;?></td>
+								<td><?php echo $sSktrStats->g;?></td>
+								<td><?php echo $sSktrStats->a;?></td>
+								<td><?php echo $sSktrStats->pts;?></td>
+								<td><?php echo $sSktrStats->plusminus;?></td>
+								<td><?php echo $sSktrStats->pim;?></td>
+								<td><?php echo $sSktrStats->ppg;?></td>
+								<td><?php echo $sSktrStats->shg;?></td>
+								<td><?php echo $sSktrStats->gwg;?></td>
+								<td><?php echo $sSktrStats->sog;?></td>
+								<td><?php echo $sSktrStats->shtpct;?></td>
+								<td><?php echo $sSktrStats->toiperg;?></td>
+								<td><?php echo $sSktrStats->pptoiperg;?></td>
+								<td><?php echo $sSktrStats->shtoiperg;?></td>
+							</tr>
+					<?php } ?>
+					</tbody>
+					
+				</table><!-- / #statTable -->
+			</form>
 			<form id="pagination" action='.' method="post">
-				<p class="searchbutton">
+				<p class="pagination">
 					<input type='submit' name='action' value='Previous' />
 				</p>
-				<p class="searchbutton">
+				<p class="pagination">
 					<input type='submit' name='action' value='Next' />
 				</p>
-				<p class="searchbutton">
+				<p class="pagination">
 					<input type='submit' name='action' value='All' />
 				</p>
 			</form><!-- / #pagination -->

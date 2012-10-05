@@ -9,7 +9,7 @@
 		$db->Connect("localhost", "root", "", "nhl");
 	}
 	else{
-		$db->Connect('amakish.netfirmsmysql.com', 'amakish', '1gdsac5t7*krs2', "nhl");
+		$db->Connect('amakish.netfirmsmysql.com', 'amakish', 'HattHatt11nf!!', "nationalhockeyleauge");
 	}	
 	ADOdb_Active_Record::SetDatabaseAdapter($db);
 	/*
@@ -217,59 +217,99 @@
 			$_SESSION['pagenum'] = 0;
 			break;
 		case "GP":
-			$sOrder = " order by gp";
+			$sOrder = " order by gp desc";
 			$_SESSION['pagenum'] = 0;
 			break;
 		case "G":
-			$sOrder = " order by g";
+			$sOrder = " order by g desc";
 			$_SESSION['pagenum'] = 0;
 			break;
 		case "A":
-			$sOrder = " order by a";
+			$sOrder = " order by a desc";
 			$_SESSION['pagenum'] = 0;
 			break;
 		case "Pts":
-			$sOrder = " order by pts";
+			$sOrder = " order by pts desc";
 			$_SESSION['pagenum'] = 0;
 			break;
-		case "Age":
-			$sOrder = " order by plusminus";
+		case "+/-":
+			$sOrder = " order by plusminus desc";
 			$_SESSION['pagenum'] = 0;
 			break;
-		case "Age":
-			$sOrder = " order by pim";
+		case "PIM":
+			$sOrder = " order by pim desc";
 			$_SESSION['pagenum'] = 0;
 			break;
-		case "Age":
-			$sOrder = " order by ppg";
+		case "PPG":
+			$sOrder = " order by ppg desc";
 			$_SESSION['pagenum'] = 0;
 			break;
-		case "Age":
-			$sOrder = " order by shg";
+		case "SHG":
+			$sOrder = " order by shg desc";
 			$_SESSION['pagenum'] = 0;
 			break;
-		case "Age":
-			$sOrder = " order by gwg";
+		case "GWG":
+			$sOrder = " order by gwg desc";
 			$_SESSION['pagenum'] = 0;
 			break;
-		case "Age":
-			$sOrder = " order by sog";
+		case "SOG":
+			$sOrder = " order by sog desc";
 			$_SESSION['pagenum'] = 0;
 			break;
-		case "Age":
-			$sOrder = " order by shtpct";
+		case "S%":
+			$sOrder = " order by shtpct desc";
 			$_SESSION['pagenum'] = 0;
 			break;
-		case "Age":
-			$sOrder = " order by toiperg";
+		case "TOI/G":
+			$sOrder = " order by toiperg desc";
 			$_SESSION['pagenum'] = 0;
 			break;
-		case "Age":
-			$sOrder = " order by pptoiperg";
+		case "PP TOI/G":
+			$sOrder = " order by pptoiperg desc";
 			$_SESSION['pagenum'] = 0;
 			break;
-		case "Age":
-			$sOrder = " order by shtoiperg";
+		case "SH TOI/G":
+			$sOrder = " order by shtoiperg desc";
+			$_SESSION['pagenum'] = 0;
+			break;
+		case "ESG":
+			$sOrder = " order by esg desc";
+			$_SESSION['pagenum'] = 0;
+			break;
+		case "ESA":
+			$sOrder = " order by esa desc";
+			$_SESSION['pagenum'] = 0;
+			break;
+		case "ESPts":
+			$sOrder = " order by espts desc";
+			$_SESSION['pagenum'] = 0;
+			break;
+		case "PPA":
+			$sOrder = " order by ppa desc";
+			$_SESSION['pagenum'] = 0;
+			break;
+		case "PPG":
+			$sOrder = " order by ppg desc";
+			$_SESSION['pagenum'] = 0;
+			break;
+		case "PPPts":
+			$sOrder = " order by pppts desc";
+			$_SESSION['pagenum'] = 0;
+			break;
+		case "SHA":
+			$sOrder = " order by sha desc";
+			$_SESSION['pagenum'] = 0;
+			break;
+		case "SHG":
+			$sOrder = " order by shg desc";
+			$_SESSION['pagenum'] = 0;
+			break;
+		case "SHPts":
+			$sOrder = " order by shpts desc";
+			$_SESSION['pagenum'] = 0;
+			break;
+		case "ES TOI/G":
+			$sOrder = " order by estoiperg desc";
 			$_SESSION['pagenum'] = 0;
 			break;
 	}
