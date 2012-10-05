@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-	$_SESSION['where'] = "";
+	$_SESSION['where'] = "1";
 	$_SESSION['table'] = "reg201112sstat";
 	$_SESSION['order'] = " order by pts desc";
 	$_SESSION['view'] = "sstatscoring";
